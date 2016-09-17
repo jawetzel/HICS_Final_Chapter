@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0989a844851a48868af3ae1a4df59434" Name="Diagram1">
+        <EntityTypeShape EntityType="HicsTestDbModel.Booking" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Building" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Customer" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Employee" Width="1.5" PointX="13.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.EmployeeShift" Width="1.5" PointX="15.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.EmployeeType" Width="1.5" PointX="11" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Expens" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.ExpenseType" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.HouseKeepingStatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Room" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.RoomType" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.SecurityRank" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Booking_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Booking_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Room_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Employee_EmployeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_EmployeeShift_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_EmployeeType_SecurityRank" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Expenses_ExpenseType" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Expenses_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Room_HouseKeepingStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="HicsTestDbModel.FK_Room_RoomType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
