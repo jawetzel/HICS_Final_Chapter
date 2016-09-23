@@ -22,6 +22,7 @@ namespace HicsHotel.Models
     
         public int Id { get; set; }
         public int SiteAccessLevel { get; set; }
+        public string AccessLevelDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeType> EmployeeTypes { get; set; }

@@ -21,7 +21,7 @@ namespace HicsHotel.Models
         }
     
         public int Id { get; set; }
-        public int Phone { get; set; }
+        public double Phone { get; set; }
         public string Address { get; set; }
         public string Building1 { get; set; }
     
