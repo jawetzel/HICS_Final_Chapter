@@ -197,9 +197,21 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Default\AccountController.cs" />
+    <Compile Include="Controllers\Employee\BookingsController.cs" />
+    <Compile Include="Controllers\Admin\BuildingsController.cs" />
+    <Compile Include="Controllers\Employee\CustomersController.cs" />
+    <Compile Include="Controllers\Admin\EmployeesController.cs" />
+    <Compile Include="Controllers\Employee\EmployeeShiftsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
+    <Compile Include="Controllers\Employee\ExpensController.cs" />
+    <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
+    <Compile Include="Controllers\Default\HomeController.cs" />
+    <Compile Include="Controllers\Admin\HouseKeepingStatusController.cs" />
+    <Compile Include="Controllers\Default\ManageController.cs" />
+    <Compile Include="Controllers\Admin\RoomsController.cs" />
+    <Compile Include="Controllers\Admin\RoomTypesController.cs" />
+    <Compile Include="Controllers\Admin\SecurityRanksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -303,7 +315,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -337,6 +351,66 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Bookings\Create.cshtml" />
+    <Content Include="Views\Bookings\Delete.cshtml" />
+    <Content Include="Views\Bookings\Details.cshtml" />
+    <Content Include="Views\Bookings\Edit.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
+    <Content Include="Views\Buildings\Create.cshtml" />
+    <Content Include="Views\Buildings\Delete.cshtml" />
+    <Content Include="Views\Buildings\Details.cshtml" />
+    <Content Include="Views\Buildings\Edit.cshtml" />
+    <Content Include="Views\Buildings\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\EmployeeShifts\Create.cshtml" />
+    <Content Include="Views\EmployeeShifts\Delete.cshtml" />
+    <Content Include="Views\EmployeeShifts\Details.cshtml" />
+    <Content Include="Views\EmployeeShifts\Edit.cshtml" />
+    <Content Include="Views\EmployeeShifts\Index.cshtml" />
+    <Content Include="Views\EmployeeTypes\Create.cshtml" />
+    <Content Include="Views\EmployeeTypes\Delete.cshtml" />
+    <Content Include="Views\EmployeeTypes\Details.cshtml" />
+    <Content Include="Views\EmployeeTypes\Edit.cshtml" />
+    <Content Include="Views\EmployeeTypes\Index.cshtml" />
+    <Content Include="Views\Expens\Create.cshtml" />
+    <Content Include="Views\Expens\Delete.cshtml" />
+    <Content Include="Views\Expens\Details.cshtml" />
+    <Content Include="Views\Expens\Edit.cshtml" />
+    <Content Include="Views\Expens\Index.cshtml" />
+    <Content Include="Views\ExpenseTypes\Create.cshtml" />
+    <Content Include="Views\ExpenseTypes\Delete.cshtml" />
+    <Content Include="Views\ExpenseTypes\Details.cshtml" />
+    <Content Include="Views\ExpenseTypes\Edit.cshtml" />
+    <Content Include="Views\ExpenseTypes\Index.cshtml" />
+    <Content Include="Views\HouseKeepingStatus\Create.cshtml" />
+    <Content Include="Views\HouseKeepingStatus\Delete.cshtml" />
+    <Content Include="Views\HouseKeepingStatus\Details.cshtml" />
+    <Content Include="Views\HouseKeepingStatus\Edit.cshtml" />
+    <Content Include="Views\HouseKeepingStatus\Index.cshtml" />
+    <Content Include="Views\Rooms\Create.cshtml" />
+    <Content Include="Views\Rooms\Delete.cshtml" />
+    <Content Include="Views\Rooms\Details.cshtml" />
+    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\RoomTypes\Create.cshtml" />
+    <Content Include="Views\RoomTypes\Delete.cshtml" />
+    <Content Include="Views\RoomTypes\Details.cshtml" />
+    <Content Include="Views\RoomTypes\Edit.cshtml" />
+    <Content Include="Views\RoomTypes\Index.cshtml" />
+    <Content Include="Views\SecurityRanks\Create.cshtml" />
+    <Content Include="Views\SecurityRanks\Delete.cshtml" />
+    <Content Include="Views\SecurityRanks\Details.cshtml" />
+    <Content Include="Views\SecurityRanks\Edit.cshtml" />
+    <Content Include="Views\SecurityRanks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,7 +440,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52703</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

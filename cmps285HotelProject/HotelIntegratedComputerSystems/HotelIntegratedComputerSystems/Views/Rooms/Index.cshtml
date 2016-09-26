@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HotelIntegratedComputerSystems.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FloorNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseKeepingStatu.CleanStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType.Bedding)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FloorNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Building.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseKeepingStatu.CleanStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType.Bedding)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

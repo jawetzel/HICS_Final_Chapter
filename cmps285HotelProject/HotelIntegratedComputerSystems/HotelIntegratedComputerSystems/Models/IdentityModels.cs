@@ -29,5 +29,11 @@ namespace HotelIntegratedComputerSystems.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Room> Rooms { get; set; }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Building> Buildings { get; set; }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.RoomType> RoomTypes { get; set; }
     }
 }
