@@ -14,6 +14,12 @@ namespace HotelIntegratedComputerSystems.Models
     
     public partial class Booking
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Booking()
+        {
+            this.Expense = new HashSet<Expense>();
+        }
+    
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int RoomId { get; set; }
@@ -24,5 +30,7 @@ namespace HotelIntegratedComputerSystems.Models
     
         public virtual Customer Customer { get; set; }
         public virtual Room Room { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Expense> Expense { get; set; }
     }
 }

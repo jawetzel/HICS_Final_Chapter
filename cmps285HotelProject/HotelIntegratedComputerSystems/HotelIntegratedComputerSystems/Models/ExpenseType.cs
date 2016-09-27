@@ -17,7 +17,7 @@ namespace HotelIntegratedComputerSystems.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ExpenseType()
         {
-            this.Expenses = new HashSet<Expens>();
+            this.Expenses = new HashSet<Expense>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace HotelIntegratedComputerSystems.Models
         public decimal Ammount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expens> Expenses { get; set; }
+        public virtual ICollection<Expense> Expenses { get; set; }
     }
 }

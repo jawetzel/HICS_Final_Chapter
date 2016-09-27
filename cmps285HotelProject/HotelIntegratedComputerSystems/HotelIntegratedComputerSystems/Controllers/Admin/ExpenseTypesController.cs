@@ -9,11 +9,11 @@ using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
 
-namespace HotelIntegratedComputerSystems.Controllers
+namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class ExpenseTypesController : Controller
     {
-        private HicsTestDbEntities db = new HicsTestDbEntities();
+        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
 
         // GET: ExpenseTypes
         public async Task<ActionResult> Index()
