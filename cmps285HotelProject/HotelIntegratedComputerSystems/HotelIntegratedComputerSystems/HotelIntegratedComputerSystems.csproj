@@ -216,6 +216,7 @@
     <Compile Include="Controllers\Employees\ExpensesController.cs" />
     <Compile Include="Controllers\Employees\MaintenanceLogsController.cs" />
     <Compile Include="Controllers\Employees\RoomsController.cs" />
+    <Compile Include="Controllers\HouseKeepingViewModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +263,7 @@
     <Compile Include="Models\HouseKeepingStatu.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HouseKeepingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MaintenanceLogs.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
@@ -408,11 +410,6 @@
     <Content Include="Views\MaintenanceLogs\Details.cshtml" />
     <Content Include="Views\MaintenanceLogs\Edit.cshtml" />
     <Content Include="Views\MaintenanceLogs\Index.cshtml" />
-    <Content Include="Views\Rooms\Create.cshtml" />
-    <Content Include="Views\Rooms\Delete.cshtml" />
-    <Content Include="Views\Rooms\Details.cshtml" />
-    <Content Include="Views\Rooms\Edit.cshtml" />
-    <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Buildings\Create.cshtml" />
     <Content Include="Views\Buildings\Delete.cshtml" />
     <Content Include="Views\Buildings\Details.cshtml" />
@@ -458,6 +455,12 @@
     <Content Include="Views\RoomStatus\Details.cshtml" />
     <Content Include="Views\RoomStatus\Edit.cshtml" />
     <Content Include="Views\RoomStatus\Index.cshtml" />
+    <Content Include="Views\HouseKeepingViewModels\Index.cshtml" />
+    <Content Include="Views\Rooms\Create.cshtml" />
+    <Content Include="Views\Rooms\Delete.cshtml" />
+    <Content Include="Views\Rooms\Details.cshtml" />
+    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

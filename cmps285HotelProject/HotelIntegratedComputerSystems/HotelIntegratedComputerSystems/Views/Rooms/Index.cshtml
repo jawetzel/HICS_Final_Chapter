@@ -18,9 +18,6 @@
             @Html.DisplayNameFor(model => model.RoomNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RoomStatus)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Building.Address)
         </th>
         <th>
@@ -28,6 +25,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RoomType.Bedding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomStatus.Description)
         </th>
         <th></th>
     </tr>
@@ -41,9 +41,6 @@
             @Html.DisplayFor(modelItem => item.RoomNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RoomStatus)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Building.Address)
         </td>
         <td>
@@ -51,6 +48,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RoomType.Bedding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomStatus.Description)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
