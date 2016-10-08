@@ -41,7 +41,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus");
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", booking.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
@@ -77,7 +77,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 return HttpNotFound();
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", booking.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
@@ -95,7 +95,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 return RedirectToAction("Index");
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", booking.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
