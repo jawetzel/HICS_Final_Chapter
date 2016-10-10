@@ -65,6 +65,6 @@ namespace HotelIntegratedComputerSystems.Models
             return RoomList.ToList();
         }
 
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.HouseKeepingViewModel> HouseKeepingViewModels { get; set; }
+        public DbSet<HouseKeepingViewModel> HouseKeepingViewModels { get; set; }
     }
 }

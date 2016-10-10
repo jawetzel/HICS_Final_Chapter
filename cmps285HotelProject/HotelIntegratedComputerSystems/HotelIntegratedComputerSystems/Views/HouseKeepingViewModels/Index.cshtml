@@ -6,49 +6,71 @@
 
 <h2>HouseKeeping</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BuildingName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FloorNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoomNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HousekeepingCleanStatus)
-        </th>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Rooms</h3>
+        <div class="pull-right">
+            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                <i class="glyphicon glyphicon-filter"></i>
+            </span>
+        </div>
+    </div>
 
-        <th>
-            @Html.DisplayNameFor(model => model.RoomStatusDescription)
-        </th>
-        <th></th>
-    </tr>
+    <div class="panel-body">
+        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#RoomsTable" placeholder="Filter Rooms" />
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuildingName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FloorNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HousekeepingCleanStatus)
-        </td>
+    <table class="table table-hover" id="RoomsTable">
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BuildingName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FloorNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HousekeepingCleanStatus)
+                </th>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomStatusDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Change To Clean", "Edit", new { id=item.Id })
-        </td>
-    </tr>
-}
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomStatusDescription)
+                </th>
+                <th>
+                    Change Status
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BuildingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FloorNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HousekeepingCleanStatus)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomStatusDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Clean", "Clean", new { id = item.Id }) |
+                        @Html.ActionLink("Dirty", "Dirty", new { id = item.Id }) |
+                        @Html.ActionLink("DND", "DND", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
