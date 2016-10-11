@@ -41,7 +41,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         public ActionResult Create()
         {
             ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type");
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus");
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id");
             ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id");
             return View();
         }
@@ -61,7 +61,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             }
 
             ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", expense.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
             ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }
@@ -79,7 +79,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 return HttpNotFound();
             }
             ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", expense.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
             ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }
@@ -98,7 +98,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 return RedirectToAction("Index");
             }
             ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", expense.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
             ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }

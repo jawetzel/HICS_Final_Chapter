@@ -18,7 +18,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Rooms
         public async Task<ActionResult> Index()
         {
-            var rooms = db.Rooms.Include(r => r.Building).Include(r => r.HouseKeepingStatu).Include(r => r.RoomType);
+            var rooms = db.Rooms.Include(r => r.Building).Include(r => r.HouseKeepingStatu).Include(r => r.RoomType).Include(r => r.RoomStatus);
             return View(await rooms.ToListAsync());
         }
 
@@ -43,6 +43,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address");
             ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus");
             ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding");
+            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description");
             return View();
         }
 
@@ -51,7 +52,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BuildingId,RoomTypeId,HousekeepingStatusId,FloorNumber,RoomNumber,RoomStatus")] Room room)
+        public async Task<ActionResult> Create([Bind(Include = "Id,BuildingId,RoomTypeId,HousekeepingStatusId,FloorNumber,RoomNumber,RoomStatusId")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
             ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
             ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 
@@ -81,6 +83,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
             ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
             ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 
@@ -89,7 +92,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BuildingId,RoomTypeId,HousekeepingStatusId,FloorNumber,RoomNumber,RoomStatus")] Room room)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,BuildingId,RoomTypeId,HousekeepingStatusId,FloorNumber,RoomNumber,RoomStatusId")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +103,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
             ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
             ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 

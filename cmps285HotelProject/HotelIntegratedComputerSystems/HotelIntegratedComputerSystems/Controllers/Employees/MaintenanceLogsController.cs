@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: MaintenanceLogs/Create
         public ActionResult Create()
         {
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus");
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id");
             ViewBag.MaintenanceTypesId = new SelectList(db.MaintenanceTypes, "Id", "Type");
             return View();
         }
@@ -59,7 +59,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", maintenanceLogs.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
             ViewBag.MaintenanceTypesId = new SelectList(db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
             return View(maintenanceLogs);
         }
@@ -76,7 +76,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return HttpNotFound();
             }
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", maintenanceLogs.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
             ViewBag.MaintenanceTypesId = new SelectList(db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
             return View(maintenanceLogs);
         }
@@ -94,7 +94,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "RoomStatus", maintenanceLogs.RoomId);
+            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
             ViewBag.MaintenanceTypesId = new SelectList(db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
             return View(maintenanceLogs);
         }
