@@ -25,50 +25,58 @@
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Admin <span class="caret"></span></button>
                             <ul class="dropdown-menu">
+                                <li>Rooms</li>
                                 <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
                                 <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
-                                <li>@Html.ActionLink("Manage Things", "Index", "Manage")</li>
+                                <li>@Html.ActionLink("RoomTypes", "Index", "Rooms")</li>
+                                <li>Employees</li>
                                 <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
-                                <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
-                                <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
-                                <li>@Html.ActionLink("Security Rank", "Index", "SecurityRanks")</li>
+                                <li>@Html.ActionLink("EmployeeTypes", "Index", "EmployeeTypes")</li>
+                                <li>@Html.ActionLink("EmployeeShifts", "Index", "EmployeeShifts")</li>
+                                <li>Maintainance</li>
+                                 <li>@Html.ActionLink("MaintenanceLogs", "Index", "MaintenanceLogs")</li>
+                                <li>@Html.ActionLink("MaintenanceTypes", "Index", "MaintenanceTypes")</li>
+                                <li>Expences</li>
+                                <li>@Html.ActionLink("ExpenseTypes", "Index", "ExpenseTypes")</li>
+
                             </ul>
                         </div>
                     </li><!--ADMIN TAB-->
                     <li>
-                        <!--HOUSEKEEPING TAB-->
+                        <!--Employee TAB-->
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Housekeeping <span class="caret"></span></button>
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Employee <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Housekeeping Status", "Index", "HouseKeepingStatus")</li>
-                                <li>@Html.ActionLink("Room Status", "Index", "RoomStatus")</li>
-                                <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
-                                <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
-                            </ul>
-                        </div>
-                    </li><!--HOUSEKEEPING TAB-->
-                    <li>
-                        <!--Front Desk TAB-->
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Front Desk <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
+                                <li>Customers</li>
                                 <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
-                                <li>@Html.ActionLink("Customer Information", "Index", "Customers")</li>
-                                <li>@Html.ActionLink("Room Status", "Index", "RoomStatus")</li>
+                                <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                                <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
+                                <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                                <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                                <li>@Html.ActionLink("Null", "Index", "Null")</li>
+
                             </ul>
                         </div>
-                    </li><!--FRONT DESK TAB-->
+                    </li><!--Employee TAB-->
                     <li>
-                        <!--ADD EXPENSE TAB-->
+                        <!--HouseKeeping-->
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Add Expense <span class="caret"></span></button>
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maid Service <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Total Expenses", "Index", "Expenses")</li>
-                                <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
-                      
+                                <li>@Html.ActionLink("HouseKeeping", "Index", "HouseKeeping")</li>
                             </ul>
                         </div>
-                    </li><!--ADD EXPENSE TAB-->
+                    </li><!--HouseKeeping TAB-->
+                    <li>
+                        <!--Maintainance TAB-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maintainance <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                                <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                            </ul>
+                        </div>
+                    </li><!--Maintainance TAB-->
                 </ul>
             </div>
         </div>

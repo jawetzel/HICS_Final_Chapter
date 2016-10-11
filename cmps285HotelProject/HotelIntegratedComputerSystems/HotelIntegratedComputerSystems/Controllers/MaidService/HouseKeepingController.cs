@@ -11,7 +11,7 @@ using System.Web.UI;
 
 namespace HotelIntegratedComputerSystems.Controllers
 {
-    public class HouseKeepingViewModelsController : Controller
+    public class HouseKeepingController : Controller
     {
         private HicsTestDbEntities1 db = new HicsTestDbEntities1();
 

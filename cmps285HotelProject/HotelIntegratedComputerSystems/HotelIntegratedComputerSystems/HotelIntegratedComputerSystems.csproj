@@ -202,21 +202,21 @@
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
-    <Compile Include="Controllers\Admin\HouseKeepingStatusController.cs" />
+    <Compile Include="Controllers\Unaccessible\HouseKeepingStatusController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
-    <Compile Include="Controllers\Admin\RoomStatusController.cs" />
+    <Compile Include="Controllers\Unaccessible\RoomStatusController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
-    <Compile Include="Controllers\Admin\SecurityRanksController.cs" />
+    <Compile Include="Controllers\Unaccessible\SecurityRanksController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
     <Compile Include="Controllers\Default\ManageController.cs" />
     <Compile Include="Controllers\Employees\BookingsController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
-    <Compile Include="Controllers\Employees\EmployeeShiftsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
     <Compile Include="Controllers\Employees\ExpensesController.cs" />
-    <Compile Include="Controllers\Employees\MaintenanceLogsController.cs" />
-    <Compile Include="Controllers\Employees\RoomsController.cs" />
-    <Compile Include="Controllers\HouseKeepingViewModelsController.cs" />
+    <Compile Include="Controllers\Admin\MaintenanceLogsController.cs" />
+    <Compile Include="Controllers\Admin\RoomsController.cs" />
+    <Compile Include="Controllers\MaidService\HouseKeepingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -455,7 +455,7 @@
     <Content Include="Views\RoomStatus\Details.cshtml" />
     <Content Include="Views\RoomStatus\Edit.cshtml" />
     <Content Include="Views\RoomStatus\Index.cshtml" />
-    <Content Include="Views\HouseKeepingViewModels\Index.cshtml" />
+    <Content Include="Views\HouseKeeping\Index.cshtml" />
     <Content Include="Views\Rooms\Create.cshtml" />
     <Content Include="Views\Rooms\Delete.cshtml" />
     <Content Include="Views\Rooms\Details.cshtml" />
@@ -464,6 +464,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Maintainance\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
