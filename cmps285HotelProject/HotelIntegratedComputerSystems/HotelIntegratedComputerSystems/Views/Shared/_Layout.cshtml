@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - H.I.C.S.</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,15 +16,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("H.I.C.S", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>
+                        <!--ADMIN TAB-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Admin <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
+                                <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
+                                <li>@Html.ActionLink("Manage Things", "Index", "Manage")</li>
+                                <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                                <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
+                                <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
+                                <li>@Html.ActionLink("Security Rank", "Index", "SecurityRanks")</li>
+                            </ul>
+                        </div>
+                    </li><!--ADMIN TAB-->
+                    <li>
+                        <!--HOUSEKEEPING TAB-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Housekeeping <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Housekeeping Status", "Index", "HouseKeepingStatus")</li>
+                                <li>@Html.ActionLink("Room Status", "Index", "RoomStatus")</li>
+                                <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
+                                <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
+                            </ul>
+                        </div>
+                    </li><!--HOUSEKEEPING TAB-->
+                    <li>
+                        <!--Front Desk TAB-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Front Desk <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
+                                <li>@Html.ActionLink("Customer Information", "Index", "Customers")</li>
+                                <li>@Html.ActionLink("Room Status", "Index", "RoomStatus")</li>
+                            </ul>
+                        </div>
+                    </li><!--FRONT DESK TAB-->
+                    <li>
+                        <!--ADD EXPENSE TAB-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Add Expense <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Total Expenses", "Index", "Expenses")</li>
+                                <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
+                      
+                            </ul>
+                        </div>
+                    </li><!--ADD EXPENSE TAB-->
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -33,10 +77,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - H.I.C.S</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
