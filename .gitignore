@@ -1,7 +1,6 @@
 ﻿###################
 # compiled source #
 ###################
-Web.config
 *.applicationhost.config
 *.com
 *.class
