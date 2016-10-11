@@ -1,6 +1,7 @@
-###################
+﻿###################
 # compiled source #
 ###################
+*.applicationhost.config
 *.com
 *.class
 *.dll
