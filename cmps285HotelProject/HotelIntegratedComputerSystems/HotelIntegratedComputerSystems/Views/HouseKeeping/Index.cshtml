@@ -89,31 +89,42 @@
 
         <script>
             function filterFunction() {
-                var input, filter, table, tr, td, i, Building, Floor, Room, CleanStatus, RoomStatus;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("dev-table");
-                tr = table.getElementsByTagName("tr");
-
+                var td, i, Building, Floor, Room, CleanStatus, RoomStatus;
+                var input = document.getElementById("myInput");
+                var filter = input.value.toUpperCase();
+                var SplitFilter = filter.split(" ")
+                var table = document.getElementById("dev-table");
+                var tr = table.getElementsByTagName("tr");
+                
                 for (i = 0; i < tr.length; i++) {
                     Building = tr[i].getElementsByTagName("td")[0];
                     Floor = tr[i].getElementsByTagName("td")[1];
                     Room = tr[i].getElementsByTagName("td")[2];
                     CleanStatus = tr[i].getElementsByTagName("td")[3];
                     RoomStatus = tr[i].getElementsByTagName("td")[4];
-                    if (CleanStatus || Building || Floor || Room || RoomStatus) {
-                        if (Building.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-                            Floor.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-                            Room.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-                            CleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1 ||
-                            RoomStatus.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    
+                    var Displayed = "no"
+                    for (j = 0; j < SplitFilter.length; j++) {
+                        if (CleanStatus || Building || Floor || Room || RoomStatus) {
+                            if (HouseKeepingParametersExist(CleanStatus, Building, Floor, Room, RoomStatus, SplitFilter[j])) {
                                 tr[i].style.display = "";
-                        }
-                        else {
-                            tr[i].style.display = "none";
-                        }
+                                Displayed = "yes";
+                            }
+                        }                    
+                    }
+                    if (Displayed == "no") {
+                        tr[i].style.display = "none";
                     }
                 }
+            }
+
+            function HouseKeepingParametersExist(CleanStatus, Building, Floor, Room, RoomStatus, filter)
+            {
+                return Building.innerHTML.toUpperCase().indexOf(filter) > -1
+                            || Floor.innerHTML.toUpperCase().indexOf(filter) > -1
+                            || Room.innerHTML.toUpperCase().indexOf(filter) > -1
+                            || CleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1
+                            || RoomStatus.innerHTML.toUpperCase().indexOf(filter) > -1;
             }
         </script>
 

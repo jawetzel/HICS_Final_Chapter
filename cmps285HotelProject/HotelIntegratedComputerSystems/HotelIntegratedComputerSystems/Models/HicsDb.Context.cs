@@ -42,29 +42,5 @@ namespace HotelIntegratedComputerSystems.Models
         public virtual DbSet<MaintenanceLogs> MaintenanceLogs { get; set; }
         public virtual DbSet<MaintenanceTypes> MaintenanceTypes { get; set; }
         public virtual DbSet<RoomStatus> RoomStatus { get; set; }
-
-        public List<HouseKeepingViewModel> GetRoomsForHouseKeeping()
-        {
-            var RoomList =  from room in Rooms
-                            join HouseKeeping in HouseKeepingStatus on room.HousekeepingStatusId equals HouseKeeping.Id
-                            join Building in Buildings on room.BuildingId equals Building.Id
-                            join RoomStat in RoomStatus on room.RoomStatusId equals RoomStat.Id
-                            where room.HousekeepingStatusId == HouseKeeping.Id && room.BuildingId == Building.Id && room.RoomStatusId == RoomStat.Id
-                            select new HouseKeepingViewModel
-                            {
-                                Id = room.Id,
-                                BuildingId = Building.Id,
-                                BuildingName = Building.Building1,
-                                HousekeepingStatusId = HouseKeeping.Id,
-                                HousekeepingCleanStatus = HouseKeeping.CleanStatus,
-                                FloorNumber = room.FloorNumber,
-                                RoomNumber = room.RoomNumber,
-                                RoomStatusId = RoomStat.Id,
-                                RoomStatusDescription = RoomStat.Description
-                            };
-            return RoomList.ToList();
-        }
-
-        public DbSet<HouseKeepingViewModel> HouseKeepingViewModels { get; set; }
     }
 }

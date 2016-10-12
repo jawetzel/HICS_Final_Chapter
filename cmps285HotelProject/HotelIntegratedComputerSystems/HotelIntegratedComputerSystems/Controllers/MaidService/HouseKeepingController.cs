@@ -8,18 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
 using System.Web.UI;
+using HotelIntegratedComputerSystems.Services;
 
 namespace HotelIntegratedComputerSystems.Controllers
 {
     public class HouseKeepingController : Controller
     {
         private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private MaidServiceServices Service = new MaidServiceServices();
 
-        // GET: HouseKeepingViewModels
         public ActionResult Index()
         {
-
-            return View(db.GetRoomsForHouseKeeping());
+            return View(Service.GetRoomsForHouseKeeping());
         }
         
         public ActionResult Clean(int? id)
@@ -28,12 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu RoomStatus = db.HouseKeepingStatus.Where(s => s.CleanStatus.Contains("Clean")).FirstOrDefault<HouseKeepingStatu>();
-            Room ChangeRoom = db.Rooms.Where(s => s.Id == id).FirstOrDefault<Room>();
-            ChangeRoom.HousekeepingStatusId = RoomStatus.Id;
-
-            db.Entry(ChangeRoom).State = EntityState.Modified;
-            db.SaveChanges();
+            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Clean"), id.Value);
             return RedirectToAction("Index");
         }
 
@@ -43,12 +38,7 @@ namespace HotelIntegratedComputerSystems.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu RoomStatus = db.HouseKeepingStatus.Where(s => s.CleanStatus.Contains("Dirty")).FirstOrDefault<HouseKeepingStatu>();
-            Room ChangeRoom = db.Rooms.Where(s => s.Id == id).FirstOrDefault<Room>();
-            ChangeRoom.HousekeepingStatusId = RoomStatus.Id;
-
-            db.Entry(ChangeRoom).State = EntityState.Modified;
-            db.SaveChanges();
+            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Dirty"), id.Value);
             return RedirectToAction("Index");
         }
 
@@ -58,25 +48,9 @@ namespace HotelIntegratedComputerSystems.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu RoomStatus = db.HouseKeepingStatus.Where(s => s.CleanStatus.Contains("Do Not Disturb")).FirstOrDefault<HouseKeepingStatu>();
-            Room ChangeRoom = db.Rooms.Where(s => s.Id == id).FirstOrDefault<Room>();
-            ChangeRoom.HousekeepingStatusId = RoomStatus.Id;
-
-            db.Entry(ChangeRoom).State = EntityState.Modified;
-            db.SaveChanges();
+            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Do Not Disturb"), id.Value);
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public ActionResult UpdateRoomList(string Building, string Floor, string Room, string CleanStatus, string RoomStatus)
-        //{
-        //    if (model.matId == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    //do something here
-        //    return RedirectToAction("Index")
-        //}
-
 
         protected override void Dispose(bool disposing)
         {
