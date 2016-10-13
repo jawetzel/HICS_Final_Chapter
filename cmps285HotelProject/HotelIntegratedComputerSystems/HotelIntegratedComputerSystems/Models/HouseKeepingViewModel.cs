@@ -34,5 +34,7 @@ namespace HotelIntegratedComputerSystems.Models
 
         [DisplayName("Room Status")]
         public string RoomStatusDescription { get; set; } //RoomStatus table
+        [DisplayName("Bedding Type")]
+        public string RoomBedding { get; set; }
     }
 }

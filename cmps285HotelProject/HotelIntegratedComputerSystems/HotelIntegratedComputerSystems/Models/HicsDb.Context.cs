@@ -10,11 +10,9 @@
 namespace HotelIntegratedComputerSystems.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Linq;
-
+    
     public partial class HicsTestDbEntities1 : DbContext
     {
         public HicsTestDbEntities1()

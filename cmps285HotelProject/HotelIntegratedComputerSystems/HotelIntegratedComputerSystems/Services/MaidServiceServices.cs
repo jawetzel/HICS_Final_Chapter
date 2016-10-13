@@ -17,7 +17,8 @@ namespace HotelIntegratedComputerSystems.Services
                            join HouseKeeping in db.HouseKeepingStatus on room.HousekeepingStatusId equals HouseKeeping.Id
                            join Building in db.Buildings on room.BuildingId equals Building.Id
                            join RoomStat in db.RoomStatus on room.RoomStatusId equals RoomStat.Id
-                           where room.HousekeepingStatusId == HouseKeeping.Id && room.BuildingId == Building.Id && room.RoomStatusId == RoomStat.Id
+                           join RoomType in db.RoomTypes on room.RoomTypeId equals RoomType.Id
+                           where room.HousekeepingStatusId == HouseKeeping.Id && room.BuildingId == Building.Id && room.RoomStatusId == RoomStat.Id && room.RoomTypeId == RoomType.Id
                            select new HouseKeepingViewModel
                            {
                                Id = room.Id,
@@ -28,7 +29,8 @@ namespace HotelIntegratedComputerSystems.Services
                                FloorNumber = room.FloorNumber,
                                RoomNumber = room.RoomNumber,
                                RoomStatusId = RoomStat.Id,
-                               RoomStatusDescription = RoomStat.Description
+                               RoomStatusDescription = RoomStat.Description,
+                               RoomBedding = room.RoomType.Bedding
                            };
             return RoomList.ToList();
         }

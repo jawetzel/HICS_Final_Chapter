@@ -46,6 +46,9 @@
                     @Html.DisplayNameFor(model => model.RoomNumber)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.RoomBedding)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.HousekeepingCleanStatus)
                 </th>
 
@@ -69,6 +72,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomBedding)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.HousekeepingCleanStatus)
@@ -102,16 +108,17 @@
                 var Building = tr[i].getElementsByTagName("td")[0];
                 var Floor = tr[i].getElementsByTagName("td")[1];
                 var Room = tr[i].getElementsByTagName("td")[2];
-                var CleanStatus = tr[i].getElementsByTagName("td")[3];
-                var RoomStatus = tr[i].getElementsByTagName("td")[4];
+                var Bedding = tr[i].getElementsByTagName("td")[3]
+                var CleanStatus = tr[i].getElementsByTagName("td")[4];
+                var RoomStatus = tr[i].getElementsByTagName("td")[5];
                 if (filter != "") {
                     for (var j = 0; j < CleanedSplitFilter.length; j++) {
-                            if (Building || Floor || Room || CleanStatus || RoomStatus) {
-                                if ((CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, CleanedSplitFilter[j]))
+                        if (Building || Floor || Room || Bedding || CleanStatus || RoomStatus) {
+                            if ((CheckForMatch(CleanStatus, Building, Floor, Room, Bedding, RoomStatus, CleanedSplitFilter[j]))
                                 && (tr[i].style.display == "")) {
                                     tr[i].style.display = "";
                                 }
-                                else if ((CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, CleanedSplitFilter[j]))
+                            else if ((CheckForMatch(CleanStatus, Building, Floor, Room, Bedding, RoomStatus, CleanedSplitFilter[j]))
                                 && (tr[i].style.display == "none")) {
                                 }
                                 else {
@@ -129,11 +136,12 @@
         }
 
 
-        function CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, filter)
+        function CheckForMatch(CleanStatus, Building, Floor, Room, Bedding, RoomStatus, filter)
         {
             return Building.innerHTML.toUpperCase().indexOf(filter) > -1
                         || Floor.innerHTML.toUpperCase().indexOf(filter) > -1
                         || Room.innerHTML.toUpperCase().indexOf(filter) > -1
+                        || Bedding.innerHTML.toUpperCase().indexOf(filter) > -1
                         || CleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1
                         || RoomStatus.innerHTML.toUpperCase().indexOf(filter) > -1;
         }

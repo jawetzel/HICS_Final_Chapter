@@ -16,7 +16,7 @@ namespace HotelIntegratedComputerSystems.Models
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
-        public Nullable<System.DateTime> ClockIn { get; set; }
+        public System.DateTime ClockIn { get; set; }
         public Nullable<System.DateTime> ClockOut { get; set; }
         public decimal CashTakeIn { get; set; }
         public decimal CashPutInSafe { get; set; }

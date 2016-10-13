@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="HicsTestDbModel.ExpenseType" Width="1.5" PointX="6.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.HouseKeepingStatu" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.Room" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HicsTestDbModel.RoomType" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.RoomType" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.SecurityRank" Width="1.5" PointX="8.625" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="HicsTestDbModel.FK_Booking_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="HicsTestDbModel.FK_Booking_Room" ManuallyRouted="false" />
