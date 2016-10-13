@@ -87,46 +87,55 @@
         </tbody>
     </table>  
 
-        <script>
-            function filterFunction() {
-                var td, i, Building, Floor, Room, CleanStatus, RoomStatus;
-                var input = document.getElementById("myInput");
-                var filter = input.value.toUpperCase();
-                var SplitFilter = filter.split(" ")
-                var table = document.getElementById("dev-table");
-                var tr = table.getElementsByTagName("tr");
-                
-                for (i = 0; i < tr.length; i++) {
-                    Building = tr[i].getElementsByTagName("td")[0];
-                    Floor = tr[i].getElementsByTagName("td")[1];
-                    Room = tr[i].getElementsByTagName("td")[2];
-                    CleanStatus = tr[i].getElementsByTagName("td")[3];
-                    RoomStatus = tr[i].getElementsByTagName("td")[4];
-                    
-                    var Displayed = "no"
-                    for (j = 0; j < SplitFilter.length; j++) {
-                        if (CleanStatus || Building || Floor || Room || RoomStatus) {
-                            if (HouseKeepingParametersExist(CleanStatus, Building, Floor, Room, RoomStatus, SplitFilter[j])) {
-                                tr[i].style.display = "";
-                                Displayed = "yes";
+    <script>
+        function filterFunction() {
+            var input = document.getElementById("myInput");
+            var filter = input.value.toUpperCase();
+            var SplitFilter = filter.split(" ")
+            var CleanedSplitFilter = SplitFilter.filter(Boolean);
+            
+			var table = document.getElementById("dev-table");
+			var tr = table.getElementsByTagName("tr");
+
+			for (var i = 0; i < tr.length; i++) {
+			    tr[i].style.display = "";
+                var Building = tr[i].getElementsByTagName("td")[0];
+                var Floor = tr[i].getElementsByTagName("td")[1];
+                var Room = tr[i].getElementsByTagName("td")[2];
+                var CleanStatus = tr[i].getElementsByTagName("td")[3];
+                var RoomStatus = tr[i].getElementsByTagName("td")[4];
+                if (filter != "") {
+                    for (var j = 0; j < CleanedSplitFilter.length; j++) {
+                            if (Building || Floor || Room || CleanStatus || RoomStatus) {
+                                if ((CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, CleanedSplitFilter[j]))
+                                && (tr[i].style.display == "")) {
+                                    tr[i].style.display = "";
+                                }
+                                else if ((CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, CleanedSplitFilter[j]))
+                                && (tr[i].style.display == "none")) {
+                                }
+                                else {
+                                    tr[i].style.display = "none";
+                                }
                             }
-                        }                    
+                        }
                     }
-                    if (Displayed == "no") {
-                        tr[i].style.display = "none";
+                    else {
+                        tr[i].style.display = "";
                     }
-                }
+
+                
             }
-
-            function HouseKeepingParametersExist(CleanStatus, Building, Floor, Room, RoomStatus, filter)
-            {
-                return Building.innerHTML.toUpperCase().indexOf(filter) > -1
-                            || Floor.innerHTML.toUpperCase().indexOf(filter) > -1
-                            || Room.innerHTML.toUpperCase().indexOf(filter) > -1
-                            || CleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1
-                            || RoomStatus.innerHTML.toUpperCase().indexOf(filter) > -1;
-            }
-        </script>
+        }
 
 
+        function CheckForMatch(CleanStatus, Building, Floor, Room, RoomStatus, filter)
+        {
+            return Building.innerHTML.toUpperCase().indexOf(filter) > -1
+                        || Floor.innerHTML.toUpperCase().indexOf(filter) > -1
+                        || Room.innerHTML.toUpperCase().indexOf(filter) > -1
+                        || CleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1
+                        || RoomStatus.innerHTML.toUpperCase().indexOf(filter) > -1;
+        }
+    </script>
 </div>
