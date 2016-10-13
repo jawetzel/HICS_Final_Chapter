@@ -12,9 +12,8 @@ using HotelIntegratedComputerSystems.Services;
 
 namespace HotelIntegratedComputerSystems.Controllers
 {
-    public class HouseKeepingController : Controller
+    public class HouseKeepingController : BaseController
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
         private MaidServiceServices Service = new MaidServiceServices();
 
         public ActionResult Index()
