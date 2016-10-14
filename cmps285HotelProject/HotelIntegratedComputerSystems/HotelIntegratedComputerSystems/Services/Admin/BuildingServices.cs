@@ -23,7 +23,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             return buildingList.ToList();
         }
 
-        public void CreateNewCustomer(BuildingViewModel Building)
+        public void CreateNewBuilding(BuildingViewModel Building)
         {
 
             Db.Buildings.Add(new Building
