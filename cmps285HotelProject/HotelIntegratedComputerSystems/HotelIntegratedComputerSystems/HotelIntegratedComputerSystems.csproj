@@ -203,6 +203,7 @@
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
     <Compile Include="Controllers\Admin\RoomsController.cs" />
+    <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\NullController.cs" />
