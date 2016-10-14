@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<HotelIntegratedComputerSystems.Models.Employees.CustomersViewModel>
-
+@Scripts.Render("~/Scripts/FilterByColumns.js")
 @{
     ViewBag.Title = "Index";
 }
+
 
 <h2>Customers</h2>
 
@@ -10,7 +11,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">Rooms</h3>
     </div>
-    <input type="text" id="myInput" onkeyup="filterFunction()" class="form-control" data-action="filter" placeholder="Filter Customers" />
+    <input type="text" id="myInput" onkeyup="filterFunction4Column()" class="form-control" data-action="filter" placeholder="Filter Customers" />
     <table class="table table-hover" id="dev-table">
         <tr>
             <th>
@@ -54,49 +55,3 @@
         }
     </table>
 </div>
-
-<script>
-    function filterFunction() {
-        var input = document.getElementById("myInput");
-        var filter = input.value.toUpperCase();
-        var splitFilter = filter.split(" ")
-        var cleanedSplitFilter = splitFilter.filter(Boolean);
-
-		var table = document.getElementById("dev-table");
-		var tr = table.getElementsByTagName("tr");
-
-		for (var i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-            var building = tr[i].getElementsByTagName("td")[0];
-            var floor = tr[i].getElementsByTagName("td")[1];
-            var room = tr[i].getElementsByTagName("td")[2];
-            var bedding = tr[i].getElementsByTagName("td")[3]
-            if (filter != "") {
-                for (var j = 0; j < cleanedSplitFilter.length; j++) {
-                    if (building || floor || room || bedding) {
-                        if ((CheckForMatch(building, floor, room, bedding, cleanedSplitFilter[j]))
-                            && (tr[i].style.display == "")) {
-                                tr[i].style.display = "";
-                            }
-                        else if ((CheckForMatch(building, floor, room, bedding, cleanedSplitFilter[j]))
-                            && (tr[i].style.display == "none")) {
-                            }
-                            else {
-                                tr[i].style.display = "none";
-                            }
-                        }
-                    }
-                }
-                else {
-                    tr[i].style.display = "";
-                }
-            }
-        }
-    function CheckForMatch(building, floor, room, bedding, filter)
-    {
-        return      building.innerHTML.toUpperCase().indexOf(filter) > -1
-                    || floor.innerHTML.toUpperCase().indexOf(filter) > -1
-                    || room.innerHTML.toUpperCase().indexOf(filter) > -1
-                    || bedding.innerHTML.toUpperCase().indexOf(filter) > -1;
-    }
-</script>

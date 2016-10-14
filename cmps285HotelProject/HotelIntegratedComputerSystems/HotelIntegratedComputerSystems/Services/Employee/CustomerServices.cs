@@ -10,7 +10,7 @@ namespace HotelIntegratedComputerSystems.Services.Employee
 {
     public class CustomerServices
     {
-        public HicsTestDbEntities1 Db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 Db = new HicsTestDbEntities1();
 
         public List<CustomersViewModel> GetCustomersList()
         {

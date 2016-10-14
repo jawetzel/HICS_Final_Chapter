@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<HotelIntegratedComputerSystems.Models.HouseKeepingViewModel>
+@Scripts.Render("~/Scripts/FilterByColumns.js")
 
 @{
     ViewBag.Title = "Index";
@@ -8,10 +9,6 @@
 <h2>HouseKeeping</h2>
 
 <head>
-    
-    <script src = "https://code.jquery.com/jquery-1.12.3.js"></script>
-    <script src = "https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src = "https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
     <script>
 
@@ -30,7 +27,7 @@
     </div>
 
     <div class="panel-body">
-        <input type="text" id="myInput" onkeyup="filterFunction()" class="form-control" data-action="filter" placeholder="Filter Rooms" />
+        <input type="text" id="myInput" onkeyup="filterFunction6Column()" class="form-control" data-action="filter" placeholder="Filter Rooms" />
     </div>
 
     <table class="table table-hover" id="dev-table">
@@ -92,58 +89,4 @@
             }
         </tbody>
     </table>  
-
-    <script>
-        function filterFunction() {
-            var input = document.getElementById("myInput");
-            var filter = input.value.toUpperCase();
-            var splitFilter = filter.split(" ")
-            var cleanedSplitFilter = splitFilter.filter(Boolean);
-            
-			var table = document.getElementById("dev-table");
-			var tr = table.getElementsByTagName("tr");
-
-			for (var i = 0; i < tr.length; i++) {
-			    tr[i].style.display = "";
-                var building = tr[i].getElementsByTagName("td")[0];
-                var floor = tr[i].getElementsByTagName("td")[1];
-                var room = tr[i].getElementsByTagName("td")[2];
-                var bedding = tr[i].getElementsByTagName("td")[3]
-                var cleanStatus = tr[i].getElementsByTagName("td")[4];
-                var roomStatus = tr[i].getElementsByTagName("td")[5];
-                if (filter != "") {
-                    for (var j = 0; j < cleanedSplitFilter.length; j++) {
-                        if (building || floor || room || bedding || cleanStatus || roomStatus) {
-                            if ((CheckForMatch(cleanStatus, building, floor, room, bedding, roomStatus, cleanedSplitFilter[j]))
-                                && (tr[i].style.display == "")) {
-                                    tr[i].style.display = "";
-                                }
-                            else if ((CheckForMatch(cleanStatus, building, floor, room, bedding, roomStatus, cleanedSplitFilter[j]))
-                                && (tr[i].style.display == "none")) {
-                                }
-                                else {
-                                    tr[i].style.display = "none";
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        tr[i].style.display = "";
-                    }
-
-                
-            }
-        }
-
-
-        function CheckForMatch(cleanStatus, building, floor, room, bedding, roomStatus, filter)
-        {
-            return building.innerHTML.toUpperCase().indexOf(filter) > -1
-                        || floor.innerHTML.toUpperCase().indexOf(filter) > -1
-                        || room.innerHTML.toUpperCase().indexOf(filter) > -1
-                        || bedding.innerHTML.toUpperCase().indexOf(filter) > -1
-                        || cleanStatus.innerHTML.toUpperCase().indexOf(filter) > -1
-                        || roomStatus.innerHTML.toUpperCase().indexOf(filter) > -1;
-        }
-    </script>
 </div>
