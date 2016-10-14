@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class MaintenanceTypesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: MaintenanceTypes
         public async Task<ActionResult> Index()
         {
-            return View(await db.MaintenanceTypes.ToListAsync());
+            return View(await _db.MaintenanceTypes.ToListAsync());
         }
 
         // GET: MaintenanceTypes/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaintenanceTypes maintenanceTypes = await db.MaintenanceTypes.FindAsync(id);
+            var maintenanceTypes = await _db.MaintenanceTypes.FindAsync(id);
             if (maintenanceTypes == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Type")] MaintenanceTypes maintenanceTypes)
         {
-            if (ModelState.IsValid)
-            {
-                db.MaintenanceTypes.Add(maintenanceTypes);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(maintenanceTypes);
+            if (!ModelState.IsValid) return View(maintenanceTypes);
+            _db.MaintenanceTypes.Add(maintenanceTypes);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: MaintenanceTypes/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaintenanceTypes maintenanceTypes = await db.MaintenanceTypes.FindAsync(id);
+            var maintenanceTypes = await _db.MaintenanceTypes.FindAsync(id);
             if (maintenanceTypes == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Type")] MaintenanceTypes maintenanceTypes)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(maintenanceTypes).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(maintenanceTypes);
+            if (!ModelState.IsValid) return View(maintenanceTypes);
+            _db.Entry(maintenanceTypes).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: MaintenanceTypes/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaintenanceTypes maintenanceTypes = await db.MaintenanceTypes.FindAsync(id);
+            var maintenanceTypes = await _db.MaintenanceTypes.FindAsync(id);
             if (maintenanceTypes == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            MaintenanceTypes maintenanceTypes = await db.MaintenanceTypes.FindAsync(id);
-            db.MaintenanceTypes.Remove(maintenanceTypes);
-            await db.SaveChangesAsync();
+            var maintenanceTypes = await _db.MaintenanceTypes.FindAsync(id);
+            _db.MaintenanceTypes.Remove(maintenanceTypes);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

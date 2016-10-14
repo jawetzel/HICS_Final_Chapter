@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class EmployeeShiftsController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: EmployeeShifts
         public async Task<ActionResult> Index()
         {
-            var employeeShifts = db.EmployeeShifts.Include(e => e.Employee);
+            var employeeShifts = _db.EmployeeShifts.Include(e => e.Employee);
             return View(await employeeShifts.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeShift employeeShift = await db.EmployeeShifts.FindAsync(id);
+            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
             if (employeeShift == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: EmployeeShifts/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Email");
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email");
             return View();
         }
 
@@ -53,12 +53,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.EmployeeShifts.Add(employeeShift);
-                await db.SaveChangesAsync();
+                _db.EmployeeShifts.Add(employeeShift);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Email", employeeShift.EmployeeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
             return View(employeeShift);
         }
 
@@ -69,12 +69,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeShift employeeShift = await db.EmployeeShifts.FindAsync(id);
+            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
             if (employeeShift == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Email", employeeShift.EmployeeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
             return View(employeeShift);
         }
 
@@ -87,11 +87,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employeeShift).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(employeeShift).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Email", employeeShift.EmployeeId);
+            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
             return View(employeeShift);
         }
 
@@ -102,7 +102,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeShift employeeShift = await db.EmployeeShifts.FindAsync(id);
+            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
             if (employeeShift == null)
             {
                 return HttpNotFound();
@@ -115,9 +115,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            EmployeeShift employeeShift = await db.EmployeeShifts.FindAsync(id);
-            db.EmployeeShifts.Remove(employeeShift);
-            await db.SaveChangesAsync();
+            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
+            _db.EmployeeShifts.Remove(employeeShift);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +125,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

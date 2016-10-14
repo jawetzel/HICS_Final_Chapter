@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class ExpensesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: Expenses
         public async Task<ActionResult> Index()
         {
-            var expenses = db.Expenses.Include(e => e.ExpenseType).Include(e => e.Room).Include(e => e.Booking);
+            var expenses = _db.Expenses.Include(e => e.ExpenseType).Include(e => e.Room).Include(e => e.Booking);
             return View(await expenses.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Expense expense = await db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
@@ -40,9 +40,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Expenses/Create
         public ActionResult Create()
         {
-            ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type");
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id");
-            ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id");
+            ViewBag.ExpenseTypeId = new SelectList(_db.ExpenseTypes, "Id", "Type");
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id");
+            ViewBag.BookingId = new SelectList(_db.Bookings, "Id", "Id");
             return View();
         }
 
@@ -55,14 +55,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Expenses.Add(expense);
-                await db.SaveChangesAsync();
+                _db.Expenses.Add(expense);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
-            ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
+            ViewBag.ExpenseTypeId = new SelectList(_db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", expense.RoomId);
+            ViewBag.BookingId = new SelectList(_db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }
 
@@ -73,14 +73,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Expense expense = await db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
-            ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
+            ViewBag.ExpenseTypeId = new SelectList(_db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", expense.RoomId);
+            ViewBag.BookingId = new SelectList(_db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }
 
@@ -93,13 +93,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Entry(expense).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(expense).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.ExpenseTypeId = new SelectList(db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", expense.RoomId);
-            ViewBag.BookingId = new SelectList(db.Bookings, "Id", "Id", expense.BookingId);
+            ViewBag.ExpenseTypeId = new SelectList(_db.ExpenseTypes, "Id", "Type", expense.ExpenseTypeId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", expense.RoomId);
+            ViewBag.BookingId = new SelectList(_db.Bookings, "Id", "Id", expense.BookingId);
             return View(expense);
         }
 
@@ -110,7 +110,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Expense expense = await db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
@@ -123,9 +123,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Expense expense = await db.Expenses.FindAsync(id);
-            db.Expenses.Remove(expense);
-            await db.SaveChangesAsync();
+            var expense = await _db.Expenses.FindAsync(id);
+            _db.Expenses.Remove(expense);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -133,7 +133,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

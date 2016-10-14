@@ -10,7 +10,7 @@ namespace HotelIntegratedComputerSystems.Controllers
     public class BaseController : Controller
     {
 
-        public HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        public HicsTestDbEntities1 Db = new HicsTestDbEntities1();
 
 
         //base page security goes here

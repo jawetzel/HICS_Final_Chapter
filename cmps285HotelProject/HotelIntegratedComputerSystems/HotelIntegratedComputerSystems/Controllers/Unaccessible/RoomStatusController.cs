@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class RoomStatusController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: RoomStatus
         public async Task<ActionResult> Index()
         {
-            return View(await db.RoomStatus.ToListAsync());
+            return View(await _db.RoomStatus.ToListAsync());
         }
 
         // GET: RoomStatus/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomStatus roomStatus = await db.RoomStatus.FindAsync(id);
+            var roomStatus = await _db.RoomStatus.FindAsync(id);
             if (roomStatus == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Description")] RoomStatus roomStatus)
         {
-            if (ModelState.IsValid)
-            {
-                db.RoomStatus.Add(roomStatus);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(roomStatus);
+            if (!ModelState.IsValid) return View(roomStatus);
+            _db.RoomStatus.Add(roomStatus);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: RoomStatus/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomStatus roomStatus = await db.RoomStatus.FindAsync(id);
+            var roomStatus = await _db.RoomStatus.FindAsync(id);
             if (roomStatus == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Description")] RoomStatus roomStatus)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(roomStatus).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(roomStatus);
+            if (!ModelState.IsValid) return View(roomStatus);
+            _db.Entry(roomStatus).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: RoomStatus/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomStatus roomStatus = await db.RoomStatus.FindAsync(id);
+            var roomStatus = await _db.RoomStatus.FindAsync(id);
             if (roomStatus == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            RoomStatus roomStatus = await db.RoomStatus.FindAsync(id);
-            db.RoomStatus.Remove(roomStatus);
-            await db.SaveChangesAsync();
+            var roomStatus = await _db.RoomStatus.FindAsync(id);
+            _db.RoomStatus.Remove(roomStatus);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

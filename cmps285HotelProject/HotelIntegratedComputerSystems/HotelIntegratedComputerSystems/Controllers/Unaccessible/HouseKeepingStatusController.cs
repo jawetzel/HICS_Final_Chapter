@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
 
-namespace HotelIntegratedComputerSystems.Controllers.Admin
+namespace HotelIntegratedComputerSystems.Controllers.Unaccessible
 {
     public class HouseKeepingStatusController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: HouseKeepingStatus
         public async Task<ActionResult> Index()
         {
-            return View(await db.HouseKeepingStatus.ToListAsync());
+            return View(await _db.HouseKeepingStatus.ToListAsync());
         }
 
         // GET: HouseKeepingStatus/Details/5
@@ -28,7 +23,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu houseKeepingStatu = await db.HouseKeepingStatus.FindAsync(id);
+            var houseKeepingStatu = await _db.HouseKeepingStatus.FindAsync(id);
             if (houseKeepingStatu == null)
             {
                 return HttpNotFound();
@@ -49,14 +44,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,CleanStatus")] HouseKeepingStatu houseKeepingStatu)
         {
-            if (ModelState.IsValid)
-            {
-                db.HouseKeepingStatus.Add(houseKeepingStatu);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(houseKeepingStatu);
+            if (!ModelState.IsValid) return View(houseKeepingStatu);
+            _db.HouseKeepingStatus.Add(houseKeepingStatu);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: HouseKeepingStatus/Edit/5
@@ -66,7 +57,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu houseKeepingStatu = await db.HouseKeepingStatus.FindAsync(id);
+            var houseKeepingStatu = await _db.HouseKeepingStatus.FindAsync(id);
             if (houseKeepingStatu == null)
             {
                 return HttpNotFound();
@@ -83,8 +74,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                db.Entry(houseKeepingStatu).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(houseKeepingStatu).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(houseKeepingStatu);
@@ -97,7 +88,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseKeepingStatu houseKeepingStatu = await db.HouseKeepingStatus.FindAsync(id);
+            var houseKeepingStatu = await _db.HouseKeepingStatus.FindAsync(id);
             if (houseKeepingStatu == null)
             {
                 return HttpNotFound();
@@ -110,9 +101,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            HouseKeepingStatu houseKeepingStatu = await db.HouseKeepingStatus.FindAsync(id);
-            db.HouseKeepingStatus.Remove(houseKeepingStatu);
-            await db.SaveChangesAsync();
+            var houseKeepingStatu = await _db.HouseKeepingStatus.FindAsync(id);
+            _db.HouseKeepingStatus.Remove(houseKeepingStatu);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +111,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

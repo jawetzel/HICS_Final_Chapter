@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class RoomTypesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: RoomTypes
         public async Task<ActionResult> Index()
         {
-            return View(await db.RoomTypes.ToListAsync());
+            return View(await _db.RoomTypes.ToListAsync());
         }
 
         // GET: RoomTypes/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomType roomType = await db.RoomTypes.FindAsync(id);
+            var roomType = await _db.RoomTypes.FindAsync(id);
             if (roomType == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Bedding,Kitchen,Rooms,Bathrooms,SleepsVolume,NightlyRate")] RoomType roomType)
         {
-            if (ModelState.IsValid)
-            {
-                db.RoomTypes.Add(roomType);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(roomType);
+            if (!ModelState.IsValid) return View(roomType);
+            _db.RoomTypes.Add(roomType);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: RoomTypes/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomType roomType = await db.RoomTypes.FindAsync(id);
+            var roomType = await _db.RoomTypes.FindAsync(id);
             if (roomType == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Bedding,Kitchen,Rooms,Bathrooms,SleepsVolume,NightlyRate")] RoomType roomType)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(roomType).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(roomType);
+            if (!ModelState.IsValid) return View(roomType);
+            _db.Entry(roomType).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: RoomTypes/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RoomType roomType = await db.RoomTypes.FindAsync(id);
+            var roomType = await _db.RoomTypes.FindAsync(id);
             if (roomType == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            RoomType roomType = await db.RoomTypes.FindAsync(id);
-            db.RoomTypes.Remove(roomType);
-            await db.SaveChangesAsync();
+            var roomType = await _db.RoomTypes.FindAsync(id);
+            _db.RoomTypes.Remove(roomType);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

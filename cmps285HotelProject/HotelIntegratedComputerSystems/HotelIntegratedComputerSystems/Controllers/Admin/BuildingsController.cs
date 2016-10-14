@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class BuildingsController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: Buildings
         public async Task<ActionResult> Index()
         {
-            return View(await db.Buildings.ToListAsync());
+            return View(await _db.Buildings.ToListAsync());
         }
 
         // GET: Buildings/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Building building = await db.Buildings.FindAsync(id);
+            var building = await _db.Buildings.FindAsync(id);
             if (building == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Phone,Address,Building1")] Building building)
         {
-            if (ModelState.IsValid)
-            {
-                db.Buildings.Add(building);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(building);
+            if (!ModelState.IsValid) return View(building);
+            _db.Buildings.Add(building);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: Buildings/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Building building = await db.Buildings.FindAsync(id);
+            var building = await _db.Buildings.FindAsync(id);
             if (building == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Phone,Address,Building1")] Building building)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(building).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(building);
+            if (!ModelState.IsValid) return View(building);
+            _db.Entry(building).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: Buildings/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Building building = await db.Buildings.FindAsync(id);
+            var building = await _db.Buildings.FindAsync(id);
             if (building == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Building building = await db.Buildings.FindAsync(id);
-            db.Buildings.Remove(building);
-            await db.SaveChangesAsync();
+            var building = await _db.Buildings.FindAsync(id);
+            _db.Buildings.Remove(building);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

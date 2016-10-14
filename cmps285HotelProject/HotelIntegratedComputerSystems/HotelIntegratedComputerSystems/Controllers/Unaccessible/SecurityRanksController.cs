@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class SecurityRanksController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: SecurityRanks
         public async Task<ActionResult> Index()
         {
-            return View(await db.SecurityRanks.ToListAsync());
+            return View(await _db.SecurityRanks.ToListAsync());
         }
 
         // GET: SecurityRanks/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SecurityRank securityRank = await db.SecurityRanks.FindAsync(id);
+            var securityRank = await _db.SecurityRanks.FindAsync(id);
             if (securityRank == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,SiteAccessLevel,AccessLevelDescription")] SecurityRank securityRank)
         {
-            if (ModelState.IsValid)
-            {
-                db.SecurityRanks.Add(securityRank);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(securityRank);
+            if (!ModelState.IsValid) return View(securityRank);
+            _db.SecurityRanks.Add(securityRank);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: SecurityRanks/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SecurityRank securityRank = await db.SecurityRanks.FindAsync(id);
+            var securityRank = await _db.SecurityRanks.FindAsync(id);
             if (securityRank == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,SiteAccessLevel,AccessLevelDescription")] SecurityRank securityRank)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(securityRank).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(securityRank);
+            if (!ModelState.IsValid) return View(securityRank);
+            _db.Entry(securityRank).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: SecurityRanks/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SecurityRank securityRank = await db.SecurityRanks.FindAsync(id);
+            var securityRank = await _db.SecurityRanks.FindAsync(id);
             if (securityRank == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            SecurityRank securityRank = await db.SecurityRanks.FindAsync(id);
-            db.SecurityRanks.Remove(securityRank);
-            await db.SaveChangesAsync();
+            var securityRank = await _db.SecurityRanks.FindAsync(id);
+            _db.SecurityRanks.Remove(securityRank);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

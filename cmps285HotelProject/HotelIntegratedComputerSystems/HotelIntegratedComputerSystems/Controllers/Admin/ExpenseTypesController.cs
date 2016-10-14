@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class ExpenseTypesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: ExpenseTypes
         public async Task<ActionResult> Index()
         {
-            return View(await db.ExpenseTypes.ToListAsync());
+            return View(await _db.ExpenseTypes.ToListAsync());
         }
 
         // GET: ExpenseTypes/Details/5
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpenseType expenseType = await db.ExpenseTypes.FindAsync(id);
+            var expenseType = await _db.ExpenseTypes.FindAsync(id);
             if (expenseType == null)
             {
                 return HttpNotFound();
@@ -49,14 +49,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Type,Description,Ammount")] ExpenseType expenseType)
         {
-            if (ModelState.IsValid)
-            {
-                db.ExpenseTypes.Add(expenseType);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(expenseType);
+            if (!ModelState.IsValid) return View(expenseType);
+            _db.ExpenseTypes.Add(expenseType);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: ExpenseTypes/Edit/5
@@ -66,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpenseType expenseType = await db.ExpenseTypes.FindAsync(id);
+            var expenseType = await _db.ExpenseTypes.FindAsync(id);
             if (expenseType == null)
             {
                 return HttpNotFound();
@@ -81,13 +77,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Type,Description,Ammount")] ExpenseType expenseType)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(expenseType).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(expenseType);
+            if (!ModelState.IsValid) return View(expenseType);
+            _db.Entry(expenseType).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: ExpenseTypes/Delete/5
@@ -97,7 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpenseType expenseType = await db.ExpenseTypes.FindAsync(id);
+            var expenseType = await _db.ExpenseTypes.FindAsync(id);
             if (expenseType == null)
             {
                 return HttpNotFound();
@@ -110,9 +103,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ExpenseType expenseType = await db.ExpenseTypes.FindAsync(id);
-            db.ExpenseTypes.Remove(expenseType);
-            await db.SaveChangesAsync();
+            var expenseType = await _db.ExpenseTypes.FindAsync(id);
+            _db.ExpenseTypes.Remove(expenseType);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +113,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

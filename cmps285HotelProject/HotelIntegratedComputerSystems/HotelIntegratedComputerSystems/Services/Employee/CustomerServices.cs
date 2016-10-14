@@ -10,52 +10,52 @@ namespace HotelIntegratedComputerSystems.Services.Employee
 {
     public class CustomerServices
     {
-        public HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        public HicsTestDbEntities1 Db = new HicsTestDbEntities1();
 
         public List<CustomersViewModel> GetCustomersList()
         {
-            var CustomerList = from Cust in db.Customers
+            var customerList = from cust in Db.Customers
                                select new CustomersViewModel
                                {
-                                   Id = Cust.Id,
-                                   Name = Cust.Name,
-                                   Address = Cust.Address,
-                                   Phone = Cust.Phone,
-                                   Email = Cust.Email
+                                   Id = cust.Id,
+                                   Name = cust.Name,
+                                   Address = cust.Address,
+                                   Phone = cust.Phone,
+                                   Email = cust.Email
                                };
-            return CustomerList.ToList();
+            return customerList.ToList();
         }
 
-        public void CreateNewCustomer(CustomersViewModel Customer)
+        public void CreateNewCustomer(CustomersViewModel customer)
         {
 
-            db.Customers.Add(new Customer { Id = Customer.Id, Address = Customer.Address,
-                                            Email = Customer.Email, Name = Customer.Name,
-                                            Phone = Customer.Phone});
-            db.SaveChanges();
+            Db.Customers.Add(new Customer { Id = customer.Id, Address = customer.Address,
+                                            Email = customer.Email, Name = customer.Name,
+                                            Phone = customer.Phone});
+            Db.SaveChanges();
         }
 
-        public void PostChangesForEdit(CustomersViewModel EditCustomer)
+        public void PostChangesForEdit(CustomersViewModel editCustomer)
         {
 
-            db.Entry(new Customer {Id = EditCustomer.Id, Address = EditCustomer.Address, Email = EditCustomer.Email,
-                                   Name = EditCustomer.Name, Phone = EditCustomer.Phone })
+            Db.Entry(new Customer {Id = editCustomer.Id, Address = editCustomer.Address, Email = editCustomer.Email,
+                                   Name = editCustomer.Name, Phone = editCustomer.Phone })
                                    .State = EntityState.Modified;
-            db.SaveChanges();
+            Db.SaveChanges();
         }
         
-        public CustomersViewModel FindEntryById(int Id)
+        public CustomersViewModel FindEntryById(int id)
         {
-            Customer FoundCustomer = db.Customers.Find(Id);
-            return (new CustomersViewModel { Id = FoundCustomer.Id, Address = FoundCustomer.Address, Email = FoundCustomer.Email,
-                                             Name = FoundCustomer.Name, Phone = FoundCustomer.Phone }) ;
+            var foundCustomer = Db.Customers.Find(id);
+            return (new CustomersViewModel { Id = foundCustomer.Id, Address = foundCustomer.Address, Email = foundCustomer.Email,
+                                             Name = foundCustomer.Name, Phone = foundCustomer.Phone }) ;
         }
 
-        public void DeleteEntry(int Id)
+        public void DeleteEntry(int id)
         {
-            Customer FoundCustomer = db.Customers.Find(Id);
-            db.Customers.Remove(FoundCustomer);
-            db.SaveChanges();
+            var foundCustomer = Db.Customers.Find(id);
+            Db.Customers.Remove(foundCustomer);
+            Db.SaveChanges();
         }
 
     }

@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class RoomsController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: Rooms
         public async Task<ActionResult> Index()
         {
-            var rooms = db.Rooms.Include(r => r.Building).Include(r => r.HouseKeepingStatu).Include(r => r.RoomType).Include(r => r.RoomStatus);
+            var rooms = _db.Rooms.Include(r => r.Building).Include(r => r.HouseKeepingStatu).Include(r => r.RoomType).Include(r => r.RoomStatus);
             return View(await rooms.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = await db.Rooms.FindAsync(id);
+            var room = await _db.Rooms.FindAsync(id);
             if (room == null)
             {
                 return HttpNotFound();
@@ -40,10 +40,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Rooms/Create
         public ActionResult Create()
         {
-            ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address");
-            ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus");
-            ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding");
-            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description");
+            ViewBag.BuildingId = new SelectList(_db.Buildings, "Id", "Address");
+            ViewBag.HousekeepingStatusId = new SelectList(_db.HouseKeepingStatus, "Id", "CleanStatus");
+            ViewBag.RoomTypeId = new SelectList(_db.RoomTypes, "Id", "Bedding");
+            ViewBag.RoomStatusId = new SelectList(_db.RoomStatus, "Id", "Description");
             return View();
         }
 
@@ -56,15 +56,15 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Rooms.Add(room);
-                await db.SaveChangesAsync();
+                _db.Rooms.Add(room);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
-            ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
-            ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
-            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
+            ViewBag.BuildingId = new SelectList(_db.Buildings, "Id", "Address", room.BuildingId);
+            ViewBag.HousekeepingStatusId = new SelectList(_db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
+            ViewBag.RoomTypeId = new SelectList(_db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(_db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 
@@ -75,15 +75,15 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = await db.Rooms.FindAsync(id);
+            var room = await _db.Rooms.FindAsync(id);
             if (room == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
-            ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
-            ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
-            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
+            ViewBag.BuildingId = new SelectList(_db.Buildings, "Id", "Address", room.BuildingId);
+            ViewBag.HousekeepingStatusId = new SelectList(_db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
+            ViewBag.RoomTypeId = new SelectList(_db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(_db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 
@@ -96,14 +96,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Entry(room).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(room).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.BuildingId = new SelectList(db.Buildings, "Id", "Address", room.BuildingId);
-            ViewBag.HousekeepingStatusId = new SelectList(db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
-            ViewBag.RoomTypeId = new SelectList(db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
-            ViewBag.RoomStatusId = new SelectList(db.RoomStatus, "Id", "Description", room.RoomStatusId);
+            ViewBag.BuildingId = new SelectList(_db.Buildings, "Id", "Address", room.BuildingId);
+            ViewBag.HousekeepingStatusId = new SelectList(_db.HouseKeepingStatus, "Id", "CleanStatus", room.HousekeepingStatusId);
+            ViewBag.RoomTypeId = new SelectList(_db.RoomTypes, "Id", "Bedding", room.RoomTypeId);
+            ViewBag.RoomStatusId = new SelectList(_db.RoomStatus, "Id", "Description", room.RoomStatusId);
             return View(room);
         }
 
@@ -114,7 +114,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Room room = await db.Rooms.FindAsync(id);
+            var room = await _db.Rooms.FindAsync(id);
             if (room == null)
             {
                 return HttpNotFound();
@@ -127,9 +127,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Room room = await db.Rooms.FindAsync(id);
-            db.Rooms.Remove(room);
-            await db.SaveChangesAsync();
+            var room = await _db.Rooms.FindAsync(id);
+            _db.Rooms.Remove(room);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -137,7 +137,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

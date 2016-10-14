@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class BookingsController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: Bookings
         public async Task<ActionResult> Index()
         {
-            var bookings = db.Bookings.Include(b => b.Customer).Include(b => b.Room);
+            var bookings = _db.Bookings.Include(b => b.Customer).Include(b => b.Room);
             return View(await bookings.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = await db.Bookings.FindAsync(id);
+            var booking = await _db.Bookings.FindAsync(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -40,8 +40,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id");
+            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name");
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id");
             return View();
         }
 
@@ -54,13 +54,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Bookings.Add(booking);
-                await db.SaveChangesAsync();
+                _db.Bookings.Add(booking);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
+            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
@@ -71,13 +71,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = await db.Bookings.FindAsync(id);
+            var booking = await _db.Bookings.FindAsync(id);
             if (booking == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
+            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
@@ -90,12 +90,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {
-                db.Entry(booking).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(booking).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Id", booking.RoomId);
+            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
+            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
             return View(booking);
         }
 
@@ -106,7 +106,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = await db.Bookings.FindAsync(id);
+            var booking = await _db.Bookings.FindAsync(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -119,9 +119,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Booking booking = await db.Bookings.FindAsync(id);
-            db.Bookings.Remove(booking);
-            await db.SaveChangesAsync();
+            var booking = await _db.Bookings.FindAsync(id);
+            _db.Bookings.Remove(booking);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -129,7 +129,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

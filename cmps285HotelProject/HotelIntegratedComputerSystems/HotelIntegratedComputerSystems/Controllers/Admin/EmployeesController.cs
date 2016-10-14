@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class EmployeesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: Employees
         public async Task<ActionResult> Index()
         {
-            var employees = db.Employees.Include(e => e.EmployeeType);
+            var employees = _db.Employees.Include(e => e.EmployeeType);
             return View(await employees.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = await db.Employees.FindAsync(id);
+            var employee = await _db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeTypeId = new SelectList(db.EmployeeTypes, "Id", "Title");
+            ViewBag.EmployeeTypeId = new SelectList(_db.EmployeeTypes, "Id", "Title");
             return View();
         }
 
@@ -53,12 +53,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
-                await db.SaveChangesAsync();
+                _db.Employees.Add(employee);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeTypeId = new SelectList(db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
+            ViewBag.EmployeeTypeId = new SelectList(_db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
             return View(employee);
         }
 
@@ -69,12 +69,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = await db.Employees.FindAsync(id);
+            var employee = await _db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeTypeId = new SelectList(db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
+            ViewBag.EmployeeTypeId = new SelectList(_db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
             return View(employee);
         }
 
@@ -87,11 +87,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(employee).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeTypeId = new SelectList(db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
+            ViewBag.EmployeeTypeId = new SelectList(_db.EmployeeTypes, "Id", "Title", employee.EmployeeTypeId);
             return View(employee);
         }
 
@@ -102,7 +102,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = await db.Employees.FindAsync(id);
+            var employee = await _db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -115,9 +115,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Employee employee = await db.Employees.FindAsync(id);
-            db.Employees.Remove(employee);
-            await db.SaveChangesAsync();
+            var employee = await _db.Employees.FindAsync(id);
+            _db.Employees.Remove(employee);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +125,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

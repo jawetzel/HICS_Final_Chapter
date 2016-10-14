@@ -15,28 +15,27 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class CustomersController : BaseController
     {
-        private CustomerServices Service = new CustomerServices();
+        private readonly CustomerServices _service = new CustomerServices();
 
         public ActionResult Index()
         {
-            return View(Service.GetCustomersList());
+            var actionResult = View(_service.GetCustomersList());
+            return actionResult;
         }
 
         public ActionResult Create()
         {
-            return View();
+            var actionResult = View();
+            return actionResult;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                Service.CreateNewCustomer(customersViewModel);
-                return RedirectToAction("Index");
-            }
-            return View(customersViewModel);
+            if (!ModelState.IsValid) return View(customersViewModel);
+            _service.CreateNewCustomer(customersViewModel);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int? id)
@@ -45,25 +44,22 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomersViewModel ReturnCustomer = Service.FindEntryById(id.Value);
+            var returnCustomer = _service.FindEntryById(id.Value);
 
-            if (ReturnCustomer == null)
+            if (returnCustomer == null)
             {
                 return HttpNotFound();
             }
-            return View(ReturnCustomer);
+            return View(returnCustomer);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                Service.PostChangesForEdit(customersViewModel);
-                return RedirectToAction("Index");
-            }
-            return View(customersViewModel);
+            if (!ModelState.IsValid) return View(customersViewModel);
+            _service.PostChangesForEdit(customersViewModel);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)
@@ -72,7 +68,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomersViewModel customersViewModel = Service.FindEntryById(id.Value);
+            var customersViewModel = _service.FindEntryById(id.Value);
             if (customersViewModel == null)
             {
                 return HttpNotFound();
@@ -84,7 +80,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Service.DeleteEntry(id);
+            _service.DeleteEntry(id);
             return RedirectToAction("Index");
         }
     }

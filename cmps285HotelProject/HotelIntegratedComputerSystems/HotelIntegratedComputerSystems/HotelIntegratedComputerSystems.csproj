@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
+    <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Unaccessible\HouseKeepingStatusController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
     <Compile Include="Controllers\Unaccessible\RoomStatusController.cs" />

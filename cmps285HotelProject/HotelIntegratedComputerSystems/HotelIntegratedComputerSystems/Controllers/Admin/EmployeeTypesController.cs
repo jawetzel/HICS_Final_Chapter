@@ -13,12 +13,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class EmployeeTypesController : Controller
     {
-        private HicsTestDbEntities1 db = new HicsTestDbEntities1();
+        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
 
         // GET: EmployeeTypes
         public async Task<ActionResult> Index()
         {
-            var employeeTypes = db.EmployeeTypes.Include(e => e.SecurityRank);
+            var employeeTypes = _db.EmployeeTypes.Include(e => e.SecurityRank);
             return View(await employeeTypes.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeType employeeType = await db.EmployeeTypes.FindAsync(id);
+            var employeeType = await _db.EmployeeTypes.FindAsync(id);
             if (employeeType == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         // GET: EmployeeTypes/Create
         public ActionResult Create()
         {
-            ViewBag.SecurityRankId = new SelectList(db.SecurityRanks, "Id", "AccessLevelDescription");
+            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription");
             return View();
         }
 
@@ -53,12 +53,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                db.EmployeeTypes.Add(employeeType);
-                await db.SaveChangesAsync();
+                _db.EmployeeTypes.Add(employeeType);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SecurityRankId = new SelectList(db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
+            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
             return View(employeeType);
         }
 
@@ -69,12 +69,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeType employeeType = await db.EmployeeTypes.FindAsync(id);
+            var employeeType = await _db.EmployeeTypes.FindAsync(id);
             if (employeeType == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SecurityRankId = new SelectList(db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
+            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
             return View(employeeType);
         }
 
@@ -87,11 +87,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employeeType).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(employeeType).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.SecurityRankId = new SelectList(db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
+            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
             return View(employeeType);
         }
 
@@ -102,7 +102,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeType employeeType = await db.EmployeeTypes.FindAsync(id);
+            var employeeType = await _db.EmployeeTypes.FindAsync(id);
             if (employeeType == null)
             {
                 return HttpNotFound();
@@ -115,9 +115,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            EmployeeType employeeType = await db.EmployeeTypes.FindAsync(id);
-            db.EmployeeTypes.Remove(employeeType);
-            await db.SaveChangesAsync();
+            var employeeType = await _db.EmployeeTypes.FindAsync(id);
+            _db.EmployeeTypes.Remove(employeeType);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +125,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

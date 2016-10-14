@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using HotelIntegratedComputerSystems.Models;
-using System.Web.UI;
-using HotelIntegratedComputerSystems.Services;
+using HotelIntegratedComputerSystems.Services.MaidService;
 
-namespace HotelIntegratedComputerSystems.Controllers
+namespace HotelIntegratedComputerSystems.Controllers.MaidService
 {
     public class HouseKeepingController : BaseController
     {
-        private MaidServiceServices Service = new MaidServiceServices();
+        private readonly MaidServiceServices _service = new MaidServiceServices();
 
         public ActionResult Index()
         {
-            return View(Service.GetRoomsForHouseKeeping());
+            return View(_service.GetRoomsForHouseKeeping());
         }
         
         public ActionResult Clean(int? id)
@@ -27,7 +19,7 @@ namespace HotelIntegratedComputerSystems.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Clean"), id.Value);
+            _service.ChangeCleanStatus(_service.GetCleanStatusIndex("Clean"), id.Value);
             return RedirectToAction("Index");
         }
 
@@ -37,17 +29,17 @@ namespace HotelIntegratedComputerSystems.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Dirty"), id.Value);
+            _service.ChangeCleanStatus(_service.GetCleanStatusIndex("Dirty"), id.Value);
             return RedirectToAction("Index");
         }
 
-        public ActionResult DND(int? id)
+        public ActionResult Dnd(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service.ChangeCleanStatus(Service.GetCleanStatusIndex("Do Not Disturb"), id.Value);
+            _service.ChangeCleanStatus(_service.GetCleanStatusIndex("Do Not Disturb"), id.Value);
             return RedirectToAction("Index");
         }
 
@@ -55,7 +47,7 @@ namespace HotelIntegratedComputerSystems.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                Db.Dispose();
             }
             base.Dispose(disposing);
         }
