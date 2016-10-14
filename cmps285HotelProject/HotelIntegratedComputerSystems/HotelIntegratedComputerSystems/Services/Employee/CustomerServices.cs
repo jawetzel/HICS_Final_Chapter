@@ -8,10 +8,8 @@ using System.Web;
 
 namespace HotelIntegratedComputerSystems.Services.Employee
 {
-    public class CustomerServices
+    public class CustomerServices : BaseServices
     {
-        private readonly HicsTestDbEntities1 Db = new HicsTestDbEntities1();
-
         public List<CustomersViewModel> GetCustomersList()
         {
             var customerList = from cust in Db.Customers
