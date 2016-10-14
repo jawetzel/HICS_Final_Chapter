@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
+    <Compile Include="Models\Admin\RoomTypeViewModel.cs" />
     <Compile Include="Models\Admin\RoomViewModel.cs" />
     <Compile Include="Models\Booking.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
@@ -292,6 +293,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Admin\BuildingServices.cs" />
     <Compile Include="Services\Admin\RoomServices.cs" />
+    <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\MaidService\MaidServiceServices.cs" />
@@ -441,11 +443,6 @@
     <Content Include="Views\MaintenanceTypes\Details.cshtml" />
     <Content Include="Views\MaintenanceTypes\Edit.cshtml" />
     <Content Include="Views\MaintenanceTypes\Index.cshtml" />
-    <Content Include="Views\RoomTypes\Create.cshtml" />
-    <Content Include="Views\RoomTypes\Delete.cshtml" />
-    <Content Include="Views\RoomTypes\Details.cshtml" />
-    <Content Include="Views\RoomTypes\Edit.cshtml" />
-    <Content Include="Views\RoomTypes\Index.cshtml" />
     <Content Include="Views\SecurityRanks\Create.cshtml" />
     <Content Include="Views\SecurityRanks\Delete.cshtml" />
     <Content Include="Views\SecurityRanks\Details.cshtml" />
@@ -470,6 +467,10 @@
     <Content Include="Views\Rooms\Details.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\RoomTypes\Create.cshtml" />
+    <Content Include="Views\RoomTypes\Delete.cshtml" />
+    <Content Include="Views\RoomTypes\Edit.cshtml" />
+    <Content Include="Views\RoomTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
