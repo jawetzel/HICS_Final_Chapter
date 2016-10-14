@@ -1,4 +1,4 @@
-﻿@model HotelIntegratedComputerSystems.Models.Room
+﻿@model HotelIntegratedComputerSystems.Models.Admin.RoomViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,9 +7,65 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Room</h4>
+    <h4>RoomViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildingId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildingId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseKeepingStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseKeepingStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseKeepingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseKeepingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomStatus)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FloorNumber)
         </dt>
@@ -24,38 +80,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.RoomNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Building.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Building.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HouseKeepingStatu.CleanStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HouseKeepingStatu.CleanStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomType.Bedding)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RoomType.Bedding)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomStatus.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RoomStatus.Description)
         </dd>
 
     </dl>

@@ -1,4 +1,4 @@
-﻿@model HotelIntegratedComputerSystems.Models.Room
+﻿@model HotelIntegratedComputerSystems.Models.Admin.RoomViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Room</h4>
+        <h4>RoomViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BuildingId, "BuildingId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BuildingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("BuildingId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BuildingId, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoomTypeId, "RoomTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoomTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RoomTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RoomTypeId, "", new { @class = "text-danger" })
@@ -34,10 +34,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HousekeepingStatusId, "HousekeepingStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HouseKeepingStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("HousekeepingStatusId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.HousekeepingStatusId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.HouseKeepingStatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoomStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RoomStatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoomStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -54,14 +62,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RoomStatusId, "RoomStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RoomStatusId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RoomStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
 

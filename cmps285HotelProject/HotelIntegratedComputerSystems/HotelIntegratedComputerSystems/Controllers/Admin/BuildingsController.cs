@@ -33,7 +33,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         public ActionResult Create([Bind(Include = "Id,Phone,Address,BuildingName")] BuildingViewModel buildingViewModel)
         {
             if (!ModelState.IsValid) return View(buildingViewModel);
-            _services.CreateNewCustomer(buildingViewModel);
+            _services.CreateNewBuilding(buildingViewModel);
             return RedirectToAction("Index");
         }
 

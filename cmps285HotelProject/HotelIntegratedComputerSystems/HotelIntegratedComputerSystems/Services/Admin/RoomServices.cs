@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Services.MaidService;
+
+namespace HotelIntegratedComputerSystems.Services.Admin
+{
+    public class RoomServices : BaseServices
+    {
+        private readonly MaidServiceServices MaidService = new MaidServiceServices();
+        public List<RoomViewModel> GetRoomList()
+        {
+            var roomList = from room in Db.Rooms
+                               select new RoomViewModel
+                               {
+                                   Id = room.Id,
+                                   BuildingId = room.BuildingId,
+                                   BuildingName = room.Building.Building1,                                  
+                                   HouseKeepingStatusId = room.HousekeepingStatusId,
+                                   HouseKeepingStatus = room.HouseKeepingStatu.CleanStatus,
+                                   RoomTypeId = room.RoomTypeId,
+                                   RoomType = room.RoomType.Bedding,
+                                   RoomStatusId = room.RoomStatusId,
+                                   RoomStatus = room.RoomStatus.Description,
+                                   FloorNumber = room.FloorNumber,
+                                   RoomNumber = room.RoomNumber,
+
+                               };
+            return roomList.ToList();
+        }
+
+        public void CreateNewRoom(RoomViewModel room)
+        {
+
+            Db.Rooms.Add(new Room()
+            {
+                Id = room.Id,
+                BuildingId = room.BuildingId,
+                RoomTypeId = room.RoomTypeId,
+                HousekeepingStatusId = MaidService.GetCleanStatusIndex("Clean"),
+                RoomStatusId = GetRoomStatusIndex("Available"),
+                FloorNumber = room.FloorNumber,
+                RoomNumber = room.RoomNumber
+            });
+            Db.SaveChanges();
+        }
+
+        public RoomViewModel FindEntryById(int id)
+        {
+            var room = Db.Rooms.Find(id);
+            return (new RoomViewModel
+            {
+                Id = room.Id,
+                BuildingId = room.BuildingId,
+                BuildingName = room.Building.Building1,
+                HouseKeepingStatusId = room.HousekeepingStatusId,
+                HouseKeepingStatus = room.HouseKeepingStatu.CleanStatus,
+                RoomTypeId = room.RoomTypeId,
+                RoomType = room.RoomType.Bedding,
+                RoomStatusId = room.RoomStatusId,
+                RoomStatus = room.RoomStatus.Description,
+                FloorNumber = room.FloorNumber,
+                RoomNumber = room.RoomNumber,
+
+            });
+        }
+
+        public void PostChangesForEdit(RoomViewModel editBuilding)
+        {
+
+            Db.Entry(new Room()
+            {
+                Id = editBuilding.Id,
+                BuildingId = editBuilding.BuildingId,
+                RoomTypeId = editBuilding.RoomTypeId,
+                HousekeepingStatusId = editBuilding.HouseKeepingStatusId,
+                RoomStatusId = editBuilding.RoomStatusId,
+                FloorNumber = editBuilding.FloorNumber,
+                RoomNumber = editBuilding.RoomNumber
+            })
+            .State = EntityState.Modified;
+            Db.SaveChanges();
+        }
+
+        public void DeleteEntry(int id)
+        {
+            Room foundRoom = Db.Rooms.Find(id);
+            Db.Rooms.Remove(foundRoom);
+            Db.SaveChanges();
+        }
+
+        public int GetRoomStatusIndex(string roomStatus)
+        {
+            var roomStatusReturn = Db.RoomStatus.FirstOrDefault(s => s.Description.Contains(roomStatus));
+            if (roomStatusReturn?.Id != null) return (int)roomStatusReturn?.Id;
+            return 0;
+        }
+    }
+}
