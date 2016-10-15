@@ -270,8 +270,8 @@
     <Compile Include="Models\HouseKeepingStatu.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Housekeeping\HouseKeepingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MaidService\HouseKeepingViewModel.cs" />
     <Compile Include="Models\MaintenanceLogs.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -476,6 +476,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Maintainance\" />
+    <Folder Include="Models\Housekeeping\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
