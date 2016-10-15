@@ -202,13 +202,13 @@
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
+    <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Unaccessible\HouseKeepingStatusController.cs" />
-    <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
     <Compile Include="Controllers\Unaccessible\RoomStatusController.cs" />
     <Compile Include="Controllers\Unaccessible\SecurityRanksController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
+    <Compile Include="Models\Admin\MaintenanceTypeViewModel.cs" />
     <Compile Include="Models\Admin\RoomTypeViewModel.cs" />
     <Compile Include="Models\Admin\RoomViewModel.cs" />
     <Compile Include="Models\Booking.cs">
@@ -269,7 +270,7 @@
     <Compile Include="Models\HouseKeepingStatu.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MaidService\HouseKeepingViewModel.cs" />
+    <Compile Include="Models\Housekeeping\HouseKeepingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MaintenanceLogs.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
@@ -292,6 +293,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Admin\BuildingServices.cs" />
+    <Compile Include="Services\Admin\MaintenanceTypeServices.cs" />
     <Compile Include="Services\Admin\RoomServices.cs" />
     <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
@@ -438,11 +440,6 @@
     <Content Include="Views\HouseKeepingStatus\Details.cshtml" />
     <Content Include="Views\HouseKeepingStatus\Edit.cshtml" />
     <Content Include="Views\HouseKeepingStatus\Index.cshtml" />
-    <Content Include="Views\MaintenanceTypes\Create.cshtml" />
-    <Content Include="Views\MaintenanceTypes\Delete.cshtml" />
-    <Content Include="Views\MaintenanceTypes\Details.cshtml" />
-    <Content Include="Views\MaintenanceTypes\Edit.cshtml" />
-    <Content Include="Views\MaintenanceTypes\Index.cshtml" />
     <Content Include="Views\SecurityRanks\Create.cshtml" />
     <Content Include="Views\SecurityRanks\Delete.cshtml" />
     <Content Include="Views\SecurityRanks\Details.cshtml" />
@@ -471,6 +468,10 @@
     <Content Include="Views\RoomTypes\Delete.cshtml" />
     <Content Include="Views\RoomTypes\Edit.cshtml" />
     <Content Include="Views\RoomTypes\Index.cshtml" />
+    <Content Include="Views\MaintenanceTypes\Create.cshtml" />
+    <Content Include="Views\MaintenanceTypes\Delete.cshtml" />
+    <Content Include="Views\MaintenanceTypes\Edit.cshtml" />
+    <Content Include="Views\MaintenanceTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
