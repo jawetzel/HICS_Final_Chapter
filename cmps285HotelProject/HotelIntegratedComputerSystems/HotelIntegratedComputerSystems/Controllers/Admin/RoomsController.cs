@@ -67,8 +67,6 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             return RedirectToAction("Index");
         }
 
-
-        // GET: RoomViewModels/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)

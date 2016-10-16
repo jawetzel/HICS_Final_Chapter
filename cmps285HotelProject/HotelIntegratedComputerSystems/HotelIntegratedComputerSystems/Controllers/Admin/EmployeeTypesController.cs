@@ -3,131 +3,84 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
-    public class EmployeeTypesController : Controller
+    public class EmployeeTypesController : BaseController
     {
-        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
+        private readonly EmployeeTypeServices _services = new EmployeeTypeServices();
 
-        // GET: EmployeeTypes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var employeeTypes = _db.EmployeeTypes.Include(e => e.SecurityRank);
-            return View(await employeeTypes.ToListAsync());
+            return View(_services.GetEmployeeTypeList());
         }
 
-        // GET: EmployeeTypes/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeType = await _db.EmployeeTypes.FindAsync(id);
-            if (employeeType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeType);
-        }
 
-        // GET: EmployeeTypes/Create
         public ActionResult Create()
         {
-            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription");
+            ViewBag.SecurityRankId = new SelectList(Db.SecurityRanks, "Id", "AccessLevelDescription");
             return View();
         }
 
-        // POST: EmployeeTypes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,SecurityRankId,Title,PayRate")] EmployeeType employeeType)
+        public ActionResult Create([Bind(Include = "Id,SecurityRankId,SecurityRankDescription,Title,PayRate")] EmployeeTypeViewModel employeeTypeViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _db.EmployeeTypes.Add(employeeType);
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
-            return View(employeeType);
-        }
-
-        // GET: EmployeeTypes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeType = await _db.EmployeeTypes.FindAsync(id);
-            if (employeeType == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
-            return View(employeeType);
-        }
-
-        // POST: EmployeeTypes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,SecurityRankId,Title,PayRate")] EmployeeType employeeType)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(employeeType).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.SecurityRankId = new SelectList(_db.SecurityRanks, "Id", "AccessLevelDescription", employeeType.SecurityRankId);
-            return View(employeeType);
-        }
-
-        // GET: EmployeeTypes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeType = await _db.EmployeeTypes.FindAsync(id);
-            if (employeeType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeType);
-        }
-
-        // POST: EmployeeTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            var employeeType = await _db.EmployeeTypes.FindAsync(id);
-            _db.EmployeeTypes.Remove(employeeType);
-            await _db.SaveChangesAsync();
+            if (!ModelState.IsValid) return View(employeeTypeViewModel);
+            _services.CreateNewEmployeeType(employeeTypeViewModel);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Edit(int? id)
         {
-            if (disposing)
+            if (id == null)
             {
-                _db.Dispose();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            base.Dispose(disposing);
+            ViewBag.SecurityRank = new SelectList(Db.SecurityRanks, "Id", "AccessLevelDescription");
+            EmployeeTypeViewModel employeeTypeViewModel = _services.FindEntryById(id.Value);
+            if (employeeTypeViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employeeTypeViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,SecurityRankId,SecurityRankDescription,Title,PayRate")] EmployeeTypeViewModel employeeTypeViewModel)
+        {
+            if (!ModelState.IsValid) return View(employeeTypeViewModel);
+            _services.PostChangesForEdit(employeeTypeViewModel);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var employeeTypeViewModel = _services.FindEntryById(id.Value);
+            if (employeeTypeViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employeeTypeViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _services.DeleteEntry(id);
+            return RedirectToAction("Index");
         }
     }
 }
