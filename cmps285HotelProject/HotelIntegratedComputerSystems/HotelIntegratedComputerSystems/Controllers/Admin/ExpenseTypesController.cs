@@ -3,119 +3,82 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
-    public class ExpenseTypesController : Controller
+    public class ExpenseTypesController : BaseController
     {
-        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
+        private readonly ExpenseTypeServices _services = new ExpenseTypeServices();
 
-        // GET: ExpenseTypes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _db.ExpenseTypes.ToListAsync());
+            return View(_services.GetExpenseTypesList());
         }
 
-        // GET: ExpenseTypes/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var expenseType = await _db.ExpenseTypes.FindAsync(id);
-            if (expenseType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(expenseType);
-        }
-
-        // GET: ExpenseTypes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ExpenseTypes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Type,Description,Ammount")] ExpenseType expenseType)
+        public ActionResult Create([Bind(Include = "Id,Type,Description,Ammount")] ExpenseTypeViewModel expenseTypeViewModel)
         {
-            if (!ModelState.IsValid) return View(expenseType);
-            _db.ExpenseTypes.Add(expenseType);
-            await _db.SaveChangesAsync();
+            if (!ModelState.IsValid) return View(expenseTypeViewModel);
+            _services.CreateNewExpenseType(expenseTypeViewModel);
             return RedirectToAction("Index");
         }
 
-        // GET: ExpenseTypes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var expenseType = await _db.ExpenseTypes.FindAsync(id);
-            if (expenseType == null)
+            var expenseTypeViewModel = _services.FindEntryById(id.Value);
+            if (expenseTypeViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
 
-        // POST: ExpenseTypes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Type,Description,Ammount")] ExpenseType expenseType)
+        public ActionResult Edit([Bind(Include = "Id,Type,Description,Ammount")] ExpenseTypeViewModel expenseTypeViewModel)
         {
-            if (!ModelState.IsValid) return View(expenseType);
-            _db.Entry(expenseType).State = EntityState.Modified;
-            await _db.SaveChangesAsync();
+            if (!ModelState.IsValid) return View(expenseTypeViewModel);
+            _services.PostChangesForEdit(expenseTypeViewModel);
             return RedirectToAction("Index");
         }
 
-        // GET: ExpenseTypes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var expenseType = await _db.ExpenseTypes.FindAsync(id);
-            if (expenseType == null)
+            var expenseTypeViewModel = _services.FindEntryById(id.Value);
+            if (expenseTypeViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
 
-        // POST: ExpenseTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var expenseType = await _db.ExpenseTypes.FindAsync(id);
-            _db.ExpenseTypes.Remove(expenseType);
-            await _db.SaveChangesAsync();
+            _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
