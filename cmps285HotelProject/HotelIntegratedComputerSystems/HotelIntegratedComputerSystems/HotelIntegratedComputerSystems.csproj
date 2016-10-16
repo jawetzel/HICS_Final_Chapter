@@ -208,9 +208,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\NullController.cs" />
-    <Compile Include="Controllers\Unaccessible\HouseKeepingStatusController.cs" />
-    <Compile Include="Controllers\Unaccessible\RoomStatusController.cs" />
-    <Compile Include="Controllers\Unaccessible\SecurityRanksController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
     <Compile Include="Controllers\Default\ManageController.cs" />
@@ -432,21 +429,6 @@
     <Content Include="Views\EmployeeTypes\Details.cshtml" />
     <Content Include="Views\EmployeeTypes\Edit.cshtml" />
     <Content Include="Views\EmployeeTypes\Index.cshtml" />
-    <Content Include="Views\HouseKeepingStatus\Create.cshtml" />
-    <Content Include="Views\HouseKeepingStatus\Delete.cshtml" />
-    <Content Include="Views\HouseKeepingStatus\Details.cshtml" />
-    <Content Include="Views\HouseKeepingStatus\Edit.cshtml" />
-    <Content Include="Views\HouseKeepingStatus\Index.cshtml" />
-    <Content Include="Views\SecurityRanks\Create.cshtml" />
-    <Content Include="Views\SecurityRanks\Delete.cshtml" />
-    <Content Include="Views\SecurityRanks\Details.cshtml" />
-    <Content Include="Views\SecurityRanks\Edit.cshtml" />
-    <Content Include="Views\SecurityRanks\Index.cshtml" />
-    <Content Include="Views\RoomStatus\Create.cshtml" />
-    <Content Include="Views\RoomStatus\Delete.cshtml" />
-    <Content Include="Views\RoomStatus\Details.cshtml" />
-    <Content Include="Views\RoomStatus\Edit.cshtml" />
-    <Content Include="Views\RoomStatus\Index.cshtml" />
     <Content Include="Views\HouseKeeping\Index.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Delete.cshtml" />
@@ -477,6 +459,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Maintainance\" />
+    <Folder Include="Controllers\Unaccessible\" />
     <Folder Include="Models\Housekeeping\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
