@@ -1,10 +1,10 @@
-﻿@model HotelIntegratedComputerSystems.Models.Employee
+﻿@model HotelIntegratedComputerSystems.Models.Admin.EmployeeViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Employee</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,19 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Employee</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeTypeId, "EmployeeTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmployeeTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("EmployeeTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmployeeTypeId, "", new { @class = "text-danger" })
@@ -30,14 +36,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
