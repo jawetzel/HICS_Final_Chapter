@@ -23,8 +23,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockOut,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
+        public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockInDate,ClockInTime,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
+            employeeShiftViewModel.ClockIn = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
             if (!ModelState.IsValid) return View(employeeShiftViewModel);
             _services.CreateNewEmployeeShift(employeeShiftViewModel);
             return RedirectToAction("Index");
@@ -36,7 +39,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.EmployeeId = new SelectList(Db.Employees, "Id", "Name");
             var employeeShiftViewModel = _services.FindEntryById(id.Value);
+
+            
             if (employeeShiftViewModel == null)
             {
                 return HttpNotFound();
@@ -48,6 +54,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockOut,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
+            employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
             if (!ModelState.IsValid) return View(employeeShiftViewModel);
             _services.PostChangesForEdit(employeeShiftViewModel);
             return RedirectToAction("Index");
@@ -60,6 +68,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var employeeShiftViewModel = _services.FindEntryById(id.Value);
+            employeeShiftViewModel.ClockInTime = employeeShiftViewModel.ClockInDate;
+            employeeShiftViewModel.ClockOutTime = employeeShiftViewModel.ClockOutDate;
             if (employeeShiftViewModel == null)
             {
                 return HttpNotFound();

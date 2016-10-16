@@ -21,15 +21,32 @@ namespace HotelIntegratedComputerSystems.Models.Admin
 
 
         [DisplayName("Clock In")]
-        [Required(ErrorMessage = "Clock In Time Requiered")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime ClockIn { get; set; }
 
+        [DisplayName("Clock In")]
+        [Required(ErrorMessage = "Clock In Time Requiered")]
+        [DataType(DataType.Date)]
+        public DateTime ClockInDate { get; set; }
+
+        [DisplayName("Clock In")]
+        [Required(ErrorMessage = "Clock In Time Requiered")]
+        [DataType(DataType.Time)]
+        public DateTime ClockInTime { get; set; }
 
 
         [DisplayName("Clock Out")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime? ClockOut { get; set; }
+
+        [DisplayName("Clock Out")]
+        [DataType(DataType.Date)]
+        public DateTime? ClockOutDate { get; set; }
+
+        [DisplayName("Clock Out")]
+        [DataType(DataType.Time)]
+        public DateTime? ClockOutTime { get; set; }
+
         [DisplayName("Cash Taken In")]
         public decimal CashTakenIn { get; set; }
         [DisplayName("Cash Put In Safe")]

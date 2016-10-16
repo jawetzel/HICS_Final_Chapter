@@ -18,7 +18,9 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                                        Id = employeeShift.Id,
                                        EmployeeId = employeeShift.EmployeeId,
                                        EmployeeName = employeeShift.Employee.Name,
+                                       ClockInDate = employeeShift.ClockIn,
                                        ClockIn = employeeShift.ClockIn,
+                                       ClockOutDate = employeeShift.ClockOut,
                                        ClockOut = employeeShift.ClockOut,
                                        CashTakenIn = employeeShift.CashTakeIn,
                                        CashPutInSafe = employeeShift.CashPutInSafe
@@ -33,8 +35,8 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             {
                 Id = employeeShift.Id,
                 EmployeeId = employeeShift.EmployeeId,
-                ClockIn = employeeShift.ClockIn,
-                ClockOut = employeeShift.ClockOut,
+                ClockIn = employeeShift.ClockInDate,
+                ClockOut = employeeShift.ClockOutDate,
                 CashTakeIn = employeeShift.CashTakenIn,
                 CashPutInSafe = employeeShift.CashPutInSafe
             });
@@ -49,10 +51,15 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                 Id = employeeShift.Id,
                 EmployeeId = employeeShift.EmployeeId,
                 EmployeeName = employeeShift.Employee.Name,
+                ClockInDate = employeeShift.ClockIn,
+                ClockInTime = employeeShift.ClockIn,
                 ClockIn = employeeShift.ClockIn,
+                ClockOutDate = employeeShift.ClockOut,
+                ClockOutTime = employeeShift.ClockOut,
                 ClockOut = employeeShift.ClockOut,
                 CashTakenIn = employeeShift.CashTakeIn,
                 CashPutInSafe = employeeShift.CashPutInSafe
+
             });
         }
 
@@ -63,8 +70,8 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             {
                 Id = editEmployeeShift.Id,
                 EmployeeId = editEmployeeShift.EmployeeId,
-                ClockIn = editEmployeeShift.ClockIn,
-                ClockOut = editEmployeeShift.ClockOut,
+                ClockIn = editEmployeeShift.ClockInDate,
+                ClockOut = editEmployeeShift.ClockOutDate,
                 CashTakeIn = editEmployeeShift.CashTakenIn,
                 CashPutInSafe = editEmployeeShift.CashPutInSafe
             })
