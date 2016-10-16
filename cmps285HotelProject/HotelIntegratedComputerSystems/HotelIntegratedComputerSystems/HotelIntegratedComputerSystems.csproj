@@ -199,6 +199,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\BuildingsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeShiftViewModelsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
@@ -221,6 +222,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
+    <Compile Include="Models\Admin\EmployeeShiftViewModel.cs" />
     <Compile Include="Models\Admin\EmployeeTypeServices.cs" />
     <Compile Include="Models\Admin\EmployeeViewModel.cs" />
     <Compile Include="Models\Admin\ExpenseTypeViewModel.cs" />
@@ -294,6 +296,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Admin\BuildingServices.cs" />
     <Compile Include="Services\Admin\EmployeeServies.cs" />
+    <Compile Include="Services\Admin\EmployeeShiftServices.cs" />
     <Compile Include="Services\Admin\EmployeeTypeViewModel.cs" />
     <Compile Include="Services\Admin\ExpenseTypeServices.cs" />
     <Compile Include="Services\Admin\MaintenanceTypeServices.cs" />
@@ -456,6 +459,10 @@
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Create.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Delete.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Edit.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

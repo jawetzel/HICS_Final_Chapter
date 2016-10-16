@@ -44,5 +44,7 @@ namespace HotelIntegratedComputerSystems.Models
         public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Services.Admin.EmployeeTypeViewModel> EmployeeTypeViewModels { get; set; }
 
         public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.EmployeeViewModel> EmployeeViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.EmployeeShiftViewModel> EmployeeShiftViewModels { get; set; }
     }
 }
