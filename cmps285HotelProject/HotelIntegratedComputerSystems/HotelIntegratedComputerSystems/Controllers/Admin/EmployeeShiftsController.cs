@@ -1,133 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Services.Admin;
 
-namespace HotelIntegratedComputerSystems.Controllers.Employees
+namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
-    public class EmployeeShiftsController : Controller
+    public class EmployeeShiftsController : BaseController
     {
-        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
+        private readonly EmployeeShiftServices _services = new EmployeeShiftServices();
 
-        // GET: EmployeeShifts
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var employeeShifts = _db.EmployeeShifts.Include(e => e.Employee);
-            return View(await employeeShifts.ToListAsync());
+            return View(_services.GetEmployeeShiftList());
         }
 
-        // GET: EmployeeShifts/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
-            if (employeeShift == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeShift);
-        }
-
-        // GET: EmployeeShifts/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email");
+            ViewBag.EmployeeId = new SelectList(Db.Employees, "Id", "Name");
             return View();
         }
 
-        // POST: EmployeeShifts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,EmployeeId,ClockIn,ClockOut,CashTakeIn,CashPutInSafe")] EmployeeShift employeeShift)
+        public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockInDate,ClockInTime,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _db.EmployeeShifts.Add(employeeShift);
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
-            return View(employeeShift);
-        }
-
-        // GET: EmployeeShifts/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
-            if (employeeShift == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
-            return View(employeeShift);
-        }
-
-        // POST: EmployeeShifts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,EmployeeId,ClockIn,ClockOut,CashTakeIn,CashPutInSafe")] EmployeeShift employeeShift)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(employeeShift).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.EmployeeId = new SelectList(_db.Employees, "Id", "Email", employeeShift.EmployeeId);
-            return View(employeeShift);
-        }
-
-        // GET: EmployeeShifts/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
-            if (employeeShift == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employeeShift);
-        }
-
-        // POST: EmployeeShifts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            var employeeShift = await _db.EmployeeShifts.FindAsync(id);
-            _db.EmployeeShifts.Remove(employeeShift);
-            await _db.SaveChangesAsync();
+            employeeShiftViewModel.ClockIn = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
+            if (!ModelState.IsValid) return View(employeeShiftViewModel);
+            _services.CreateNewEmployeeShift(employeeShiftViewModel);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Edit(int? id)
         {
-            if (disposing)
+            if (id == null)
             {
-                _db.Dispose();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            base.Dispose(disposing);
+            ViewBag.EmployeeId = new SelectList(Db.Employees, "Id", "Name");
+            var employeeShiftViewModel = _services.FindEntryById(id.Value);
+
+            
+            if (employeeShiftViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employeeShiftViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockOut,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
+        {
+            employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
+            employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
+            if (!ModelState.IsValid) return View(employeeShiftViewModel);
+            _services.PostChangesForEdit(employeeShiftViewModel);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var employeeShiftViewModel = _services.FindEntryById(id.Value);
+            employeeShiftViewModel.ClockInTime = employeeShiftViewModel.ClockInDate;
+            employeeShiftViewModel.ClockOutTime = employeeShiftViewModel.ClockOutDate;
+            if (employeeShiftViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employeeShiftViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            _services.DeleteEntry(id);
+            return RedirectToAction("Index");
         }
     }
 }

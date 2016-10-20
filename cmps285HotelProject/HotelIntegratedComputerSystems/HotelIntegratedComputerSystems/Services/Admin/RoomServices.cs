@@ -88,7 +88,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
         public void DeleteEntry(int id)
         {
-            Room foundRoom = Db.Rooms.Find(id);
+            var foundRoom = Db.Rooms.Find(id);
             Db.Rooms.Remove(foundRoom);
             Db.SaveChanges();
         }

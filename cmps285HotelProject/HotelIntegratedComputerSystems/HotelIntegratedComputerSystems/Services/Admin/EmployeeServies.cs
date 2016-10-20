@@ -74,7 +74,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
         public void DeleteEntry(int id)
         {
-            Models.Employee foundEmployee = Db.Employees.Find(id);
+            var foundEmployee = Db.Employees.Find(id);
             Db.Employees.Remove(foundEmployee);
             Db.SaveChanges();
         }

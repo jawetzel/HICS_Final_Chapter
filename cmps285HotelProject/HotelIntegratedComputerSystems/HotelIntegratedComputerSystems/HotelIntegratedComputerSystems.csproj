@@ -199,7 +199,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\BuildingsController.cs" />
-    <Compile Include="Controllers\Admin\EmployeeShiftViewModelsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
@@ -207,13 +207,13 @@
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomersViewModelsController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
     <Compile Include="Controllers\Default\ManageController.cs" />
     <Compile Include="Controllers\Employees\BookingsController.cs" />
-    <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
     <Compile Include="Controllers\Employees\ExpensesController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceLogsController.cs" />
     <Compile Include="Controllers\MaidService\HouseKeepingController.cs" />
@@ -416,11 +416,6 @@
     <Content Include="Views\Expenses\Details.cshtml" />
     <Content Include="Views\Expenses\Edit.cshtml" />
     <Content Include="Views\Expenses\Index.cshtml" />
-    <Content Include="Views\EmployeeShifts\Create.cshtml" />
-    <Content Include="Views\EmployeeShifts\Delete.cshtml" />
-    <Content Include="Views\EmployeeShifts\Details.cshtml" />
-    <Content Include="Views\EmployeeShifts\Edit.cshtml" />
-    <Content Include="Views\EmployeeShifts\Index.cshtml" />
     <Content Include="Views\MaintenanceLogs\Create.cshtml" />
     <Content Include="Views\MaintenanceLogs\Delete.cshtml" />
     <Content Include="Views\MaintenanceLogs\Details.cshtml" />
@@ -459,10 +454,15 @@
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Create.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Delete.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Edit.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Index.cshtml" />
+    <Content Include="Views\EmployeeShifts\Create.cshtml" />
+    <Content Include="Views\EmployeeShifts\Delete.cshtml" />
+    <Content Include="Views\EmployeeShifts\Edit.cshtml" />
+    <Content Include="Views\EmployeeShifts\Index.cshtml" />
+    <Content Include="Views\CustomersViewModels\Create.cshtml" />
+    <Content Include="Views\CustomersViewModels\Delete.cshtml" />
+    <Content Include="Views\CustomersViewModels\Details.cshtml" />
+    <Content Include="Views\CustomersViewModels\Edit.cshtml" />
+    <Content Include="Views\CustomersViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

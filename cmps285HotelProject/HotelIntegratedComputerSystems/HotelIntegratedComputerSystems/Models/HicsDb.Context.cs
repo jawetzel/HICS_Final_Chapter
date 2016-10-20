@@ -41,10 +41,6 @@ namespace HotelIntegratedComputerSystems.Models
         public virtual DbSet<MaintenanceTypes> MaintenanceTypes { get; set; }
         public virtual DbSet<RoomStatus> RoomStatus { get; set; }
 
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Services.Admin.EmployeeTypeViewModel> EmployeeTypeViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.EmployeeViewModel> EmployeeViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.EmployeeShiftViewModel> EmployeeShiftViewModels { get; set; }
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Employees.CustomersViewModel> CustomersViewModels { get; set; }
     }
 }

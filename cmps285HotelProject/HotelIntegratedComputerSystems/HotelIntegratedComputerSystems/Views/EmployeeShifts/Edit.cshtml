@@ -1,10 +1,10 @@
-﻿@model HotelIntegratedComputerSystems.Models.EmployeeShift
+﻿@model HotelIntegratedComputerSystems.Models.Admin.EmployeeShiftViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Employee Shift</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>EmployeeShift</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
@@ -26,26 +25,32 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ClockIn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClockInDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ClockIn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClockIn, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.ClockInTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClockInTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ClockInDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClockInDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ClockOut, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClockOutDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ClockOut, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClockOut, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ClockOutDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClockOutDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ClockOutTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClockOutTime, "", new { @class = "text-danger" })
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.CashTakeIn, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CashTakenIn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CashTakeIn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CashTakeIn, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CashTakenIn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashTakenIn, "", new { @class = "text-danger" })
             </div>
         </div>
 

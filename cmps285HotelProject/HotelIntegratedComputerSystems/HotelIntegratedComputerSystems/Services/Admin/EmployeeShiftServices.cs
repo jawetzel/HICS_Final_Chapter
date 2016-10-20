@@ -81,7 +81,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
         public void DeleteEntry(int id)
         {
-            EmployeeShift foundEmployeeShifts = Db.EmployeeShifts.Find(id);
+            var foundEmployeeShifts = Db.EmployeeShifts.Find(id);
             Db.EmployeeShifts.Remove(foundEmployeeShifts);
             Db.SaveChanges();
         }

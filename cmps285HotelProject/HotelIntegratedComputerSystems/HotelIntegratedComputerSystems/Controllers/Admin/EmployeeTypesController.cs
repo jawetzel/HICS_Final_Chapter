@@ -44,7 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.SecurityRank = new SelectList(Db.SecurityRanks, "Id", "AccessLevelDescription");
-            EmployeeTypeViewModel employeeTypeViewModel = _services.FindEntryById(id.Value);
+            var employeeTypeViewModel = _services.FindEntryById(id.Value);
             if (employeeTypeViewModel == null)
             {
                 return HttpNotFound();
