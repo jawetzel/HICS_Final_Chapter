@@ -16,7 +16,7 @@ namespace HotelIntegratedComputerSystems.Services.MaidService
                            {
                                Id = room.Id,
                                BuildingId = room.Building.Id,
-                               BuildingName = room.Building.Building1,
+                               BuildingName = room.Building.BuildingName,
                                HousekeepingStatusId = room.HouseKeepingStatu.Id,
                                HousekeepingCleanStatus = room.HouseKeepingStatu.CleanStatus,
                                FloorNumber = room.FloorNumber,

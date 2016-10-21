@@ -18,7 +18,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Expenses
         public async Task<ActionResult> Index()
         {
-            var expenses = _db.Expenses.Include(e => e.ExpenseType).Include(e => e.Room).Include(e => e.Booking);
+            var expenses = _db.Expenses1.Include(e => e.ExpenseType).Include(e => e.Room).Include(e => e.Booking);
             return View(await expenses.ToListAsync());
         }
 
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var expense = await _db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses1.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
@@ -51,11 +51,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,RoomId,ExpenseTypeId,BookingId")] Expense expense)
+        public async Task<ActionResult> Create([Bind(Include = "Id,RoomId,ExpenseTypeId,BookingId")] Expenses expense)
         {
             if (ModelState.IsValid)
             {
-                _db.Expenses.Add(expense);
+                _db.Expenses1.Add(expense);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var expense = await _db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses1.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
@@ -89,7 +89,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,RoomId,ExpenseTypeId,BookingId")] Expense expense)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,RoomId,ExpenseTypeId,BookingId")] Expenses expense)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var expense = await _db.Expenses.FindAsync(id);
+            var expense = await _db.Expenses1.FindAsync(id);
             if (expense == null)
             {
                 return HttpNotFound();
@@ -123,8 +123,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            var expense = await _db.Expenses.FindAsync(id);
-            _db.Expenses.Remove(expense);
+            var expense = await _db.Expenses1.FindAsync(id);
+            _db.Expenses1.Remove(expense);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

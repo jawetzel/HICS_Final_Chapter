@@ -72,7 +72,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
         public bool CheckForDependencys(int id)
         {
             var expenseType = FindEntryById(id);
-            var firstCheck = Db.Expenses.FirstOrDefault(r => r.ExpenseTypeId.Equals(expenseType.Id));
+            var firstCheck = Db.Expenses1.FirstOrDefault(r => r.ExpenseTypeId.Equals(expenseType.Id));
 
             return (firstCheck != null);
         }

@@ -19,7 +19,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                                {
                                    Id = room.Id,
                                    BuildingId = room.BuildingId,
-                                   BuildingName = room.Building.Building1,                                  
+                                   BuildingName = room.Building.BuildingName,                                  
                                    HouseKeepingStatusId = room.HousekeepingStatusId,
                                    HouseKeepingStatus = room.HouseKeepingStatu.CleanStatus,
                                    RoomTypeId = room.RoomTypeId,
@@ -56,7 +56,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             {
                 Id = room.Id,
                 BuildingId = room.BuildingId,
-                BuildingName = room.Building.Building1,
+                BuildingName = room.Building.BuildingName,
                 HouseKeepingStatusId = room.HousekeepingStatusId,
                 HouseKeepingStatus = room.HouseKeepingStatu.CleanStatus,
                 RoomTypeId = room.RoomTypeId,
@@ -104,7 +104,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
         {
             var room = FindEntryById(id);
             var firstCheck = Db.MaintenanceLogs.FirstOrDefault(R => R.RoomId.Equals(room.Id));
-            var seccondChek = Db.Expenses.FirstOrDefault(R => R.RoomId.Equals(room.Id));
+            var seccondChek = Db.Expenses1.FirstOrDefault(R => R.RoomId.Equals(room.Id));
             var thirdCheck = Db.Bookings.FirstOrDefault(R => R.RoomId.Equals(room.Id));
 
             return (firstCheck != null && seccondChek != null && thirdCheck != null);

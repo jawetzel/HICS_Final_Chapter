@@ -18,7 +18,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                                    Id = build.Id,
                                    Phone = build.Phone,
                                    Address = build.Address,
-                                   BuildingName = build.Building1
+                                   BuildingName = build.BuildingName
                                };
             return buildingList.ToList();
         }
@@ -31,7 +31,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                 Id = Building.Id,
                 Phone = Building.Phone,
                 Address = Building.Address,
-                Building1 = Building.BuildingName
+                BuildingName = Building.BuildingName
             });
             Db.SaveChanges();
         }
@@ -44,7 +44,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                 Id = editBuilding.Id,
                 Phone = editBuilding.Phone,
                 Address = editBuilding.Address,
-                Building1 = editBuilding.BuildingName
+                BuildingName = editBuilding.BuildingName
             })
             .State = EntityState.Modified;
             Db.SaveChanges();
@@ -58,7 +58,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                 Id = foundBuilding.Id,
                 Phone = foundBuilding.Phone,
                 Address = foundBuilding.Address,
-                BuildingName = foundBuilding.Building1
+                BuildingName = foundBuilding.BuildingName
             });
         }
 

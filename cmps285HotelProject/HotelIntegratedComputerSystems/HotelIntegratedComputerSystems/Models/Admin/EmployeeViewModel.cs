@@ -38,6 +38,6 @@ namespace HotelIntegratedComputerSystems.Models.Admin
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Not A Valid Phone Number")]
         [Required(ErrorMessage = "Enter Phone Number")]
         [DataType(DataType.PhoneNumber)]
-        public double Phone { get; set; }
+        public Int64 Phone { get; set; }
     }
 }

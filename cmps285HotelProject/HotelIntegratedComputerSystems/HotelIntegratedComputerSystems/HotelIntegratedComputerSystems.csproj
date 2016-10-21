@@ -207,7 +207,6 @@
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CustomersViewModelsController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
@@ -467,11 +466,6 @@
     <Content Include="Views\EmployeeShifts\Delete.cshtml" />
     <Content Include="Views\EmployeeShifts\Edit.cshtml" />
     <Content Include="Views\EmployeeShifts\Index.cshtml" />
-    <Content Include="Views\CustomersViewModels\Create.cshtml" />
-    <Content Include="Views\CustomersViewModels\Delete.cshtml" />
-    <Content Include="Views\CustomersViewModels\Details.cshtml" />
-    <Content Include="Views\CustomersViewModels\Edit.cshtml" />
-    <Content Include="Views\CustomersViewModels\Index.cshtml" />
     <Content Include="Views\Shared\_CannotDeleteError.cshtml" />
     <Content Include="Views\Buildings\DeleteError.cshtml" />
     <Content Include="Views\MaintenanceTypes\DeleteError.cshtml" />

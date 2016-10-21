@@ -16,7 +16,7 @@ namespace HotelIntegratedComputerSystems.Models.Admin
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Phone Number Not Provided")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Not A Valid Phone Number")]
-        public double Phone { get; set; }
+        public Int64 Phone { get; set; }
 
         [Required(ErrorMessage = "Address Not Provided")]
         [DisplayName("Address")]

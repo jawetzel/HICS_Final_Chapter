@@ -49,8 +49,7 @@ namespace HotelIntegratedComputerSystems.Models.Admin
         public int FloorNumber { get; set; }
 
         [DisplayName("Room")]
-        [Range(1, int.MaxValue, ErrorMessage = "Number Provided Must Be Positive")]
         [Required(ErrorMessage = "Please Provide A Room Number")]
-        public int RoomNumber { get; set; }
+        public string RoomNumber { get; set; }
     }
 }

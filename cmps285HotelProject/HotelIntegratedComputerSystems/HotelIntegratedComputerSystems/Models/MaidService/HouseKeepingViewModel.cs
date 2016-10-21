@@ -23,7 +23,7 @@ namespace HotelIntegratedComputerSystems.Models.MaidService
         public int FloorNumber { get; set; }
 
         [DisplayName("Room")]
-        public int RoomNumber { get; set; }
+        public string RoomNumber { get; set; }
 
         [System.Web.Mvc.HiddenInput(DisplayValue = false)]
         public int RoomStatusId { get; set; }

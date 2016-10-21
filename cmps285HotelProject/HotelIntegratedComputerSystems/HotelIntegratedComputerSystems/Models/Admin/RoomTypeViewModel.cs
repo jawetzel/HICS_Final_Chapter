@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Models.Admin
         [Range(0, int.MaxValue, ErrorMessage = "Number Provided Must Be Positive")]
         [DisplayName("# Bathrooms")]
         [Required(ErrorMessage = "Please Provide Number of Bathrooms")]
-        public int BathRooms { get; set; }
+        public decimal BathRooms { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Number Provided Must Be Positive")]
         [DisplayName("Max Occupants")]
