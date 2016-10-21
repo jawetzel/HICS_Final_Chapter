@@ -12,7 +12,7 @@ namespace HotelIntegratedComputerSystems.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Expense
+    public partial class Expenses
     {
         public int Id { get; set; }
         public int RoomId { get; set; }

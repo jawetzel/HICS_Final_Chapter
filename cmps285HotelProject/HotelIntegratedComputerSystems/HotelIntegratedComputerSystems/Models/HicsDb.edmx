@@ -12,7 +12,7 @@
     <EntitySet Name="Employees" EntityType="HicsTestDbModel.Store.Employees" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EmployeeShifts" EntityType="HicsTestDbModel.Store.EmployeeShifts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EmployeeTypes" EntityType="HicsTestDbModel.Store.EmployeeTypes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Expenses" EntityType="HicsTestDbModel.Store.Expenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Expenses1" EntityType="HicsTestDbModel.Store.Expenses1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ExpenseTypes" EntityType="HicsTestDbModel.Store.ExpenseTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HouseKeepingStatus" EntityType="HicsTestDbModel.Store.HouseKeepingStatus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Rooms" EntityType="HicsTestDbModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
@@ -21,6 +21,9 @@
     <EntitySet Name="MaintenanceLogs" EntityType="HicsTestDbModel.Store.MaintenanceLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MaintenanceTypes" EntityType="HicsTestDbModel.Store.MaintenanceTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoomStatus" EntityType="HicsTestDbModel.Store.RoomStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookingStatus" EntityType="HicsTestDbModel.Store.BookingStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Emails" EntityType="HicsTestDbModel.Store.Emails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmailRecipients" EntityType="HicsTestDbModel.Store.EmailRecipients" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Booking_Customer" Association="HicsTestDbModel.Store.FK_Booking_Customer">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Bookings" EntitySet="Bookings" />
@@ -47,11 +50,11 @@
     </AssociationSet>
     <AssociationSet Name="FK_Expenses_ExpenseType" Association="HicsTestDbModel.Store.FK_Expenses_ExpenseType">
       <End Role="ExpenseTypes" EntitySet="ExpenseTypes" />
-      <End Role="Expenses" EntitySet="Expenses" />
+      <End Role="Expenses" EntitySet="Expenses1" />
     </AssociationSet>
     <AssociationSet Name="FK_Expenses_Room" Association="HicsTestDbModel.Store.FK_Expenses_Room">
       <End Role="Rooms" EntitySet="Rooms" />
-      <End Role="Expenses" EntitySet="Expenses" />
+      <End Role="Expenses" EntitySet="Expenses1" />
     </AssociationSet>
     <AssociationSet Name="FK_Room_HouseKeepingStatus" Association="HicsTestDbModel.Store.FK_Room_HouseKeepingStatus">
       <End Role="HouseKeepingStatus" EntitySet="HouseKeepingStatus" />
@@ -71,11 +74,23 @@
     </AssociationSet>
     <AssociationSet Name="BookingExpens" Association="HicsTestDbModel.Store.BookingExpens">
       <End Role="Booking" EntitySet="Bookings" />
-      <End Role="Expens" EntitySet="Expenses" />
+      <End Role="Expens" EntitySet="Expenses1" />
     </AssociationSet>
     <AssociationSet Name="RoomStatusRoom" Association="HicsTestDbModel.Store.RoomStatusRoom">
       <End Role="RoomStatus" EntitySet="RoomStatus" />
       <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="BookingStatusBooking1" Association="HicsTestDbModel.Store.BookingStatusBooking1">
+      <End Role="BookingStatus" EntitySet="BookingStatus" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="EmailsEmailRecipients" Association="HicsTestDbModel.Store.EmailsEmailRecipients">
+      <End Role="Emails" EntitySet="Emails" />
+      <End Role="EmailRecipients" EntitySet="EmailRecipients" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeEmails" Association="HicsTestDbModel.Store.EmployeeEmails">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Emails" EntitySet="Emails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Bookings">
@@ -87,17 +102,20 @@
     <Property Name="RoomId" Type="int" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="VolumeDaults" Type="int" Nullable="false" />
-    <Property Name="VolumeChildren" Type="int" Nullable="false" />
+    <Property Name="VolumeAdults" Type="int" Nullable="true" />
+    <Property Name="VolumeChildren" Type="int" Nullable="true" />
+    <Property Name="BookingStatusId" Type="int" Nullable="false" />
+    <Property Name="CheckedInDate" Type="datetime" Nullable="true" />
+    <Property Name="CheckedOutDate" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="Buildings">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Phone" Type="float" Nullable="false" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" Nullable="false" />
-    <Property Name="Building1" Type="varchar(max)" Nullable="false" />
+    <Property Name="BuildingName" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Customers">
     <Key>
@@ -106,7 +124,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" Nullable="false" />
-    <Property Name="Phone" Type="float" Nullable="false" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Employees">
@@ -118,7 +136,7 @@
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Name" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" Nullable="false" />
-    <Property Name="Phone" Type="float" Nullable="false" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployeeShifts">
     <Key>
@@ -140,7 +158,7 @@
     <Property Name="Title" Type="varchar(max)" Nullable="false" />
     <Property Name="PayRate" Type="decimal" Nullable="false" Precision="19" Scale="4" />
   </EntityType>
-  <EntityType Name="Expenses">
+  <EntityType Name="Expenses1">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -174,7 +192,7 @@
     <Property Name="RoomTypeId" Type="int" Nullable="false" />
     <Property Name="HousekeepingStatusId" Type="int" Nullable="false" />
     <Property Name="FloorNumber" Type="int" Nullable="false" />
-    <Property Name="RoomNumber" Type="int" Nullable="false" />
+    <Property Name="RoomNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="RoomStatusId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RoomTypes">
@@ -185,7 +203,7 @@
     <Property Name="Bedding" Type="varchar(max)" Nullable="false" />
     <Property Name="Kitchen" Type="varchar(max)" Nullable="false" />
     <Property Name="Rooms" Type="int" Nullable="false" />
-    <Property Name="Bathrooms" Type="int" Nullable="false" />
+    <Property Name="Bathrooms" Type="decimal" Nullable="false" />
     <Property Name="SleepsVolume" Type="int" Nullable="false" />
     <Property Name="NightlyRate" Type="decimal" Nullable="false" Precision="19" Scale="4" />
   </EntityType>
@@ -204,7 +222,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="MaintenanceTypesId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MaintenanceTypes">
@@ -220,6 +238,30 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingStatusDescription" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateSent" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmailRecipients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmailsId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Booking_Customer">
     <End Role="Customers" Type="HicsTestDbModel.Store.Customers" Multiplicity="1" />
@@ -295,7 +337,7 @@
   </Association>
   <Association Name="FK_Expenses_ExpenseType">
     <End Role="ExpenseTypes" Type="HicsTestDbModel.Store.ExpenseTypes" Multiplicity="1" />
-    <End Role="Expenses" Type="HicsTestDbModel.Store.Expenses" Multiplicity="*" />
+    <End Role="Expenses" Type="HicsTestDbModel.Store.Expenses1" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ExpenseTypes">
         <PropertyRef Name="Id" />
@@ -307,7 +349,7 @@
   </Association>
   <Association Name="FK_Expenses_Room">
     <End Role="Rooms" Type="HicsTestDbModel.Store.Rooms" Multiplicity="1" />
-    <End Role="Expenses" Type="HicsTestDbModel.Store.Expenses" Multiplicity="*" />
+    <End Role="Expenses" Type="HicsTestDbModel.Store.Expenses1" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Rooms">
         <PropertyRef Name="Id" />
@@ -367,7 +409,7 @@
   </Association>
   <Association Name="BookingExpens">
     <End Role="Booking" Type="HicsTestDbModel.Store.Bookings" Multiplicity="1" />
-    <End Role="Expens" Type="HicsTestDbModel.Store.Expenses" Multiplicity="*" />
+    <End Role="Expens" Type="HicsTestDbModel.Store.Expenses1" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Booking">
         <PropertyRef Name="Id" />
@@ -389,6 +431,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="BookingStatusBooking1">
+    <End Role="BookingStatus" Type="HicsTestDbModel.Store.BookingStatus" Multiplicity="1" />
+    <End Role="Booking" Type="HicsTestDbModel.Store.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="BookingStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmailsEmailRecipients">
+    <End Role="Emails" Type="HicsTestDbModel.Store.Emails" Multiplicity="1" />
+    <End Role="EmailRecipients" Type="HicsTestDbModel.Store.EmailRecipients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmailRecipients">
+        <PropertyRef Name="EmailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeEmails">
+    <End Role="Employee" Type="HicsTestDbModel.Store.Employees" Multiplicity="1" />
+    <End Role="Emails" Type="HicsTestDbModel.Store.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -402,20 +480,24 @@
           <Property Name="RoomId" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="VolumeDaults" Type="Int32" Nullable="false" />
-          <Property Name="VolumeChildren" Type="Int32" Nullable="false" />
+          <Property Name="VolumeAdults" Type="Int32" Nullable="true" />
+          <Property Name="VolumeChildren" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Booking_Customer" FromRole="Bookings" ToRole="Customers" />
           <NavigationProperty Name="Room" Relationship="Self.FK_Booking_Room" FromRole="Bookings" ToRole="Rooms" />
           <NavigationProperty Name="Expense" Relationship="HicsTestDbModel.BookingExpens" FromRole="Booking" ToRole="Expens" />
+          <NavigationProperty Name="BookingStatus" Relationship="HicsTestDbModel.BookingStatusBooking1" FromRole="Booking" ToRole="BookingStatus" />
+          <Property Name="BookingStatusId" Type="Int32" Nullable="false" />
+          <Property Name="CheckedInDate" Type="DateTime" Nullable="true" />
+          <Property Name="CheckedOutDate" Type="DateTime" Nullable="true" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Phone" Type="Double" Nullable="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Building1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BuildingName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Building" FromRole="Buildings" ToRole="Rooms" />
         </EntityType>
         <EntityType Name="Customer">
@@ -425,7 +507,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Double" Nullable="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Customer" FromRole="Customers" ToRole="Bookings" />
         </EntityType>
@@ -438,9 +520,10 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Double" Nullable="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
           <NavigationProperty Name="EmployeeType" Relationship="Self.FK_Employee_EmployeeType" FromRole="Employees" ToRole="EmployeeTypes" />
           <NavigationProperty Name="EmployeeShifts" Relationship="Self.FK_EmployeeShift_Employee" FromRole="Employees" ToRole="EmployeeShifts" />
+          <NavigationProperty Name="Emails" Relationship="HicsTestDbModel.EmployeeEmails" FromRole="Employee" ToRole="Emails" />
         </EntityType>
         <EntityType Name="EmployeeShift">
           <Key>
@@ -465,7 +548,7 @@
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_EmployeeType" FromRole="EmployeeTypes" ToRole="Employees" />
           <NavigationProperty Name="SecurityRank" Relationship="Self.FK_EmployeeType_SecurityRank" FromRole="EmployeeTypes" ToRole="SecurityRanks" />
         </EntityType>
-        <EntityType Name="Expense">
+        <EntityType Name="Expenses">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -487,7 +570,7 @@
           <Property Name="Ammount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Expenses" Relationship="Self.FK_Expenses_ExpenseType" FromRole="ExpenseTypes" ToRole="Expenses" />
         </EntityType>
-        <EntityType Name="HouseKeepingStatu">
+        <EntityType Name="HouseKeepingStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -504,7 +587,7 @@
           <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
           <Property Name="HousekeepingStatusId" Type="Int32" Nullable="false" />
           <Property Name="FloorNumber" Type="Int32" Nullable="false" />
-          <Property Name="RoomNumber" Type="Int32" Nullable="false" />
+          <Property Name="RoomNumber" Type="String" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Room" FromRole="Rooms" ToRole="Bookings" />
           <NavigationProperty Name="Building" Relationship="Self.FK_Room_Building" FromRole="Rooms" ToRole="Buildings" />
           <NavigationProperty Name="Expenses" Relationship="Self.FK_Expenses_Room" FromRole="Rooms" ToRole="Expenses" />
@@ -522,7 +605,7 @@
           <Property Name="Bedding" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Kitchen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Rooms" Type="Int32" Nullable="false" />
-          <Property Name="Bathrooms" Type="Int32" Nullable="false" />
+          <Property Name="Bathrooms" Type="Decimal" Nullable="false" />
           <Property Name="SleepsVolume" Type="Int32" Nullable="false" />
           <Property Name="NightlyRate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Rooms1" Relationship="Self.FK_Room_RoomType" FromRole="RoomTypes" ToRole="Rooms" />
@@ -610,7 +693,7 @@
         </Association>
         <Association Name="FK_Expenses_ExpenseType">
           <End Role="ExpenseTypes" Type="Self.ExpenseType" Multiplicity="1" />
-          <End Role="Expenses" Type="HicsTestDbModel.Expense" Multiplicity="*" />
+          <End Role="Expenses" Type="HicsTestDbModel.Expenses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ExpenseTypes">
               <PropertyRef Name="Id" />
@@ -622,7 +705,7 @@
         </Association>
         <Association Name="FK_Expenses_Room">
           <End Role="Rooms" Type="Self.Room" Multiplicity="1" />
-          <End Role="Expenses" Type="HicsTestDbModel.Expense" Multiplicity="*" />
+          <End Role="Expenses" Type="HicsTestDbModel.Expenses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rooms">
               <PropertyRef Name="Id" />
@@ -633,7 +716,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Room_HouseKeepingStatus">
-          <End Role="HouseKeepingStatus" Type="Self.HouseKeepingStatu" Multiplicity="1" />
+          <End Role="HouseKeepingStatus" Type="HicsTestDbModel.HouseKeepingStatus" Multiplicity="1" />
           <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HouseKeepingStatus">
@@ -663,9 +746,9 @@
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="EmployeeShifts" EntityType="Self.EmployeeShift" />
           <EntitySet Name="EmployeeTypes" EntityType="Self.EmployeeType" />
-          <EntitySet Name="Expenses" EntityType="HicsTestDbModel.Expense" />
+          <EntitySet Name="Expenses1" EntityType="HicsTestDbModel.Expenses" />
           <EntitySet Name="ExpenseTypes" EntityType="Self.ExpenseType" />
-          <EntitySet Name="HouseKeepingStatus" EntityType="Self.HouseKeepingStatu" />
+          <EntitySet Name="HouseKeepingStatus" EntityType="HicsTestDbModel.HouseKeepingStatus" />
           <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
           <EntitySet Name="SecurityRanks" EntityType="Self.SecurityRank" />
@@ -695,11 +778,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_Expenses_ExpenseType" Association="Self.FK_Expenses_ExpenseType">
             <End Role="ExpenseTypes" EntitySet="ExpenseTypes" />
-            <End Role="Expenses" EntitySet="Expenses" />
+            <End Role="Expenses" EntitySet="Expenses1" />
           </AssociationSet>
           <AssociationSet Name="FK_Expenses_Room" Association="Self.FK_Expenses_Room">
             <End Role="Rooms" EntitySet="Rooms" />
-            <End Role="Expenses" EntitySet="Expenses" />
+            <End Role="Expenses" EntitySet="Expenses1" />
           </AssociationSet>
           <AssociationSet Name="FK_Room_HouseKeepingStatus" Association="Self.FK_Room_HouseKeepingStatus">
             <End Role="HouseKeepingStatus" EntitySet="HouseKeepingStatus" />
@@ -721,12 +804,27 @@
           </AssociationSet>
           <AssociationSet Name="BookingExpens" Association="HicsTestDbModel.BookingExpens">
             <End Role="Booking" EntitySet="Bookings" />
-            <End Role="Expens" EntitySet="Expenses" />
+            <End Role="Expens" EntitySet="Expenses1" />
           </AssociationSet>
           <EntitySet Name="RoomStatus" EntityType="HicsTestDbModel.RoomStatus" />
           <AssociationSet Name="RoomStatusRoom" Association="HicsTestDbModel.RoomStatusRoom">
             <End Role="RoomStatus" EntitySet="RoomStatus" />
             <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <EntitySet Name="BookingStatus" EntityType="HicsTestDbModel.BookingStatus" />
+          <AssociationSet Name="BookingStatusBooking1" Association="HicsTestDbModel.BookingStatusBooking1">
+            <End Role="BookingStatus" EntitySet="BookingStatus" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <EntitySet Name="Emails" EntityType="HicsTestDbModel.Emails" />
+          <EntitySet Name="EmailRecipients" EntityType="HicsTestDbModel.EmailRecipients" />
+          <AssociationSet Name="EmailsEmailRecipients" Association="HicsTestDbModel.EmailsEmailRecipients">
+            <End Role="Emails" EntitySet="Emails" />
+            <End Role="EmailRecipients" EntitySet="EmailRecipients" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeEmails" Association="HicsTestDbModel.EmployeeEmails">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Emails" EntitySet="Emails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="MaintenanceLogs">
@@ -737,7 +835,7 @@
           <NavigationProperty Name="Room" Relationship="HicsTestDbModel.RoomMaintenanceLogs" FromRole="MaintenanceLogs" ToRole="Room" />
           <Property Name="RoomId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Date" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="MaintenanceType" Relationship="HicsTestDbModel.MaintenanceTypesMaintenanceLogs" FromRole="MaintenanceLogs" ToRole="MaintenanceTypes" />
           <Property Name="MaintenanceTypesId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -775,7 +873,7 @@
         </Association>
         <Association Name="BookingExpens">
           <End Type="HicsTestDbModel.Booking" Role="Booking" Multiplicity="1" />
-          <End Type="HicsTestDbModel.Expense" Role="Expens" Multiplicity="*" />
+          <End Type="HicsTestDbModel.Expenses" Role="Expens" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Booking">
               <PropertyRef Name="Id" />
@@ -805,6 +903,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BookingStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Bookings" Relationship="HicsTestDbModel.BookingStatusBooking1" FromRole="BookingStatus" ToRole="Booking" />
+          <Property Name="BookingStatusDescription" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="BookingStatusBooking1">
+          <End Type="HicsTestDbModel.BookingStatus" Role="BookingStatus" Multiplicity="1" />
+          <End Type="HicsTestDbModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="BookingStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Emails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EmailRecipients" Relationship="HicsTestDbModel.EmailsEmailRecipients" FromRole="Emails" ToRole="EmailRecipients" />
+          <Property Name="Body" Type="String" Nullable="false" />
+          <Property Name="DateSent" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="HicsTestDbModel.EmployeeEmails" FromRole="Emails" ToRole="Employee" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailRecipients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" />
+          <NavigationProperty Name="Email" Relationship="HicsTestDbModel.EmailsEmailRecipients" FromRole="EmailRecipients" ToRole="Emails" />
+          <Property Name="EmailsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="EmailsEmailRecipients">
+          <End Type="HicsTestDbModel.Emails" Role="Emails" Multiplicity="1" />
+          <End Type="HicsTestDbModel.EmailRecipients" Role="EmailRecipients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailRecipients">
+              <PropertyRef Name="EmailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeEmails">
+          <End Type="HicsTestDbModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="HicsTestDbModel.Emails" Role="Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -819,8 +981,11 @@
           <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="VolumeDaults" ColumnName="VolumeDaults" />
+          <ScalarProperty Name="VolumeAdults" ColumnName="VolumeAdults" />
           <ScalarProperty Name="VolumeChildren" ColumnName="VolumeChildren" />
+          <ScalarProperty Name="BookingStatusId" ColumnName="BookingStatusId" />
+          <ScalarProperty Name="CheckedInDate" ColumnName="CheckedInDate" />
+          <ScalarProperty Name="CheckedOutDate" ColumnName="CheckedOutDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -830,7 +995,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Building1" ColumnName="Building1" />
+          <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -879,9 +1044,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Expenses">
-      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.Expense)">
-        <MappingFragment StoreEntitySet="Expenses">
+    <EntitySetMapping Name="Expenses1">
+      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.Expenses)">
+        <MappingFragment StoreEntitySet="Expenses1">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="ExpenseTypeId" ColumnName="ExpenseTypeId" />
@@ -900,7 +1065,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HouseKeepingStatus">
-      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.HouseKeepingStatu)">
+      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.HouseKeepingStatus)">
         <MappingFragment StoreEntitySet="HouseKeepingStatus">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CleanStatus" ColumnName="CleanStatus" />
@@ -966,6 +1131,33 @@
         <MappingFragment StoreEntitySet="RoomStatus">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingStatus">
+      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.BookingStatus)">
+        <MappingFragment StoreEntitySet="BookingStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookingStatusDescription" ColumnName="BookingStatusDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.Emails)">
+        <MappingFragment StoreEntitySet="Emails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailRecipients">
+      <EntityTypeMapping TypeName="IsTypeOf(HicsTestDbModel.EmailRecipients)">
+        <MappingFragment StoreEntitySet="EmailRecipients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="EmailsId" ColumnName="EmailsId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

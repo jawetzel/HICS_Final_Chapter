@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1d99b735230a40898aca3eb303b64315" Name="Diagram1">
-        <EntityTypeShape EntityType="HicsTestDbModel.Booking" Width="1.5" PointX="4.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Booking" Width="1.5" PointX="4.875" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.Building" Width="1.5" PointX="0.875" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.Customer" Width="1.5" PointX="4.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.Employee" Width="1.5" PointX="10.625" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.EmployeeShift" Width="1.5" PointX="10.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.EmployeeType" Width="1.5" PointX="8.625" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HicsTestDbModel.Expense" Width="1.5" PointX="6.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Expenses" Width="1.5" PointX="6.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.ExpenseType" Width="1.5" PointX="6.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HicsTestDbModel.HouseKeepingStatu" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HicsTestDbModel.HouseKeepingStatus" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.Room" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.RoomType" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HicsTestDbModel.SecurityRank" Width="1.5" PointX="8.625" PointY="0.5" IsExpanded="true" />
@@ -34,6 +34,12 @@
         <AssociationConnector Association="HicsTestDbModel.BookingExpens" />
         <EntityTypeShape EntityType="HicsTestDbModel.RoomStatus" Width="1.5" PointX="4.75" PointY="0.5" />
         <AssociationConnector Association="HicsTestDbModel.RoomStatusRoom" />
+        <EntityTypeShape EntityType="HicsTestDbModel.BookingStatus" Width="1.5" PointX="6.75" PointY="2.5" />
+        <AssociationConnector Association="HicsTestDbModel.BookingStatusBooking1" />
+        <EntityTypeShape EntityType="HicsTestDbModel.Emails" Width="1.5" PointX="10.625" PointY="6.375" />
+        <EntityTypeShape EntityType="HicsTestDbModel.EmailRecipients" Width="1.5" PointX="8.625" PointY="7" />
+        <AssociationConnector Association="HicsTestDbModel.EmailsEmailRecipients" />
+        <AssociationConnector Association="HicsTestDbModel.EmployeeEmails" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

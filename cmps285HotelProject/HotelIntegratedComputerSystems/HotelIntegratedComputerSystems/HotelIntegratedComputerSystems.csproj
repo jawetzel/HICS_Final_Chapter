@@ -223,13 +223,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
     <Compile Include="Models\Admin\EmployeeShiftViewModel.cs" />
-    <Compile Include="Services\Admin\EmployeeTypeServices.cs" />
-    <Compile Include="Models\Admin\EmployeeViewModel.cs" />
-    <Compile Include="Models\Admin\ExpenseTypeViewModel.cs" />
-    <Compile Include="Models\Admin\MaintenanceTypeViewModel.cs" />
-    <Compile Include="Models\Admin\RoomTypeViewModel.cs" />
-    <Compile Include="Models\Admin\RoomViewModel.cs" />
     <Compile Include="Models\Booking.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingStatus.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Building.cs">
@@ -238,22 +235,55 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailRecipients.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emails.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeShift.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employees\CustomersViewModel.cs" />
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Expense.cs">
+    <Compile Include="Models\Expenses.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExpenseType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HouseKeepingStatus.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaintenanceLogs.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaintenanceTypes.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Room.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomStatus.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomType.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SecurityRank.cs">
+      <DependentUpon>HicsDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Admin\EmployeeTypeServices.cs" />
+    <Compile Include="Models\Admin\EmployeeViewModel.cs" />
+    <Compile Include="Models\Admin\ExpenseTypeViewModel.cs" />
+    <Compile Include="Models\Admin\MaintenanceTypeViewModel.cs" />
+    <Compile Include="Models\Admin\RoomTypeViewModel.cs" />
+    <Compile Include="Models\Admin\RoomViewModel.cs" />
+    <Compile Include="Models\Employees\CustomersViewModel.cs" />
     <Compile Include="Models\HicsDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -269,30 +299,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HicsDb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\HouseKeepingStatu.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MaidService\HouseKeepingViewModel.cs" />
-    <Compile Include="Models\MaintenanceLogs.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MaintenanceTypes.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Room.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RoomStatus.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RoomType.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SecurityRank.cs">
-      <DependentUpon>HicsDb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Admin\BuildingServices.cs" />
     <Compile Include="Services\Admin\EmployeeServies.cs" />

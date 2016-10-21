@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/27/2016 09:18:24
--- Generated from EDMX file: C:\Users\Josh Home\Documents\cmps285hotelproject\cmps285HotelProject\HotelIntegratedComputerSystems\HotelIntegratedComputerSystems\Models\HicsDb.edmx
+-- Date Created: 10/21/2016 12:12:57
+-- Generated from EDMX file: C:\Cmps285Project\cmps285HotelProject\HotelIntegratedComputerSystems\HotelIntegratedComputerSystems\Models\HicsDb.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -36,10 +36,10 @@ IF OBJECT_ID(N'[dbo].[FK_EmployeeType_SecurityRank]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EmployeeTypes] DROP CONSTRAINT [FK_EmployeeType_SecurityRank];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Expenses_ExpenseType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Expenses] DROP CONSTRAINT [FK_Expenses_ExpenseType];
+    ALTER TABLE [dbo].[Expenses1] DROP CONSTRAINT [FK_Expenses_ExpenseType];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Expenses_Room]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Expenses] DROP CONSTRAINT [FK_Expenses_Room];
+    ALTER TABLE [dbo].[Expenses1] DROP CONSTRAINT [FK_Expenses_Room];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Room_HouseKeepingStatus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Rooms] DROP CONSTRAINT [FK_Room_HouseKeepingStatus];
@@ -54,7 +54,19 @@ IF OBJECT_ID(N'[dbo].[FK_MaintenanceTypesMaintenanceLogs]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MaintenanceLogs] DROP CONSTRAINT [FK_MaintenanceTypesMaintenanceLogs];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BookingExpens]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Expenses] DROP CONSTRAINT [FK_BookingExpens];
+    ALTER TABLE [dbo].[Expenses1] DROP CONSTRAINT [FK_BookingExpens];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoomStatusRoom]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rooms] DROP CONSTRAINT [FK_RoomStatusRoom];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BookingStatusBooking1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Bookings] DROP CONSTRAINT [FK_BookingStatusBooking1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EmailsEmailRecipients]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EmailRecipients] DROP CONSTRAINT [FK_EmailsEmailRecipients];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EmployeeEmails]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Emails] DROP CONSTRAINT [FK_EmployeeEmails];
 GO
 
 -- --------------------------------------------------
@@ -79,8 +91,8 @@ GO
 IF OBJECT_ID(N'[dbo].[EmployeeTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EmployeeTypes];
 GO
-IF OBJECT_ID(N'[dbo].[Expenses]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Expenses];
+IF OBJECT_ID(N'[dbo].[Expenses1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Expenses1];
 GO
 IF OBJECT_ID(N'[dbo].[ExpenseTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ExpenseTypes];
@@ -103,6 +115,18 @@ GO
 IF OBJECT_ID(N'[dbo].[MaintenanceTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MaintenanceTypes];
 GO
+IF OBJECT_ID(N'[dbo].[RoomStatus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoomStatus];
+GO
+IF OBJECT_ID(N'[dbo].[BookingStatus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BookingStatus];
+GO
+IF OBJECT_ID(N'[dbo].[Emails]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Emails];
+GO
+IF OBJECT_ID(N'[dbo].[EmailRecipients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EmailRecipients];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -115,17 +139,20 @@ CREATE TABLE [dbo].[Bookings] (
     [RoomId] int  NOT NULL,
     [StartDate] datetime  NOT NULL,
     [EndDate] datetime  NOT NULL,
-    [VolumeDaults] int  NOT NULL,
-    [VolumeChildren] int  NOT NULL
+    [VolumeAdults] int  NULL,
+    [VolumeChildren] int  NULL,
+    [BookingStatusId] int  NOT NULL,
+    [CheckedInDate] datetime  NULL,
+    [CheckedOutDate] datetime  NULL
 );
 GO
 
 -- Creating table 'Buildings'
 CREATE TABLE [dbo].[Buildings] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Phone] float  NOT NULL,
+    [Phone] bigint  NOT NULL,
     [Address] varchar(max)  NOT NULL,
-    [Building1] varchar(max)  NOT NULL
+    [BuildingName] varchar(max)  NOT NULL
 );
 GO
 
@@ -134,7 +161,7 @@ CREATE TABLE [dbo].[Customers] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] varchar(max)  NOT NULL,
     [Address] varchar(max)  NOT NULL,
-    [Phone] float  NOT NULL,
+    [Phone] bigint  NOT NULL,
     [Email] varchar(max)  NOT NULL
 );
 GO
@@ -146,7 +173,7 @@ CREATE TABLE [dbo].[Employees] (
     [Email] varchar(max)  NOT NULL,
     [Name] varchar(max)  NOT NULL,
     [Address] varchar(max)  NOT NULL,
-    [Phone] float  NOT NULL
+    [Phone] bigint  NOT NULL
 );
 GO
 
@@ -170,8 +197,8 @@ CREATE TABLE [dbo].[EmployeeTypes] (
 );
 GO
 
--- Creating table 'Expenses'
-CREATE TABLE [dbo].[Expenses] (
+-- Creating table 'Expenses1'
+CREATE TABLE [dbo].[Expenses1] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [RoomId] int  NOT NULL,
     [ExpenseTypeId] int  NOT NULL,
@@ -202,7 +229,7 @@ CREATE TABLE [dbo].[Rooms] (
     [RoomTypeId] int  NOT NULL,
     [HousekeepingStatusId] int  NOT NULL,
     [FloorNumber] int  NOT NULL,
-    [RoomNumber] int  NOT NULL,
+    [RoomNumber] nvarchar(max)  NOT NULL,
     [RoomStatusId] int  NOT NULL
 );
 GO
@@ -213,7 +240,7 @@ CREATE TABLE [dbo].[RoomTypes] (
     [Bedding] varchar(max)  NOT NULL,
     [Kitchen] varchar(max)  NOT NULL,
     [Rooms] int  NOT NULL,
-    [Bathrooms] int  NOT NULL,
+    [Bathrooms] decimal(18,0)  NOT NULL,
     [SleepsVolume] int  NOT NULL,
     [NightlyRate] decimal(19,4)  NOT NULL
 );
@@ -232,7 +259,7 @@ CREATE TABLE [dbo].[MaintenanceLogs] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [RoomId] int  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Date] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
     [MaintenanceTypesId] int  NOT NULL
 );
 GO
@@ -248,6 +275,30 @@ GO
 CREATE TABLE [dbo].[RoomStatus] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Description] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'BookingStatus'
+CREATE TABLE [dbo].[BookingStatus] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [BookingStatusDescription] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Emails'
+CREATE TABLE [dbo].[Emails] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Body] nvarchar(max)  NOT NULL,
+    [DateSent] datetime  NOT NULL,
+    [EmployeeId] int  NOT NULL
+);
+GO
+
+-- Creating table 'EmailRecipients'
+CREATE TABLE [dbo].[EmailRecipients] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [EmailAddress] nvarchar(max)  NOT NULL,
+    [EmailsId] int  NOT NULL
 );
 GO
 
@@ -291,9 +342,9 @@ ADD CONSTRAINT [PK_EmployeeTypes]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Expenses'
-ALTER TABLE [dbo].[Expenses]
-ADD CONSTRAINT [PK_Expenses]
+-- Creating primary key on [Id] in table 'Expenses1'
+ALTER TABLE [dbo].[Expenses1]
+ADD CONSTRAINT [PK_Expenses1]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -342,6 +393,24 @@ GO
 -- Creating primary key on [Id] in table 'RoomStatus'
 ALTER TABLE [dbo].[RoomStatus]
 ADD CONSTRAINT [PK_RoomStatus]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'BookingStatus'
+ALTER TABLE [dbo].[BookingStatus]
+ADD CONSTRAINT [PK_BookingStatus]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Emails'
+ALTER TABLE [dbo].[Emails]
+ADD CONSTRAINT [PK_Emails]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'EmailRecipients'
+ALTER TABLE [dbo].[EmailRecipients]
+ADD CONSTRAINT [PK_EmailRecipients]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -439,8 +508,8 @@ ON [dbo].[EmployeeTypes]
     ([SecurityRankId]);
 GO
 
--- Creating foreign key on [ExpenseTypeId] in table 'Expenses'
-ALTER TABLE [dbo].[Expenses]
+-- Creating foreign key on [ExpenseTypeId] in table 'Expenses1'
+ALTER TABLE [dbo].[Expenses1]
 ADD CONSTRAINT [FK_Expenses_ExpenseType]
     FOREIGN KEY ([ExpenseTypeId])
     REFERENCES [dbo].[ExpenseTypes]
@@ -450,12 +519,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_Expenses_ExpenseType'
 CREATE INDEX [IX_FK_Expenses_ExpenseType]
-ON [dbo].[Expenses]
+ON [dbo].[Expenses1]
     ([ExpenseTypeId]);
 GO
 
--- Creating foreign key on [RoomId] in table 'Expenses'
-ALTER TABLE [dbo].[Expenses]
+-- Creating foreign key on [RoomId] in table 'Expenses1'
+ALTER TABLE [dbo].[Expenses1]
 ADD CONSTRAINT [FK_Expenses_Room]
     FOREIGN KEY ([RoomId])
     REFERENCES [dbo].[Rooms]
@@ -465,7 +534,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_Expenses_Room'
 CREATE INDEX [IX_FK_Expenses_Room]
-ON [dbo].[Expenses]
+ON [dbo].[Expenses1]
     ([RoomId]);
 GO
 
@@ -529,8 +598,8 @@ ON [dbo].[MaintenanceLogs]
     ([MaintenanceTypesId]);
 GO
 
--- Creating foreign key on [BookingId] in table 'Expenses'
-ALTER TABLE [dbo].[Expenses]
+-- Creating foreign key on [BookingId] in table 'Expenses1'
+ALTER TABLE [dbo].[Expenses1]
 ADD CONSTRAINT [FK_BookingExpens]
     FOREIGN KEY ([BookingId])
     REFERENCES [dbo].[Bookings]
@@ -540,7 +609,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_BookingExpens'
 CREATE INDEX [IX_FK_BookingExpens]
-ON [dbo].[Expenses]
+ON [dbo].[Expenses1]
     ([BookingId]);
 GO
 
@@ -557,6 +626,51 @@ GO
 CREATE INDEX [IX_FK_RoomStatusRoom]
 ON [dbo].[Rooms]
     ([RoomStatusId]);
+GO
+
+-- Creating foreign key on [BookingStatusId] in table 'Bookings'
+ALTER TABLE [dbo].[Bookings]
+ADD CONSTRAINT [FK_BookingStatusBooking1]
+    FOREIGN KEY ([BookingStatusId])
+    REFERENCES [dbo].[BookingStatus]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BookingStatusBooking1'
+CREATE INDEX [IX_FK_BookingStatusBooking1]
+ON [dbo].[Bookings]
+    ([BookingStatusId]);
+GO
+
+-- Creating foreign key on [EmailsId] in table 'EmailRecipients'
+ALTER TABLE [dbo].[EmailRecipients]
+ADD CONSTRAINT [FK_EmailsEmailRecipients]
+    FOREIGN KEY ([EmailsId])
+    REFERENCES [dbo].[Emails]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EmailsEmailRecipients'
+CREATE INDEX [IX_FK_EmailsEmailRecipients]
+ON [dbo].[EmailRecipients]
+    ([EmailsId]);
+GO
+
+-- Creating foreign key on [EmployeeId] in table 'Emails'
+ALTER TABLE [dbo].[Emails]
+ADD CONSTRAINT [FK_EmployeeEmails]
+    FOREIGN KEY ([EmployeeId])
+    REFERENCES [dbo].[Employees]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeEmails'
+CREATE INDEX [IX_FK_EmployeeEmails]
+ON [dbo].[Emails]
+    ([EmployeeId]);
 GO
 
 -- --------------------------------------------------

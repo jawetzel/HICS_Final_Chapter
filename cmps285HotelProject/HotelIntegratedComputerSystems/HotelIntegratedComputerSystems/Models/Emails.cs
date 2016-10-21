@@ -12,23 +12,21 @@ namespace HotelIntegratedComputerSystems.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RoomType
+    public partial class Emails
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RoomType()
+        public Emails()
         {
-            this.Rooms1 = new HashSet<Room>();
+            this.EmailRecipients = new HashSet<EmailRecipients>();
         }
     
         public int Id { get; set; }
-        public string Bedding { get; set; }
-        public string Kitchen { get; set; }
-        public int Rooms { get; set; }
-        public decimal Bathrooms { get; set; }
-        public int SleepsVolume { get; set; }
-        public decimal NightlyRate { get; set; }
+        public string Body { get; set; }
+        public System.DateTime DateSent { get; set; }
+        public int EmployeeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms1 { get; set; }
+        public virtual ICollection<EmailRecipients> EmailRecipients { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

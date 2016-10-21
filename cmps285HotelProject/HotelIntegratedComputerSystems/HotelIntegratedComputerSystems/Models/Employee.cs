@@ -18,6 +18,7 @@ namespace HotelIntegratedComputerSystems.Models
         public Employee()
         {
             this.EmployeeShifts = new HashSet<EmployeeShift>();
+            this.Emails = new HashSet<Emails>();
         }
     
         public int Id { get; set; }
@@ -25,10 +26,12 @@ namespace HotelIntegratedComputerSystems.Models
         public string Email { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public double Phone { get; set; }
+        public long Phone { get; set; }
     
         public virtual EmployeeType EmployeeType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeShift> EmployeeShifts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Emails> Emails { get; set; }
     }
 }

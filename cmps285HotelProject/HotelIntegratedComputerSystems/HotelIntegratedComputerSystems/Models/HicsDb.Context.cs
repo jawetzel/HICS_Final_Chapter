@@ -31,16 +31,17 @@ namespace HotelIntegratedComputerSystems.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeShift> EmployeeShifts { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
-        public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<Expenses> Expenses1 { get; set; }
         public virtual DbSet<ExpenseType> ExpenseTypes { get; set; }
-        public virtual DbSet<HouseKeepingStatu> HouseKeepingStatus { get; set; }
+        public virtual DbSet<HouseKeepingStatus> HouseKeepingStatus { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<SecurityRank> SecurityRanks { get; set; }
         public virtual DbSet<MaintenanceLogs> MaintenanceLogs { get; set; }
         public virtual DbSet<MaintenanceTypes> MaintenanceTypes { get; set; }
         public virtual DbSet<RoomStatus> RoomStatus { get; set; }
-
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Employees.CustomersViewModel> CustomersViewModels { get; set; }
+        public virtual DbSet<BookingStatus> BookingStatus { get; set; }
+        public virtual DbSet<Emails> Emails { get; set; }
+        public virtual DbSet<EmailRecipients> EmailRecipients { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace HotelIntegratedComputerSystems.Models
         public Room()
         {
             this.Bookings = new HashSet<Booking>();
-            this.Expenses = new HashSet<Expense>();
+            this.Expenses = new HashSet<Expenses>();
             this.MaintenanceLogs = new HashSet<MaintenanceLogs>();
         }
     
@@ -27,15 +27,15 @@ namespace HotelIntegratedComputerSystems.Models
         public int RoomTypeId { get; set; }
         public int HousekeepingStatusId { get; set; }
         public int FloorNumber { get; set; }
-        public int RoomNumber { get; set; }
+        public string RoomNumber { get; set; }
         public int RoomStatusId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Building Building { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expense> Expenses { get; set; }
-        public virtual HouseKeepingStatu HouseKeepingStatu { get; set; }
+        public virtual ICollection<Expenses> Expenses { get; set; }
+        public virtual HouseKeepingStatus HouseKeepingStatu { get; set; }
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaintenanceLogs> MaintenanceLogs { get; set; }

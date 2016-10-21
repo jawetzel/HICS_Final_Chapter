@@ -12,18 +12,18 @@ namespace HotelIntegratedComputerSystems.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class HouseKeepingStatu
+    public partial class BookingStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HouseKeepingStatu()
+        public BookingStatus()
         {
-            this.Rooms = new HashSet<Room>();
+            this.Bookings = new HashSet<Booking>();
         }
     
         public int Id { get; set; }
-        public string CleanStatus { get; set; }
+        public string BookingStatusDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

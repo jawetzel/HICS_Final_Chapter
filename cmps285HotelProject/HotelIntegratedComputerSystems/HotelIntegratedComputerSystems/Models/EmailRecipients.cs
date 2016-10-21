@@ -12,20 +12,12 @@ namespace HotelIntegratedComputerSystems.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Building
+    public partial class EmailRecipients
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Building()
-        {
-            this.Rooms = new HashSet<Room>();
-        }
-    
         public int Id { get; set; }
-        public long Phone { get; set; }
-        public string Address { get; set; }
-        public string BuildingName { get; set; }
+        public string EmailAddress { get; set; }
+        public int EmailsId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual Emails Email { get; set; }
     }
 }
