@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.MaidService;
 
 namespace HotelIntegratedComputerSystems.Services.MaidService
 {
