@@ -68,5 +68,13 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.ExpenseTypes.Remove(foundExpenseType);
             Db.SaveChanges();
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var expenseType = FindEntryById(id);
+            var firstCheck = Db.Expenses.FirstOrDefault(r => r.ExpenseTypeId.Equals(expenseType.Id));
+
+            return (firstCheck != null);
+        }
     }
 }

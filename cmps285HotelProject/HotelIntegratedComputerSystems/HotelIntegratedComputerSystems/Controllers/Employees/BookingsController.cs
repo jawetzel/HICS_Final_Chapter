@@ -106,6 +106,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (_service.CheckForDependencys(id.Value))
+            {
+                return View("DeleteError");
+            }
             var booking = await _db.Bookings.FindAsync(id);
             if (booking == null)
             {

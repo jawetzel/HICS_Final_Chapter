@@ -56,5 +56,12 @@ namespace HotelIntegratedComputerSystems.Services.Employee
             Db.SaveChanges();
         }
 
+        public bool CheckForDependencys(int id)
+        {
+            var customer = FindEntryById(id);
+            var firstCheck = Db.Bookings.FirstOrDefault(r => r.CustomerId.Equals(customer.Id));
+
+            return (firstCheck != null);
+        }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
-namespace HotelIntegratedComputerSystems.Models
+namespace HotelIntegratedComputerSystems.Models.MaidService
 {
     public class HouseKeepingViewModel
     {

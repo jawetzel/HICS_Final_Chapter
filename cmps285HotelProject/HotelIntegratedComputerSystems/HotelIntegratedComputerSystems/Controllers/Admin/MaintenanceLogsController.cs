@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
 
-namespace HotelIntegratedComputerSystems.Controllers.Employees
+namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class MaintenanceLogsController : Controller
     {

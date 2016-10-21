@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using HotelIntegratedComputerSystems.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using HotelIntegratedComputerSystems.Models;
 
-namespace HotelIntegratedComputerSystems.Controllers
+namespace HotelIntegratedComputerSystems.Controllers.Default
 {
     [Authorize]
     public class ManageController : Controller

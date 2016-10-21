@@ -223,7 +223,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
     <Compile Include="Models\Admin\EmployeeShiftViewModel.cs" />
-    <Compile Include="Models\Admin\EmployeeTypeServices.cs" />
+    <Compile Include="Services\Admin\EmployeeTypeServices.cs" />
     <Compile Include="Models\Admin\EmployeeViewModel.cs" />
     <Compile Include="Models\Admin\ExpenseTypeViewModel.cs" />
     <Compile Include="Models\Admin\MaintenanceTypeViewModel.cs" />
@@ -297,7 +297,7 @@
     <Compile Include="Services\Admin\BuildingServices.cs" />
     <Compile Include="Services\Admin\EmployeeServies.cs" />
     <Compile Include="Services\Admin\EmployeeShiftServices.cs" />
-    <Compile Include="Services\Admin\EmployeeTypeViewModel.cs" />
+    <Compile Include="Models\Admin\EmployeeTypeViewModel.cs" />
     <Compile Include="Services\Admin\ExpenseTypeServices.cs" />
     <Compile Include="Services\Admin\MaintenanceTypeServices.cs" />
     <Compile Include="Services\Admin\RoomServices.cs" />
@@ -467,6 +467,11 @@
     <Content Include="Views\Buildings\DeleteError.cshtml" />
     <Content Include="Views\MaintenanceTypes\DeleteError.cshtml" />
     <Content Include="Views\Rooms\DeleteError.cshtml" />
+    <Content Include="Views\RoomTypes\DeleteError.cshtml" />
+    <Content Include="Views\Customers\DeleteError.cshtml" />
+    <Content Include="Views\ExpenseTypes\DeleteError.cshtml" />
+    <Content Include="Views\EmployeeTypes\DeleteError.cshtml" />
+    <Content Include="Views\Employees\DeleteError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

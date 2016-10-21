@@ -68,6 +68,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            if (_service.CheckForDependencys(id.Value))
+            {
+                return View("DeleteError");
+            }
+
             var customersViewModel = _service.FindEntryById(id.Value);
             if (customersViewModel == null)
             {

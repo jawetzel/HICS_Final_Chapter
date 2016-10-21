@@ -80,5 +80,12 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.RoomTypes.Remove(foundRoomType);
             Db.SaveChanges();
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var roomType = FindEntryById(id);
+
+            return (roomType != null);
+        }
     }
 }

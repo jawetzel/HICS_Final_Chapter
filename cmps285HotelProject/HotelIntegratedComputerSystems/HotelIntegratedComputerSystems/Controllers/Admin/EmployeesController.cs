@@ -14,11 +14,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
     public class EmployeesController : BaseController
     {
-        private EmployeeServies _servies = new EmployeeServies();
+        private EmployeeServies _services = new EmployeeServies();
 
         public ActionResult Index()
         {
-            return View(_servies.GetEmployeeList());
+            return View(_services.GetEmployeeList());
         }
         public ActionResult Create()
         {
@@ -31,7 +31,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         public ActionResult Create([Bind(Include = "Id,EmployeeTypeId,Name,EmployeeTypeTitle,Email,Address,Phone")] EmployeeViewModel employeeViewModel)
         {
             if (!ModelState.IsValid) return View(employeeViewModel);
-            _servies.CreateNewEmployee(employeeViewModel);
+            _services.CreateNewEmployee(employeeViewModel);
             return RedirectToAction("Index");
         }
 
@@ -42,7 +42,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.EmployeeTypeId = new SelectList(Db.EmployeeTypes, "Id", "Title");
-            var employeeViewModel = _servies.FindEntryById(id.Value);
+            var employeeViewModel = _services.FindEntryById(id.Value);
             if (employeeViewModel == null)
             {
                 return HttpNotFound();
@@ -55,7 +55,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         public ActionResult Edit([Bind(Include = "Id,EmployeeTypeId,Name,EmployeeTypeTitle,Email,Address,Phone")] EmployeeViewModel employeeViewModel)
         {
             if (!ModelState.IsValid) return View(employeeViewModel);
-            _servies.PostChangesForEdit(employeeViewModel);
+            _services.PostChangesForEdit(employeeViewModel);
             return RedirectToAction("Index");
         }
 
@@ -65,7 +65,12 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeViewModel = _servies.FindEntryById(id.Value);
+
+            if (_services.CheckForDependencys(id.Value))
+            {
+                return View("DeleteError");
+            }
+            var employeeViewModel = _services.FindEntryById(id.Value);
             if (employeeViewModel == null)
             {
                 return HttpNotFound();
@@ -77,7 +82,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _servies.DeleteEntry(id);
+            _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }
     }

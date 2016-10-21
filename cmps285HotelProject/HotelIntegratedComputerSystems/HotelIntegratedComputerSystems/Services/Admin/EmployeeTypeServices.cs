@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using HotelIntegratedComputerSystems.Services;
-using HotelIntegratedComputerSystems.Services.Admin;
+using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
 
-namespace HotelIntegratedComputerSystems.Models.Admin
+namespace HotelIntegratedComputerSystems.Services.Admin
 {
     public class EmployeeTypeServices : BaseServices
     {
@@ -70,6 +68,14 @@ namespace HotelIntegratedComputerSystems.Models.Admin
             var foundEmployeeType = Db.EmployeeTypes.Find(id);
             Db.EmployeeTypes.Remove(foundEmployeeType);
             Db.SaveChanges();
+        }
+
+        public bool CheckForDependencys(int id)
+        {
+            var employeeType = FindEntryById(id);
+            var firstCheck = Db.Employees.FirstOrDefault(r => r.EmployeeTypeId.Equals(employeeType.Id));
+
+            return (firstCheck != null);
         }
     }
 }

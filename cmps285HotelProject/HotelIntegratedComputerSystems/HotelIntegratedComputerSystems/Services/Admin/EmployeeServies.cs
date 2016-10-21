@@ -78,5 +78,13 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.Employees.Remove(foundEmployee);
             Db.SaveChanges();
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var employee = FindEntryById(id);
+            var firstCheck = Db.EmployeeShifts.FirstOrDefault(r => r.EmployeeId.Equals(employee.Id));
+
+            return (firstCheck != null);
+        }
     }
 }
