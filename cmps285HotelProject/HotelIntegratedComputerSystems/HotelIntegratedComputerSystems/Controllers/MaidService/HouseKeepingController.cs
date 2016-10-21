@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Services.MaidService;
-
+using HotelIntegratedComputerSystems.Models.MaidService;
 namespace HotelIntegratedComputerSystems.Controllers.MaidService
 {
     public class HouseKeepingController : BaseController
