@@ -68,5 +68,12 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.Buildings.Remove(foundBuilding);
             Db.SaveChanges();
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var building =  FindEntryById(id);
+            var firstMatch = Db.Rooms.FirstOrDefault(R => R.BuildingId.Equals(building.Id));
+            return firstMatch != null;
+        }
     }
 }

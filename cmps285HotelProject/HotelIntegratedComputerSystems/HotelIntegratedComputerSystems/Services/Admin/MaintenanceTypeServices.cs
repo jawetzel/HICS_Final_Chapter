@@ -60,5 +60,12 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.MaintenanceTypes.Remove(foundMaintenceType);
             Db.SaveChanges();
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var maintenanceType = FindEntryById(id);
+            var firstMatch = Db.MaintenanceLogs.FirstOrDefault(R => R.MaintenanceTypesId.Equals(maintenanceType.Id));
+            return firstMatch != null;
+        }
     }
 }

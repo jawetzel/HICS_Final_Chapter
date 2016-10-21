@@ -63,9 +63,15 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Delete(int? id)
         {
+
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (_services.CheckForDependencys(id.Value))
+            {
+                return View("DeleteError");
             }
             var buildingViewModel = _services.FindEntryById(id.Value);
             if (buildingViewModel == null)

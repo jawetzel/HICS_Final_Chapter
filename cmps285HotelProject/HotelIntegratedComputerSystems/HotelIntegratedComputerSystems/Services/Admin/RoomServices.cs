@@ -99,5 +99,15 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             if (roomStatusReturn?.Id != null) return (int)roomStatusReturn?.Id;
             return 0;
         }
+
+        public bool CheckForDependencys(int id)
+        {
+            var room = FindEntryById(id);
+            var firstCheck = Db.MaintenanceLogs.FirstOrDefault(R => R.RoomId.Equals(room.Id));
+            var seccondChek = Db.Expenses.FirstOrDefault(R => R.RoomId.Equals(room.Id));
+            var thirdCheck = Db.Bookings.FirstOrDefault(R => R.RoomId.Equals(room.Id));
+
+            return (firstCheck != null && seccondChek != null && thirdCheck != null);
+        }
     }
 }

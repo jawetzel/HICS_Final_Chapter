@@ -64,6 +64,10 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (_services.CheckForDependencys(id.Value))
+            {
+                return View("DeleteError");
+            }
             var maintenanceTypeViewModel = _services.FindEntryById(id.Value);
             if (maintenanceTypeViewModel == null)
             {

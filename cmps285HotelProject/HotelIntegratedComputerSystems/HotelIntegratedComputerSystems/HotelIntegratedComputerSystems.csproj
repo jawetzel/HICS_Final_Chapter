@@ -463,6 +463,10 @@
     <Content Include="Views\CustomersViewModels\Details.cshtml" />
     <Content Include="Views\CustomersViewModels\Edit.cshtml" />
     <Content Include="Views\CustomersViewModels\Index.cshtml" />
+    <Content Include="Views\Shared\_CannotDeleteError.cshtml" />
+    <Content Include="Views\Buildings\DeleteError.cshtml" />
+    <Content Include="Views\MaintenanceTypes\DeleteError.cshtml" />
+    <Content Include="Views\Rooms\DeleteError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
