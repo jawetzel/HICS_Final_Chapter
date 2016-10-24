@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HotelIntegratedComputerSystems.Models.Admin.ExpenseTypeViewModel>
-@Scripts.Render("~/Scripts/FilterByColumns.js")
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 @{
     ViewBag.Title = "Index";
 }
@@ -11,7 +11,6 @@
     <div class="panel-heading">
         <h3 class="panel-title">Expense Types</h3>
     </div>
-    <input type="text" id="myInput" onkeyup="filterFunction3Column()" class="form-control" data-action="filter" placeholder="Filter Customers" />
     <table class="table table-hover" id="dev-table">
         <tr>
             <th>
@@ -27,7 +26,19 @@
                 @Html.ActionLink("Create New", "Create")
             </th>
         </tr>
-
+        <tr>
+            <th>
+                <input type="text" id="myInput1" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Building" />
+            </th>
+            <th>
+                <input type="text" id="myInput2" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Room Type" />
+            </th>
+            <th>
+                <input type="text" id="myInput3" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
+            </th>
+           
+            <th></th>
+        </tr>
         @foreach (var item in Model)
         {
             <tr>
