@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<HotelIntegratedComputerSystems.Models.Admin.RoomViewModel>
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 @{
     ViewBag.Title = "Index";
 }
@@ -38,25 +39,23 @@
         
         <tr>
             <th>
-                <input type="text" id="myInput1" class="form-control" data-action="filter" placeholder="Filter Building" />
+                <input type="text" id="myInput1" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter Building" />
             </th>
             <th>
-                <input type="text" id="myInput2" class="form-control" data-action="filter" placeholder="Filter Room Type" />
+                <input type="text" id="myInput2" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter Room Type" />
             </th>
             <th>
-                <input type="text" id="myInput3" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
+                <input type="text" id="myInput3" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
             </th>
             <th>
-                <input type="text" id="myInput4" class="form-control" data-action="filter" placeholder="Filter Room Status" />
+                <input type="text" id="myInput4" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter Room Status" />
             </th>
             <th>
-                <input type="text" id="myInput5" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                <input type="text" id="myInput5" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter Floor" />
             </th>
             <th>
-                <input type="button" value="Search" onclick="filterFunctionColumn();">
             </th>
             <th>
-                <input type="button" value="Clear" onclick="clearFilters();">
             </th>
             <th></th>
         </tr>
@@ -90,58 +89,3 @@
         }
     </table>
 </div>
-
-<script>
-    function clearFilters() {
-        document.getElementById("myInput1").value = "";
-        document.getElementById("myInput2").value = "";
-        document.getElementById("myInput3").value = "";
-        document.getElementById("myInput4").value = "";
-        document.getElementById("myInput5").value = "";
-        filterFunctionColumn();
-    }
-
-    function filterFunctionColumn() {
-        var filter1 = document.getElementById("myInput1").value.toUpperCase();
-        var filter2 = document.getElementById("myInput2").value.toUpperCase();
-        var filter3 = document.getElementById("myInput3").value.toUpperCase();
-        var filter4 = document.getElementById("myInput4").value.toUpperCase();
-        var filter5 = document.getElementById("myInput5").value.toUpperCase();
-
-        var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
-
-        for (var i = 0; i < tableRow.length; i++) {
-            tableRow[i].style.display = "";
-            if (filter1 != "") {
-                FilterTheColumn(0, filter1, i, tableRow);        
-            }
-            if (filter2 != "") {
-                FilterTheColumn(1, filter2, i, tableRow);
-            }
-            if (filter3 != "") {
-                FilterTheColumn(2, filter3, i, tableRow);
-            }
-            if (filter4 != "") {
-                FilterTheColumn(3, filter4, i, tableRow);
-            }
-            if (filter5 != "") {
-                FilterTheColumn(4, filter5, i, tableRow);
-            }
-        }
-    }
-
-    function FilterTheColumn(columnIndex, filter, currentIdderation, tableRow) {
-        var column = tableRow[currentIdderation].getElementsByTagName("td")[columnIndex];
-
-        if (column) {
-            if ((column.innerHTML.toUpperCase().indexOf(filter) > -1) && (tableRow[currentIdderation].style.display == "")) {
-                tableRow[currentIdderation].style.display = "";
-            }
-            else if ((column.innerHTML.toUpperCase().indexOf(filter) > -1) && (tableRow[currentIdderation].style.display == "none")) {
-            }
-            else {
-                tableRow[currentIdderation].style.display = "none";
-            }
-        }
-    }
-</script>
