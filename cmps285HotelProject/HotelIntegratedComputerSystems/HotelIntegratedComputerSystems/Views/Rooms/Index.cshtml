@@ -11,7 +11,7 @@
         <h3 class="panel-title">Rooms</h3>
     </div>
 
-    <table class="table table-hover" id="dev-table">
+    <table class="table table-hover table-bordered" id="dev-table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.BuildingName)
@@ -34,7 +34,6 @@
             <th>
                 @Html.ActionLink("Create New", "Create")
             </th>
-            <th></th>
         </tr>
         
         <tr>
@@ -53,7 +52,6 @@
             <th>
                 <input type="text" id="myInput5" onkeyup="filterFunctionColumn5()" class="form-control" data-action="filter" placeholder="Filter Floor" />
             </th>
-            
             <th></th>
         </tr>
 

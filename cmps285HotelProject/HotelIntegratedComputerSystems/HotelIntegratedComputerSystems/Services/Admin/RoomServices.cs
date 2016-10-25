@@ -35,14 +35,14 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
         public void CreateNewRoom(RoomViewModel room)
         {
-
-            Db.Rooms.Add(new Room()
+            room.HouseKeepingStatusId = MaidService.GetCleanStatusIndex("Clean");
+            room.RoomStatusId = GetRoomStatusIndex("Open");
+            Db.Rooms.Add(new Room ()
             {
-                Id = room.Id,
                 BuildingId = room.BuildingId,
                 RoomTypeId = room.RoomTypeId,
-                HousekeepingStatusId = MaidService.GetCleanStatusIndex("Clean"),
-                RoomStatusId = GetRoomStatusIndex("Available"),
+                HousekeepingStatusId = room.HouseKeepingStatusId,
+                RoomStatusId = room.RoomStatusId,
                 FloorNumber = room.FloorNumber,
                 RoomNumber = room.RoomNumber
             });

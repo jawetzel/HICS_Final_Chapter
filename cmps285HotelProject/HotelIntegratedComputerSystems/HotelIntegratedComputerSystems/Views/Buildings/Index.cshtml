@@ -11,7 +11,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">Buildings</h3>
     </div>
-    <table class="table table-hover" id="dev-table">
+    <table class="table table-hover table-bordered" id="dev-table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.BuildingName)
@@ -37,9 +37,6 @@
             <th>
                 <input type="text" id="myInput3" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
             </th>
-            <th>
-            </th>
-            <th></th>
         </tr>
         @foreach (var item in Model)
         {
