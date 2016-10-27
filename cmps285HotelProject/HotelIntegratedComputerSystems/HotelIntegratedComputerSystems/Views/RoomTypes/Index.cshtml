@@ -10,77 +10,80 @@
         <h3 class="panel-title">Room Type</h3>
     </div>
     <table class="table table-hover table-bordered" id="dev-table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Bedding)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Kitchen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rooms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BathRooms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SleepsVolume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NightlyRate)
-            </th>
-            <th>
-                @Html.ActionLink("Create New", "Create")
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <input type="text" id="myInput1" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Building" />
-            </th>
-            <th>
-                <input type="text" id="myInput2" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Room Type" />
-            </th>
-            <th>
-                <input type="text" id="myInput3" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
-            </th>
-            <th>
-                <input type="text" id="myInput4" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Room Status" />
-            </th>
-            <th>
-                <input type="text" id="myInput5" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Floor" />
-            </th>
-            <th>
-                <input type="text" id="myInput6" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Floor" />
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Bedding)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Kitchen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rooms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BathRooms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SleepsVolume)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NightlyRate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bedding)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Kitchen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rooms)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BathRooms)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SleepsVolume)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NightlyRate)
+                </th>
+                <th>
+                    @Html.ActionLink("Create New", "Create")
+                </th>
             </tr>
-        }
-
+            <tr>
+                <th>
+                    <input type="text" id="myInput1" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Building" />
+                </th>
+                <th>
+                    <input type="text" id="myInput2" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Room Type" />
+                </th>
+                <th>
+                    <input type="text" id="myInput3" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
+                </th>
+                <th>
+                    <input type="text" id="myInput4" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Room Status" />
+                </th>
+                <th>
+                    <input type="text" id="myInput5" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                </th>
+                <th>
+                    <input type="text" id="myInput6" onkeyup="filterFunctionColumn6()" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bedding)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kitchen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rooms)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BathRooms)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SleepsVolume)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NightlyRate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
