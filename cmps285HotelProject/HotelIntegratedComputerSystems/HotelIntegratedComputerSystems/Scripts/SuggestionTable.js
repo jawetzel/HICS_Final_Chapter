@@ -2,7 +2,7 @@
 
 //for hiding/unhiding an element (in this case, intended for suggestion table)
 function showTable(element) {
-    if (element.style.display == "none") {
+    if (element.style.display === "none") {
         element.style.display = "";
     }
     else {
@@ -15,7 +15,7 @@ function showTable(element) {
 function copyTo(listName) {
     var outputName = document.getElementById("myInput");
     var outputId = document.getElementById("CustomerId");
-    var td = listName.getElementsByTagName("td")
+    var td = listName.getElementsByTagName("td");
     outputName.value = td[0].innerText;
     outputId.value = td[1].innerText;
 }
