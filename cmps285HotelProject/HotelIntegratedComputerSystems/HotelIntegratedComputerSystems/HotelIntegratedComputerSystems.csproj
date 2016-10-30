@@ -246,7 +246,6 @@
     <Compile Include="Models\EmployeeShift.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employees\CustomersViewModel.cs" />
     <Compile Include="Models\Employees\PackageBookings.cs" />
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
