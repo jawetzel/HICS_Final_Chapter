@@ -246,6 +246,8 @@
     <Compile Include="Models\EmployeeShift.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employees\CustomersViewModel.cs" />
+    <Compile Include="Models\Employees\PackageBookings.cs" />
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -283,6 +285,7 @@
     <Compile Include="Models\Admin\RoomTypeViewModel.cs" />
     <Compile Include="Models\Admin\RoomViewModel.cs" />
     <Compile Include="Models\Employees\CustomersViewModel.cs" />
+    <Compile Include="Models\Employees\BookingViewModel.cs" />
     <Compile Include="Models\HicsDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -312,6 +315,7 @@
     <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
+    <Compile Include="Services\Employee\BookingServices.cs" />
     <Compile Include="Services\MaidService\MaidServiceServices.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -376,6 +380,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SuggestionTable.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -417,7 +422,6 @@
     <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Bookings\Create.cshtml" />
     <Content Include="Views\Bookings\Delete.cshtml" />
-    <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <Content Include="Views\Expenses\Create.cshtml" />

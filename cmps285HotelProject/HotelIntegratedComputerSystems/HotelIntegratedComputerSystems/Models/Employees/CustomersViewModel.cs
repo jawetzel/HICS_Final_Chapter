@@ -9,11 +9,11 @@ namespace HotelIntegratedComputerSystems.Models.Employees
 {
     public class CustomersViewModel
     {
-        [System.Web.Mvc.HiddenInput(DisplayValue = false)]
+        [System.Web.Mvc.HiddenInput(DisplayValue = true)]
         public int Id { get; set; }
 
         [DisplayName("Name")]
-        [Required(ErrorMessage ="Name Not Provided")]
+        [Required(ErrorMessage = "Name Not Provided")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Address Not Provided")]

@@ -7,42 +7,28 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Employees;
+using HotelIntegratedComputerSystems.Services.Employee;
 
 namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
-    public class BookingsController : Controller
+    public class BookingsController : BaseController
     {
-        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
+        private readonly BookingServices _service = new BookingServices();
 
         // GET: Bookings
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var bookings = _db.Bookings.Include(b => b.Customer).Include(b => b.Room);
-            return View(await bookings.ToListAsync());
+            return View(_service.GetBookingList());
         }
 
-        // GET: Bookings/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var booking = await _db.Bookings.FindAsync(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
-        }
 
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name");
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id");
-            return View();
+            BookingViewModel newBooking = new BookingViewModel();
+            newBooking.customers = _service.loadCustomerNames();
+            return View(newBooking);
         }
 
         // POST: Bookings/Create
@@ -50,35 +36,24 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeDaults,VolumeChildren")] Booking booking)
+        public ActionResult Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Bookings.Add(booking);
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+            if (!ModelState.IsValid) return View(bookingViewModel);
+            _service.CreateNewBooking(bookingViewModel);
 
-            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
-            return View(booking);
+            return RedirectToAction("Index");
         }
 
-        // GET: Bookings/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        //GET: Bookings/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var booking = await _db.Bookings.FindAsync(id);
-            if (booking == null)
+            var editBooking = _service.FindBookingById(id);
+            editBooking.customers = _service.loadCustomerNames();
+            if (editBooking == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
-            return View(booking);
+            return View(editBooking);
         }
 
         // POST: Bookings/Edit/5
@@ -86,52 +61,49 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeDaults,VolumeChildren")] Booking booking)
+        public ActionResult Edit([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
         {
             if (ModelState.IsValid)
-            {
-                _db.Entry(booking).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
+            {   
+                _service.PostChangesForEdit(bookingViewModel);
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(_db.Customers, "Id", "Name", booking.CustomerId);
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", booking.RoomId);
-            return View(booking);
+            return View(bookingViewModel);
         }
 
-        // GET: Bookings/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var booking = await _db.Bookings.FindAsync(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
-        }
+        //    // GET: Bookings/Delete/5
+        //    public async Task<ActionResult> Delete(int? id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        var booking = await _db.Bookings.FindAsync(id);
+        //        if (booking == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        return View(booking);
+        //    }
 
-        // POST: Bookings/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            var booking = await _db.Bookings.FindAsync(id);
-            _db.Bookings.Remove(booking);
-            await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //    // POST: Bookings/Delete/5
+        //    [HttpPost, ActionName("Delete")]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<ActionResult> DeleteConfirmed(int id)
+        //    {
+        //        var booking = await _db.Bookings.FindAsync(id);
+        //        _db.Bookings.Remove(booking);
+        //        await _db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //    protected override void Dispose(bool disposing)
+        //    {
+        //        if (disposing)
+        //        {
+        //            _db.Dispose();
+        //        }
+        //        base.Dispose(disposing);
+        //    }
     }
 }
