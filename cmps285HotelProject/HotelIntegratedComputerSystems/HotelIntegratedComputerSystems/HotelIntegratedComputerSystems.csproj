@@ -203,6 +203,7 @@
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
+    <Compile Include="Controllers\Admin\MaintenanceLogViewModelsController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
@@ -482,6 +483,11 @@
     <Content Include="Views\ExpenseTypes\DeleteError.cshtml" />
     <Content Include="Views\EmployeeTypes\DeleteError.cshtml" />
     <Content Include="Views\Employees\DeleteError.cshtml" />
+    <Content Include="Views\MaintenanceLogViewModels\Create.cshtml" />
+    <Content Include="Views\MaintenanceLogViewModels\Delete.cshtml" />
+    <Content Include="Views\MaintenanceLogViewModels\Details.cshtml" />
+    <Content Include="Views\MaintenanceLogViewModels\Edit.cshtml" />
+    <Content Include="Views\MaintenanceLogViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
