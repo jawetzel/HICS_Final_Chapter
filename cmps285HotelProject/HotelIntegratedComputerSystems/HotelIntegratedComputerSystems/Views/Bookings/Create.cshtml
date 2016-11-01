@@ -1,79 +1,115 @@
-﻿@model HotelIntegratedComputerSystems.Models.Booking
-
+﻿@model HotelIntegratedComputerSystems.Models.Employees.BookingViewModel 
+@Scripts.Render("~/Scripts/FilterByColumns.js")
+@Scripts.Render("~/Scripts/SuggestionTable.js")
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "New Booking";
 }
 
-<h2>Create</h2>
+<h2>New Booking</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+ 
     <div class="form-horizontal">
-        <h4>Booking</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                    <div class="form-group" >
+                @Html.LabelFor(model => model.CustomerName, "Customer Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @* @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @* Line below is what the above helpermethod generates, not sure how get filter to work on the EditorFor helpermethod *@
+                    <input class="form-control text-box single-line valid" id="myInput" name="CustomerName" type="text" value="" aria-invalid="false" onkeyup="filterFunction1Column()" data-action="filter">
+                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+        @* Below is editor for customer's ID, hidden so data can be used but field not seen *@
+        <div class="form-group" hidden>
+            @Html.LabelFor(model => model.CustomerId, "Customer ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", Id = "CustomerId" } })
                 @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RoomId, "RoomId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RoomId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+        @* Suggestion Table and check box to show/hide table *@
+        <label for="showSuggestions"> Show Suggestions: </label>
+        <input class="showSuggestions" type="checkbox" name="showSuggestions" value="1" onclick="showTable(nameSearch)" />
+            <div id="nameSearch" class="panel panel-primary" style="display:none;">
+                <table class="table table-hover table-bordered" id="dev-table">
+                    <tbody>
+                        @foreach (var item in Model.customers)
+                        {
+                            <tr onclick="copyTo(this)">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>  
+                                 
+                                <td onclick="copyTo(this)"> 
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoomId, "RoomId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
+                    @Html.EditorFor(model => model.RoomId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10"  >
+                    @* type="date" generates the dropdown calendar for input *@
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", type = "date"} })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger", })
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VolumeDaults, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VolumeDaults, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VolumeDaults, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VolumeChildren, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VolumeChildren, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VolumeChildren, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.VolumeAdults, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VolumeAdults, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.VolumeAdults, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.VolumeChildren, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VolumeChildren, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.VolumeChildren, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

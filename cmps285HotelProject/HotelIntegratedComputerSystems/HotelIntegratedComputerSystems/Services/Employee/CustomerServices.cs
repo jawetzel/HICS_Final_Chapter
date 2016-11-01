@@ -49,6 +49,20 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                                              Name = foundCustomer.Name, Phone = foundCustomer.Phone }) ;
         }
 
+        public CustomersViewModel FindEntryByName(BookingViewModel booking)
+        {
+            var foundCustomer = Db.Customers.FirstOrDefault(i => i.Name == booking.CustomerName);
+                 
+            return (new CustomersViewModel
+            {
+                Id = foundCustomer.Id,
+                Address = foundCustomer.Address,
+                Email = foundCustomer.Email,
+                Name = foundCustomer.Name,
+                Phone = foundCustomer.Phone
+            });
+        }
+
         public void DeleteEntry(int id)
         {
             var foundCustomer = Db.Customers.Find(id);
