@@ -1,7 +1,7 @@
-﻿function filterFunctionColumn1() {
+﻿function filterFunctionColumn1(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -10,11 +10,11 @@
     }
 }
 
-function filterFunctionColumn2() {
+function filterFunctionColumn2(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -24,12 +24,12 @@ function filterFunctionColumn2() {
     }
 }
 
-function filterFunctionColumn3() {
+function filterFunctionColumn3(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -40,13 +40,13 @@ function filterFunctionColumn3() {
     }
 }
 
-function filterFunctionColumn4() {
+function filterFunctionColumn4(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
     var filter4 = document.getElementById("myInput4").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -58,14 +58,14 @@ function filterFunctionColumn4() {
     }
 }
 
-function filterFunctionColumn5() {
+function filterFunctionColumn5(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
     var filter4 = document.getElementById("myInput4").value.toUpperCase();
     var filter5 = document.getElementById("myInput5").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -78,7 +78,7 @@ function filterFunctionColumn5() {
     }
 }
 
-function filterFunctionColumn6() {
+function filterFunctionColumn6(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
@@ -86,7 +86,7 @@ function filterFunctionColumn6() {
     var filter5 = document.getElementById("myInput5").value.toUpperCase();
     var filter6 = document.getElementById("myInput6").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -100,7 +100,7 @@ function filterFunctionColumn6() {
     }
 }
 
-function filterFunctionColumn7() {
+function filterFunctionColumn7(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
@@ -109,7 +109,7 @@ function filterFunctionColumn7() {
     var filter6 = document.getElementById("myInput6").value.toUpperCase();
     var filter7 = document.getElementById("myInput7").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -124,7 +124,7 @@ function filterFunctionColumn7() {
     }
 }
 
-function filterFunctionColumn8() {
+function filterFunctionColumn8(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
@@ -134,7 +134,7 @@ function filterFunctionColumn8() {
     var filter7 = document.getElementById("myInput7").value.toUpperCase();
     var filter8 = document.getElementById("myInput8").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -150,7 +150,7 @@ function filterFunctionColumn8() {
     }
 }
 
-function filterFunctionColumn9() {
+function filterFunctionColumn9(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
@@ -161,7 +161,7 @@ function filterFunctionColumn9() {
     var filter8 = document.getElementById("myInput8").value.toUpperCase();
     var filter9 = document.getElementById("myInput9").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -178,7 +178,7 @@ function filterFunctionColumn9() {
     }
 }
 
-function filterFunctionColumn10() {
+function filterFunctionColumn10(tableName) {
     var filter1 = document.getElementById("myInput1").value.toUpperCase();
     var filter2 = document.getElementById("myInput2").value.toUpperCase();
     var filter3 = document.getElementById("myInput3").value.toUpperCase();
@@ -190,7 +190,7 @@ function filterFunctionColumn10() {
     var filter9 = document.getElementById("myInput9").value.toUpperCase();
     var filter10 = document.getElementById("myInput10").value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";

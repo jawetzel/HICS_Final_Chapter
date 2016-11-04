@@ -21,12 +21,12 @@ function copyTo(listName) {
 }
 
 
-function forwardTo(row, listName) {
+function forwardTo(row, listName, loc1, loc2, loc3, loc4) {
 
-    var tablerow = row.getElementsByTagName("td");
-    document.getElementById("MaintenanceLog_BuildingName").value = tablerow[0].innerText;
-    document.getElementById("MaintenanceLog_Floor").value = tablerow[1].innerText;
-    document.getElementById("MaintenanceLog_RoomNumber").value = tablerow[2].innerText;
-    document.getElementById("MaintenanceLog_RoomId").value = tablerow[3].innerText;
+    var tablerow = row.getElementsByTagName4("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
     showTable(listName);
 }
