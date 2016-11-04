@@ -19,3 +19,14 @@ function copyTo(listName) {
     outputName.value = td[0].innerText;
     outputId.value = td[1].innerText;
 }
+
+
+function forwardTo(row, location1, location2, location3, location4) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById("BuildingName").value = tablerow[0].innerText;
+    document.getElementById("Floor").value = tablerow[1].innerText;
+    document.getElementById("RoomNumber").value = tablerow[2].innerText;
+    document.getElementById("RoomId").value = tablerow[3].innerText;
+
+}

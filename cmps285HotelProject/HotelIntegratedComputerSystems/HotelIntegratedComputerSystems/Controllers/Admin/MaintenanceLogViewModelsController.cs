@@ -59,21 +59,20 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
             return View(maintLog);
         }
 
-        // POST: MaintenanceLogViewModels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel maintenanceLogViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(maintenanceLogViewModel).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(maintenanceLogViewModel);
-        //}
+        //POST: MaintenanceLogViewModels/Edit/5
+         //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] PackageMaintenanceLogViewModel maintenanceLogViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _services.PostChangesForEdit(maintenanceLogViewModel);
+                return RedirectToAction("Index");
+            }
+            return View(maintenanceLogViewModel);
+        }
 
         public ActionResult Delete(int? id)
         {

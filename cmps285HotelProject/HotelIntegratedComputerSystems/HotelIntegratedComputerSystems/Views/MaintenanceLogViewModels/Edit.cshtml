@@ -1,4 +1,8 @@
-﻿@model HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog.MaintenanceLogViewModel
+﻿@model HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog.PackageMaintenanceLogViewModel
+@Scripts.Render("~/Scripts/SuggestionTable.js")
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
+
+
 
 @{
     ViewBag.Title = "Edit";
@@ -14,77 +18,128 @@
         <h4>MaintenanceLogViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
+        @Html.HiddenFor(model => model.MaintenanceLog.Id)
+        
+        
+        
         <div class="form-group">
-            @Html.LabelFor(model => model.RoomId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RoomId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+            @Html.Label("FirstName", "Room", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">     
+                <input class="form-control col-sm-4" id="BuildingName" type="text" placeholder="Building">
+                <input class="form-control col-sm-4" id="Floor" type="text" placeholder="Floor">
+                <input class="form-control col-sm-4" id="RoomNumber" type="text" placeholder="Room">
+                <p>
+                    <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display:none;">
+                </p>
+                <p>
+                    <input class="showSuggestions" type="button" name="ShowRooms" value="Show Rooms" onclick="showTable(RoomsList)" />
+                </p>
+                <p>
+                </p>
+                <div id="RoomsList" class="panel panel-primary" style="display: none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Rooms</h3>
+                    </div>
+                    <table class="table table-hover table-bordered" id="dev-table">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="text" id="myInput1" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Building" />
+                            </th>
+                            <th>
+                                <input type="text" id="myInput2" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                            </th>
+                            <th>
+                                <input type="text" id="myInput3" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Room" />
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.RoomsList)
+                        {
+                            <tr onclick="forwardTo(this, 'BuildingName', 'Floor', 'RoomNumber', 'RoomId')">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BuildingName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FloorNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                                </td>
+                                <td style="display: none;">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BuildingId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.BuildingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BuildingId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BuildingId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.BuildingId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BuildingName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BuildingName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Floor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.Floor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Floor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Floor, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.Floor, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.RoomNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.Date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.MaintenanceTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceTypeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceTypeId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceTypeId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceType, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
             </div>
         </div>
 
