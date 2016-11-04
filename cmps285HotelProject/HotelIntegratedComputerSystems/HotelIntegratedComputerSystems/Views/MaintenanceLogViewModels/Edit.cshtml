@@ -25,18 +25,17 @@
         <div class="form-group">
             @Html.Label("FirstName", "Room", htmlAttributes: new { @class = "control-label col-md-2" })
 
-            <div class="col-md-10">     
-                <input class="form-control col-sm-4" id="BuildingName" type="text" placeholder="Building">
-                <input class="form-control col-sm-4" id="Floor" type="text" placeholder="Floor">
-                <input class="form-control col-sm-4" id="RoomNumber" type="text" placeholder="Room">
-                <p>
-                    <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display:none;">
-                </p>
-                <p>
-                    <input class="showSuggestions" type="button" name="ShowRooms" value="Show Rooms" onclick="showTable(RoomsList)" />
-                </p>
-                <p>
-                </p>
+            <div class="col-md-10">
+                <div class="container" style="align-items: baseline">
+                    @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.MaintenanceLog.RoomId, new { htmlAttributes = new { @readonly = "readonly", @class = "hidden"} })
+                    <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display: none;">
+                </div>
+
+                <input class="showSuggestions" type="button" name="ShowRooms" value="Show Rooms" onclick="showTable(RoomsList)" />
+
                 <div id="RoomsList" class="panel panel-primary" style="display: none;">
                     <div class="panel-heading">
                         <h3 class="panel-title">Rooms</h3>
@@ -45,20 +44,22 @@
                         <thead>
                         <tr>
                             <th>
-                                <input type="text" id="myInput1" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Building" />
+                                <input type="text" id="myInput1" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Building"/>
                             </th>
                             <th>
-                                <input type="text" id="myInput2" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                                <input type="text" id="myInput2" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Floor"/>
                             </th>
                             <th>
-                                <input type="text" id="myInput3" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Room" />
+                                <input type="text" id="myInput3" onkeyup="filterFunctionColumn3()" class="form-control" data-action="filter" placeholder="Filter Room"/>
+                            </th>
+                            <th>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach (var item in Model.RoomsList)
                         {
-                            <tr onclick="forwardTo(this, 'BuildingName', 'Floor', 'RoomNumber', 'RoomId')">
+                            <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.BuildingName)
                                 </td>
@@ -71,6 +72,9 @@
                                 <td style="display: none;">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
+                                <td>
+                                    <input type="button" value="Select" class="btn btn-default" onclick="forwardTo(this.parentElement.parentElement, RoomsList)"/>
+                                </td>
                             </tr>
                         }
                         </tbody>
@@ -79,37 +83,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.BuildingId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.BuildingId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.Floor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.Floor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.RoomNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.Description, htmlAttributes: new { @class = "control-label col-md-2" })
