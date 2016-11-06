@@ -20,13 +20,10 @@ function copyTo(listName) {
     outputId.value = td[1].innerText;
 }
 
-
-function forwardTo3(row, listName, loc1, loc2, loc3) {
+function forwardTo1(row, listName, loc1) {
 
     var tablerow = row.getElementsByTagName("td");
     document.getElementById(loc1).value = tablerow[0].innerText;
-    document.getElementById(loc2).value = tablerow[1].innerText;
-    document.getElementById(loc3).value = tablerow[2].innerText;
     showTable(listName);
 }
 
@@ -38,9 +35,102 @@ function forwardTo2(row, listName, loc1, loc2) {
     showTable(listName);
 }
 
-function forwardTo1(row, listName, loc1) {
+function forwardTo3(row, listName, loc1, loc2, loc3) {
 
     var tablerow = row.getElementsByTagName("td");
     document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    showTable(listName);
+}
+
+function forwardTo4(row, listName, loc1, loc2, loc3, loc4) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    showTable(listName);
+}
+
+function forwardTo5(row, listName, loc1, loc2, loc3, loc4, loc5) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    showTable(listName);
+}
+
+function forwardTo6(row, listName, loc1, loc2, loc3, loc4, loc5, loc6) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    document.getElementById(loc6).value = tablerow[5].innerText;
+    showTable(listName);
+}
+
+function forwardTo7(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    document.getElementById(loc6).value = tablerow[5].innerText;
+    document.getElementById(loc7).value = tablerow[6].innerText;
+    showTable(listName);
+}
+
+function forwardTo8(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    document.getElementById(loc6).value = tablerow[5].innerText;
+    document.getElementById(loc7).value = tablerow[6].innerText;
+    document.getElementById(loc8).value = tablerow[7].innerText;
+    showTable(listName);
+}
+
+function forwardTo9(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    document.getElementById(loc6).value = tablerow[5].innerText;
+    document.getElementById(loc7).value = tablerow[6].innerText;
+    document.getElementById(loc8).value = tablerow[7].innerText;
+    document.getElementById(loc9).value = tablerow[8].innerText;
+    showTable(listName);
+}
+
+function forwardTo10(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10) {
+
+    var tablerow = row.getElementsByTagName("td");
+    document.getElementById(loc1).value = tablerow[0].innerText;
+    document.getElementById(loc2).value = tablerow[1].innerText;
+    document.getElementById(loc3).value = tablerow[2].innerText;
+    document.getElementById(loc4).value = tablerow[3].innerText;
+    document.getElementById(loc5).value = tablerow[4].innerText;
+    document.getElementById(loc6).value = tablerow[5].innerText;
+    document.getElementById(loc7).value = tablerow[6].innerText;
+    document.getElementById(loc8).value = tablerow[7].innerText;
+    document.getElementById(loc9).value = tablerow[8].innerText;
+    document.getElementById(loc10).value = tablerow[9].innerText;
     showTable(listName);
 }
