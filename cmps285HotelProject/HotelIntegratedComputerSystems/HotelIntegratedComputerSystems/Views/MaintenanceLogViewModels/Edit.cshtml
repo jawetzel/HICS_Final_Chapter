@@ -27,14 +27,22 @@
 
             <div class="col-md-10">
                 <div class="container">
-                    @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @readonly = "readonly" } })
-                    @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @readonly = "readonly" } })
-                    @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @readonly = "readonly" } })
-                    @Html.EditorFor(model => model.MaintenanceLog.RoomId, new { htmlAttributes = new { @readonly = "readonly", @class = "hidden"} })
+                        <div class="container">
+                            @Html.Label("Building")
+                            @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                        <div class="container">
+                            @Html.Label("Floor")
+                            @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                        <div class="container">
+                            @Html.Label("Room")
+                            @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })                        </div>
+
                     <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display: none;">
                 </div>
                 <div class="container">
-                    <input class="showSuggestions" type="button" name="ShowRooms" value="Show Rooms" onclick="showTable(RoomsList)" />
+                    <input class="showSuggestions" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
                 </div>
                 <div id="RoomsList" class="panel panel-primary" style="display: none;">
                     <div class="panel-heading">
@@ -44,13 +52,13 @@
                         <thead>
                         <tr>
                             <th>
-                                <input type="text" id="myInput1" onkeyup="filterFunctionColumn3('RoomTable')" class="form-control" data-action="filter" placeholder="Filter Building"/>
+                                <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building"/>
                             </th>
                             <th>
-                                <input type="text" id="myInput2" onkeyup="filterFunctionColumn3('RoomTable')" class="form-control" data-action="filter" placeholder="Filter Floor"/>
+                                <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor"/>
                             </th>
                             <th>
-                                <input type="text" id="myInput3" onkeyup="filterFunctionColumn3('RoomTable')" class="form-control" data-action="filter" placeholder="Filter Room"/>
+                                <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room"/>
                             </th>
                             <th>
                             </th>
@@ -69,11 +77,8 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.RoomNumber)
                                 </td>
-                                <td style="display: none;">
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
                                 <td>
-                                    <input type="button" value="Select" class="btn btn-default" onclick="forwardTo4(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber', 'MaintenanceLog_RoomId')"/>
+                                    <input type="button" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')"/>
                                 </td>
                             </tr>
                         }
@@ -102,18 +107,42 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.MaintenanceTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceTypeId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
+                <div class="container">
+                    @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })                </div>
+                <div class="container">
+                    <input class="showSuggestions" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
+                </div>
+                <div id="MaintenanceTypes" class="panel panel-primary" style="display: none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Maintenance Types</h3>
+                    </div>
+                    <table class="table table-hover table-bordered" id="MaintenanceTypesTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="text" id="MaintenanceTypeListInput1" onkeyup="filterFunctionColumn1('MaintenanceTypesTable', 'RoomsListInput1')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.MaintenanceTypeList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Type)
+                                    </td>
+                                    <td>
+                                        <input type="button" value="Select" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, MaintenanceTypes, 'MaintenanceLog_MaintenanceType')" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

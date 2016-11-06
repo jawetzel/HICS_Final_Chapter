@@ -23,7 +23,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Create()
         {
-            return View(_services.RoomsForMaintenaneLogCreateEdit());
+            return View(_services.InfoForMaintenaneLogCreateEdit());
         }
 
         // POST: MaintenanceLogViewModels/Create
@@ -50,8 +50,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var maintLog = _services.FindEntryById(id.Value);
-            var roomsLog = _services.RoomsForMaintenaneLogCreateEdit();
+            var roomsLog = _services.InfoForMaintenaneLogCreateEdit();
             maintLog.RoomsList = roomsLog.RoomsList;
+            maintLog.MaintenanceTypeList = roomsLog.MaintenanceTypeList;
             if (maintLog.MaintenanceLog == null)
             {
                 return HttpNotFound();
@@ -64,14 +65,27 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] PackageMaintenanceLogViewModel maintenanceLogViewModel)
+        public ActionResult Edit([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel collection)
         {
+            collection.RoomId = _services.GetRoomId(collection.BuildingName, collection.Floor, collection.RoomNumber);
+            collection.MaintenanceTypeId = _services.GetMaintenanceTypeByName(collection.MaintenanceType);
             if (ModelState.IsValid)
             {
-                _services.PostChangesForEdit(maintenanceLogViewModel);
+                var pakage = new PackageMaintenanceLogViewModel()
+                {
+                    MaintenanceLog = collection
+                };
+                _services.PostChangesForEdit(pakage);
                 return RedirectToAction("Index");
             }
-            return View(maintenanceLogViewModel);
+            
+
+            return View(new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceLog = collection,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList
+            });
         }
 
         public ActionResult Delete(int? id)

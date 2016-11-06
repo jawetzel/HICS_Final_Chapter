@@ -30,20 +30,28 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             return new PackageMaintenanceLogViewModel() {MaintenanceLogsList = maintLogList.ToList()};
         }
 
-        public PackageMaintenanceLogViewModel RoomsForMaintenaneLogCreateEdit()
+        public PackageMaintenanceLogViewModel InfoForMaintenaneLogCreateEdit()
         {
             var roomsList = from rooms in Db.Rooms
-                select new RoomViewModel()
-                {
-                    Id = rooms.Id,
-                    BuildingId = rooms.BuildingId,
-                    BuildingName = rooms.Building.BuildingName,
-                    FloorNumber = rooms.FloorNumber,
-                    RoomNumber = rooms.RoomNumber,
-                    RoomStatusId = rooms.RoomStatusId,
-                    RoomStatus = rooms.RoomStatus.Description
-                };
-            return new PackageMaintenanceLogViewModel() {RoomsList = roomsList.ToList()};
+                            select new RoomViewModel()
+                            {
+                                Id = rooms.Id,
+                                BuildingId = rooms.BuildingId,
+                                BuildingName = rooms.Building.BuildingName,
+                                FloorNumber = rooms.FloorNumber,
+                                RoomNumber = rooms.RoomNumber,
+                                RoomStatusId = rooms.RoomStatusId,
+                                RoomStatus = rooms.RoomStatus.Description
+                            };
+
+            var maintTypeList = from maintType in Db.MaintenanceTypes
+                            select new MaintenanceTypeViewModel()
+                            {
+                                Id = maintType.Id,
+                                Type = maintType.Type
+                            };
+
+            return new PackageMaintenanceLogViewModel() {RoomsList = roomsList.ToList(), MaintenanceTypeList = maintTypeList.ToList()};
         }
 
         public void CreateNewMaintenanceLog(PackageMaintenanceLogViewModel model)
@@ -58,6 +66,15 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             Db.SaveChanges();
         }
 
+        public int GetRoomId(string building, int floor, string roomNumber)
+        {
+            return Db.Rooms.FirstOrDefault(x => x.Building.BuildingName == building && x.FloorNumber == floor && x.RoomNumber == roomNumber).Id;
+        }
+
+        public int GetMaintenanceTypeByName(string type)
+        {
+            return Db.MaintenanceTypes.FirstOrDefault(x => x.Type == type).Id;
+        }
         public void PostChangesForEdit(PackageMaintenanceLogViewModel model)
         {
             Db.Entry(new MaintenanceLogs()
