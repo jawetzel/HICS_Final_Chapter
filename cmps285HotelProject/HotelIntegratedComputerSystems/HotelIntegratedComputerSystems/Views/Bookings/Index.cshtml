@@ -16,7 +16,7 @@
         <h3 class="panel-title">Bookings</h3>
     </div>
     <table class="table table-hover table-bordered" id="dev-table">
-        <tbody>
+        <thead>
             <tr>
                 <th>
                     Booking #
@@ -41,26 +41,27 @@
 
             <tr>
                 <th>
-                    <input type="text" id="myInput1" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="Filter Booking" />
+                    <input type="text" id="myInput1" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Booking" />
                 </th>
                 <th>
-                    <input type="text" id="myInput2" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="Filter Name" />
+                    <input type="text" id="myInput2" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Name" />
                 </th>
                 <th>
-                    <input type="text" id="myInput3" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="Filter Room #" />
+                    <input type="text" id="myInput3" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Room #" />
                 </th>
                 <th>
-                    <input type="text" id="myInput4" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="Filter Start Date" />
+                    <input type="text" id="myInput4" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Start Date" />
                 </th>
                 <th>
-                    <input type="text" id="myInput5" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="End Date" />
+                    <input type="text" id="myInput5" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="End Date" />
                 </th>
                 <th>
-                    <input type="text" id="myInput6" onkeyup="filterFunctionColumn6('dev-table')" class="form-control" data-action="filter" placeholder="Filter Status" />
+                    <input type="text" id="myInput6" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Status" />
                 </th>
                 <th></th>
             </tr>
-
+        </thead>
+        <tbody>
             @foreach (var item in Model.BookingList)
             {
                 <tr>
