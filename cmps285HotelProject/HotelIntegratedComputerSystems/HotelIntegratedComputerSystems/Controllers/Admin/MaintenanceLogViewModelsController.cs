@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
 using HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog;
 using HotelIntegratedComputerSystems.Services.Admin;
 
@@ -23,25 +24,39 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Create()
         {
-            return View(_services.InfoForMaintenaneLogCreateEdit());
+            var model = new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                Room = new RoomViewModel(),
+                MaintenanceLog = new MaintenanceLogViewModel() { Date = DateTime.Now }
+            };
+            return View(model);
         }
 
-        // POST: MaintenanceLogViewModels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //POST: MaintenanceLogViewModels/Create
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel maintenanceLogViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.MaintenanceLogViewModels.Add(maintenanceLogViewModel);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(maintenanceLogViewModel);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel model)
+        {
+            model.RoomId = _services.GetRoomId(model.BuildingName, model.Floor, model.RoomNumber);
+            model.MaintenanceTypeId = _services.GetMaintenanceTypeByName(model.MaintenanceType);
+            var returnModel = new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                Room = new RoomViewModel(),
+                MaintenanceLog = model
+            };
+            if (ModelState.IsValid)
+            {
+                _services.CreateNewMaintenanceLog(returnModel);
+                return RedirectToAction("Index");
+            }
+            return View(returnModel);
+        }
 
         public ActionResult Edit(int? id)
         {

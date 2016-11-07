@@ -29,15 +29,15 @@
                 <div class="container">
                         <div class="container">
                             @Html.Label("Building")
-                            @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         </div>
                         <div class="container">
                             @Html.Label("Floor")
-                            @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         </div>
                         <div class="container">
                             @Html.Label("Room")
-                            @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })                        </div>
+                            @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })                        </div>
 
                     <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display: none;">
                 </div>
@@ -93,7 +93,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MaintenanceLog.Description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.MaintenanceLog.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MaintenanceLog.Date, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.MaintenanceLog.Date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -110,7 +110,7 @@
             @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="container">
-                    @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })                </div>
+                    @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })                </div>
                 <div class="container">
                     <input class="showSuggestions" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
                 </div>
