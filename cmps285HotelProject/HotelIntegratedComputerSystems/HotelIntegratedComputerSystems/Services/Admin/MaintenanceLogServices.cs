@@ -42,6 +42,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                                 RoomNumber = rooms.RoomNumber,
                                 RoomStatusId = rooms.RoomStatusId,
                                 RoomStatus = rooms.RoomStatus.Description
+
                             };
 
             var maintTypeList = from maintType in Db.MaintenanceTypes
