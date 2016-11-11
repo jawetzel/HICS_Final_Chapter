@@ -203,7 +203,7 @@
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
-    <Compile Include="Controllers\Admin\MaintenanceLogViewModelsController.cs" />
+    <Compile Include="Controllers\Admin\MaintenanceLogsController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
@@ -215,7 +215,6 @@
     <Compile Include="Controllers\Default\ManageController.cs" />
     <Compile Include="Controllers\Employees\BookingsController.cs" />
     <Compile Include="Controllers\Employees\ExpensesController.cs" />
-    <Compile Include="Controllers\Admin\MaintenanceLogsController.cs" />
     <Compile Include="Controllers\MaidService\HouseKeepingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -432,11 +431,6 @@
     <Content Include="Views\Expenses\Details.cshtml" />
     <Content Include="Views\Expenses\Edit.cshtml" />
     <Content Include="Views\Expenses\Index.cshtml" />
-    <Content Include="Views\MaintenanceLogs\Create.cshtml" />
-    <Content Include="Views\MaintenanceLogs\Delete.cshtml" />
-    <Content Include="Views\MaintenanceLogs\Details.cshtml" />
-    <Content Include="Views\MaintenanceLogs\Edit.cshtml" />
-    <Content Include="Views\MaintenanceLogs\Index.cshtml" />
     <Content Include="Views\HouseKeeping\Index.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Delete.cshtml" />
@@ -483,11 +477,10 @@
     <Content Include="Views\ExpenseTypes\DeleteError.cshtml" />
     <Content Include="Views\EmployeeTypes\DeleteError.cshtml" />
     <Content Include="Views\Employees\DeleteError.cshtml" />
-    <Content Include="Views\MaintenanceLogViewModels\Create.cshtml" />
-    <Content Include="Views\MaintenanceLogViewModels\Delete.cshtml" />
-    <Content Include="Views\MaintenanceLogViewModels\Details.cshtml" />
-    <Content Include="Views\MaintenanceLogViewModels\Edit.cshtml" />
-    <Content Include="Views\MaintenanceLogViewModels\Index.cshtml" />
+    <Content Include="Views\MaintenanceLogs\Create.cshtml" />
+    <Content Include="Views\MaintenanceLogs\Delete.cshtml" />
+    <Content Include="Views\MaintenanceLogs\Edit.cshtml" />
+    <Content Include="Views\MaintenanceLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

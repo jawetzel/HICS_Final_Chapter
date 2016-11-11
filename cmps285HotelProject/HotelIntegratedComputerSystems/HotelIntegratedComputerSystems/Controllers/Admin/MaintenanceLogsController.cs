@@ -1,132 +1,128 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog;
+using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
-    public class MaintenanceLogsController : Controller
+    public class MaintenanceLogsController : BaseController
     {
-        private readonly HicsTestDbEntities1 _db = new HicsTestDbEntities1();
+        private MaintenanceLogServices _services = new MaintenanceLogServices();
 
-        // GET: MaintenanceLogs
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var maintenanceLogs = _db.MaintenanceLogs.Include(m => m.Room).Include(m => m.MaintenanceType);
-            return View(await maintenanceLogs.ToListAsync());
+            return View(_services.GetMaintenanceLogList());
         }
 
-        // GET: MaintenanceLogs/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var maintenanceLogs = await _db.MaintenanceLogs.FindAsync(id);
-            if (maintenanceLogs == null)
-            {
-                return HttpNotFound();
-            }
-            return View(maintenanceLogs);
-        }
-
-        // GET: MaintenanceLogs/Create
         public ActionResult Create()
         {
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id");
-            ViewBag.MaintenanceTypesId = new SelectList(_db.MaintenanceTypes, "Id", "Type");
-            return View();
+            var model = new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                Room = new RoomViewModel(),
+                MaintenanceLog = new MaintenanceLogViewModel() { Date = DateTime.Now }
+            };
+            return View(model);
         }
 
-        // POST: MaintenanceLogs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //POST: MaintenanceLogViewModels/Create
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,RoomId,Description,Date,MaintenanceTypesId")] MaintenanceLogs maintenanceLogs)
+        public ActionResult Create([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel model)
         {
+            model.RoomId = _services.GetRoomId(model.BuildingName, model.Floor, model.RoomNumber);
+            model.MaintenanceTypeId = _services.GetMaintenanceTypeByName(model.MaintenanceType);
+            var returnModel = new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                Room = new RoomViewModel(),
+                MaintenanceLog = model
+            };
             if (ModelState.IsValid)
             {
-                _db.MaintenanceLogs.Add(maintenanceLogs);
-                await _db.SaveChangesAsync();
+                _services.CreateNewMaintenanceLog(returnModel);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
-            ViewBag.MaintenanceTypesId = new SelectList(_db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
-            return View(maintenanceLogs);
+            return View(returnModel);
         }
 
-        // GET: MaintenanceLogs/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var maintenanceLogs = await _db.MaintenanceLogs.FindAsync(id);
-            if (maintenanceLogs == null)
+            var maintLog = _services.FindEntryById(id.Value);
+            var roomsLog = _services.InfoForMaintenaneLogCreateEdit();
+            maintLog.RoomsList = roomsLog.RoomsList;
+            maintLog.MaintenanceTypeList = roomsLog.MaintenanceTypeList;
+            if (maintLog.MaintenanceLog == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
-            ViewBag.MaintenanceTypesId = new SelectList(_db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
-            return View(maintenanceLogs);
+            return View(maintLog);
         }
 
-        // POST: MaintenanceLogs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //POST: MaintenanceLogViewModels/Edit/5
+         //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,RoomId,Description,Date,MaintenanceTypesId")] MaintenanceLogs maintenanceLogs)
+        public ActionResult Edit([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel collection)
         {
+            collection.RoomId = _services.GetRoomId(collection.BuildingName, collection.Floor, collection.RoomNumber);
+            collection.MaintenanceTypeId = _services.GetMaintenanceTypeByName(collection.MaintenanceType);
             if (ModelState.IsValid)
             {
-                _db.Entry(maintenanceLogs).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
+                var pakage = new PackageMaintenanceLogViewModel()
+                {
+                    MaintenanceLog = collection
+                };
+                _services.PostChangesForEdit(pakage);
                 return RedirectToAction("Index");
             }
-            ViewBag.RoomId = new SelectList(_db.Rooms, "Id", "Id", maintenanceLogs.RoomId);
-            ViewBag.MaintenanceTypesId = new SelectList(_db.MaintenanceTypes, "Id", "Type", maintenanceLogs.MaintenanceTypesId);
-            return View(maintenanceLogs);
+            
+
+            return View(new PackageMaintenanceLogViewModel()
+            {
+                MaintenanceLog = collection,
+                RoomsList = _services.InfoForMaintenaneLogCreateEdit().RoomsList,
+                MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList
+            });
         }
 
-        // GET: MaintenanceLogs/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var maintenanceLogs = await _db.MaintenanceLogs.FindAsync(id);
-            if (maintenanceLogs == null)
+            var maintenanceLogViewModel = _services.FindEntryById(id.Value);
+            if (maintenanceLogViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(maintenanceLogs);
+            return View(maintenanceLogViewModel);
         }
 
-        // POST: MaintenanceLogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var maintenanceLogs = await _db.MaintenanceLogs.FindAsync(id);
-            _db.MaintenanceLogs.Remove(maintenanceLogs);
-            await _db.SaveChangesAsync();
+            _services.DeleteEntry(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
