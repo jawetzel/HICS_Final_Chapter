@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44394</IISExpressSSLPort>
+    <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -209,8 +209,6 @@
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
-    <Compile Include="Controllers\Login\GoogleAccount.cs" />
-    <Compile Include="Controllers\Login\GoogleLoginViewModelsController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\AccountController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
@@ -261,7 +259,6 @@
     <Compile Include="Models\ExpenseType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GoogleLoginViewModel.cs" />
     <Compile Include="Models\HouseKeepingStatus.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -369,16 +366,7 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="Scripts\DB Regeneration\Buildings.sql" />
-    <Content Include="Scripts\DB Regeneration\EmployeeTypes.sql" />
-    <Content Include="Scripts\DB Regeneration\ExpenseTypes.sql" />
-    <Content Include="Scripts\DB Regeneration\HouseKeepingStatus.sql" />
-    <Content Include="Scripts\DB Regeneration\MaintenanceTypes.sql" />
-    <Content Include="Scripts\DB Regeneration\RoomStatus.sql" />
-    <Content Include="Scripts\DB Regeneration\RoomTypes.sql" />
-    <Content Include="Scripts\DB Regeneration\SecurityRanks.sql" />
     <Content Include="Scripts\FilterByColumns.js" />
-    <Content Include="Scripts\GoogleAuth.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
@@ -500,7 +488,6 @@
     <Content Include="Views\MaintenanceLogViewModels\Details.cshtml" />
     <Content Include="Views\MaintenanceLogViewModels\Edit.cshtml" />
     <Content Include="Views\MaintenanceLogViewModels\Index.cshtml" />
-    <Content Include="Views\GoogleLoginViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
