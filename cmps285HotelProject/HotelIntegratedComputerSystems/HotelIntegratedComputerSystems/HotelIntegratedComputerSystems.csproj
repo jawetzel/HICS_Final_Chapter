@@ -202,6 +202,7 @@
     <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
+    <Compile Include="Controllers\Admin\ExpensesViewModelsController.cs" />
     <Compile Include="Controllers\Admin\ExpenseTypesController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceLogsController.cs" />
     <Compile Include="Controllers\Admin\MaintenanceTypesController.cs" />
@@ -483,6 +484,10 @@
     <Content Include="Views\MaintenanceLogs\Delete.cshtml" />
     <Content Include="Views\MaintenanceLogs\Edit.cshtml" />
     <Content Include="Views\MaintenanceLogs\Index.cshtml" />
+    <Content Include="Views\ExpensesViewModels\Create.cshtml" />
+    <Content Include="Views\ExpensesViewModels\Delete.cshtml" />
+    <Content Include="Views\ExpensesViewModels\Edit.cshtml" />
+    <Content Include="Views\ExpensesViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Web;
 using HotelIntegratedComputerSystems.Models;
 using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Models.Employees;
 using HotelIntegratedComputerSystems.Services.Employee;
 
 namespace HotelIntegratedComputerSystems.Services.Admin
 {
     public class ExpensesServices : BaseServices
     {
-        private readonly BookingServices _bookingServices = new BookingServices();
         private readonly ExpenseTypeServices _expenseTypeServices = new ExpenseTypeServices();
         private readonly RoomServices _roomServices = new RoomServices();
 
@@ -35,9 +35,35 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             return expensesList.ToList();
         }
 
+        public List<BookingViewModel> GetActiveBookings()
+        {
+            var bookings = from book in Db.Bookings
+                           where book.BookingStatus.BookingStatusDescription == "Checked In"
+                           select new BookingViewModel()
+                           {
+                               Id = book.Id,
+                               CustomerId = book.CustomerId,
+                               CustomerName = book.Customer.Name,
+                               RoomId = book.RoomId,
+                               RoomNumber = book.Room.RoomNumber,
+                               StartDate = book.StartDate,
+                               EndDate = book.EndDate,
+                               VolumeAdults = book.VolumeAdults,
+                               VolumeChildren = book.VolumeChildren,
+                               BookingStatusId = book.BookingStatusId,
+                               CheckedInDate = book.CheckedInDate,
+                               CheckedOutDate = book.CheckedOutDate,
+                               BookingStatusDescription = book.BookingStatus.BookingStatusDescription,
+
+                           };
+            return bookings.ToList();
+        }
+
         public ExpensesViewModel GetExpenseByIdEdit(int id)
         {
             var expense = Db.Expenses1.Find(id);
+            
+
             var returnModel = new ExpensesViewModel
             {
                 Id = expense.Id,
@@ -52,7 +78,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                 ExpenseTypeDescription = expense.ExpenseType.Description,
                 ExpenseTypeAmmount = expense.ExpenseType.Ammount,
 
-                BookingsList = _bookingServices.GetBookingList().BookingList,
+                BookingsList = GetActiveBookings(),
                 ExpenseList = _expenseTypeServices.GetExpenseTypesList(),
                 RoomsList = _roomServices.GetRoomList()
             };
@@ -63,7 +89,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
         public void PostChangesForEdit(ExpensesViewModel model)
         {
             model.RoomId = Db.Rooms.First(x => x.Building.BuildingName == model.BuildingName && x.FloorNumber == model.FloorNumber && x.RoomNumber == model.RoomNumber).Id;
-            model.BookingId = Db.Bookings.First(x => x.RoomId == model.RoomId && x.Customer.Name == model.CustomerName).Id;
+            model.BookingId = Db.Bookings.First(x => x.RoomId == model.RoomId && x.Customer.Name == model.CustomerName && x.BookingStatus.BookingStatusDescription == "Checked In").Id;
             model.ExpenseTypeId = Db.ExpenseTypes.First(x => x.Type == model.ExpenseTypeType && x.Ammount == model.ExpenseTypeAmmount && x.Description == model.ExpenseTypeDescription).Id;
 
             Db.Entry(new Expenses()
@@ -82,7 +108,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
             var returnModel = new ExpensesViewModel
             {
-                BookingsList = _bookingServices.GetBookingList().BookingList,
+                BookingsList = GetActiveBookings(),
                 ExpenseList = _expenseTypeServices.GetExpenseTypesList(),
                 RoomsList = _roomServices.GetRoomList()
             };
@@ -93,7 +119,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
         public void PostCreateExpense(ExpensesViewModel model)
         {
             model.RoomId = Db.Rooms.First(x => x.Building.BuildingName == model.BuildingName && x.FloorNumber == model.FloorNumber && x.RoomNumber == model.RoomNumber).Id;
-            model.BookingId = Db.Bookings.First(x => x.RoomId == model.RoomId && x.Customer.Name == model.CustomerName).Id;
+            model.BookingId = Db.Bookings.First(x => x.RoomId == model.RoomId && x.Customer.Name == model.CustomerName && x.BookingStatus.BookingStatusDescription == "Checked In").Id;
             model.ExpenseTypeId = Db.ExpenseTypes.First(x => x.Type == model.ExpenseTypeType && x.Ammount == model.ExpenseTypeAmmount && x.Description == model.ExpenseTypeDescription).Id;
 
             Db.Expenses1.Add(new Expenses()

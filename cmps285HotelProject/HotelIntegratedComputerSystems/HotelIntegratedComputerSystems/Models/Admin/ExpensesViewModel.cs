@@ -44,15 +44,15 @@ namespace HotelIntegratedComputerSystems.Models.Admin
 
         public List<ExpenseTypeViewModel> ExpenseList { get; set; }
 
-        [DisplayName("Expense Type")]
+        [DisplayName("Type")]
         [Required(ErrorMessage = "Field Requiered")]
         public string ExpenseTypeType { get; set; } //expenseType
 
-        [DisplayName("Expense Description")]
+        [DisplayName("Description")]
         [Required(ErrorMessage = "Field Requiered")]
         public string ExpenseTypeDescription { get; set; } //expenseType
 
-        [DisplayName("Expense Ammount")]
+        [DisplayName("Ammount")]
         [Required(ErrorMessage = "Field Requiered")]
         public decimal ExpenseTypeAmmount { get; set; } //expenseType
     }
