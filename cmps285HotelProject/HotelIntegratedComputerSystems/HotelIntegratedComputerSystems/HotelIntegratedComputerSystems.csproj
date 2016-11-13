@@ -222,6 +222,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin\BuildingViewModel.cs" />
     <Compile Include="Models\Admin\EmployeeShiftViewModel.cs" />
+    <Compile Include="Models\Admin\ExpensesViewModel.cs" />
     <Compile Include="Models\Admin\MaintenanceLog\MaintenanceLogViewModel.cs" />
     <Compile Include="Models\Admin\MaintenanceLog\PackageMaintenanceLogViewModel.cs" />
     <Compile Include="Models\Booking.cs">
@@ -310,6 +311,7 @@
     <Compile Include="Services\Admin\EmployeeServies.cs" />
     <Compile Include="Services\Admin\EmployeeShiftServices.cs" />
     <Compile Include="Models\Admin\EmployeeTypeViewModel.cs" />
+    <Compile Include="Services\Admin\ExpensesServices.cs" />
     <Compile Include="Services\Admin\ExpenseTypeServices.cs" />
     <Compile Include="Services\Admin\MaintenanceLogServices.cs" />
     <Compile Include="Services\Admin\MaintenanceTypeServices.cs" />
