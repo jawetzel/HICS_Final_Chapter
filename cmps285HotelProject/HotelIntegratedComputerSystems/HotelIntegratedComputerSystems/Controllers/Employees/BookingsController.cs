@@ -53,6 +53,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             {
                 return HttpNotFound();
             }
+            //made var in viewmodel
+            ViewBag.BookingStatusId = new SelectList(Db.BookingStatus, "Id", "BookingStatusDescription");
             return View(editBooking);
         }
 
@@ -66,6 +68,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             if (ModelState.IsValid)
             {   
                 _service.PostChangesForEdit(bookingViewModel);
+                ViewBag.BookingStatusId = new SelectList(Db.BookingStatus, "Id", "BookingStatusDescription");
                 return RedirectToAction("Index");
             }
             return View(bookingViewModel);
