@@ -9,17 +9,19 @@ using System.Web;
 using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models.Employees;
 using HotelIntegratedComputerSystems.Services.Employee;
+using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
     public class BookingsController : BaseController
     {
-        private readonly BookingServices _service = new BookingServices();
+        private readonly BookingServices _bookingservice = new BookingServices();
+        private readonly RoomServices _roomServices = new RoomServices();
 
         // GET: Bookings
         public ActionResult Index()
         {
-            return View(_service.GetBookingList());
+            return View(_bookingservice.GetBookingList());
         }
 
 
@@ -27,7 +29,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         public ActionResult Create()
         {
             BookingViewModel newBooking = new BookingViewModel();
-            newBooking.customers = _service.loadCustomerNames();
+            newBooking.customers = _bookingservice.loadCustomerNames();
+            newBooking.RoomsList = _roomServices.GetRoomList();
             return View(newBooking);
         }
 
@@ -39,7 +42,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         public ActionResult Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
         {
             if (!ModelState.IsValid) return View(bookingViewModel);
-            _service.CreateNewBooking(bookingViewModel);
+            _bookingservice.CreateNewBooking(bookingViewModel);
 
             return RedirectToAction("Index");
         }
@@ -47,8 +50,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         //GET: Bookings/Edit/5
         public ActionResult Edit(int id)
         {
-            var editBooking = _service.FindBookingById(id);
-            editBooking.customers = _service.loadCustomerNames();
+            var editBooking = _bookingservice.FindBookingById(id);
+            editBooking.customers = _bookingservice.loadCustomerNames();
+            editBooking.RoomsList = _roomServices.GetRoomList();
             if (editBooking == null)
             {
                 return HttpNotFound();
@@ -65,7 +69,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         {
             if (ModelState.IsValid)
             {   
-                _service.PostChangesForEdit(bookingViewModel);
+                _bookingservice.PostChangesForEdit(bookingViewModel);
                 return RedirectToAction("Index");
             }
             return View(bookingViewModel);

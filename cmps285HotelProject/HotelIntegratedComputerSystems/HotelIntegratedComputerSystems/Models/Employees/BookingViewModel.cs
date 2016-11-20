@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using HotelIntegratedComputerSystems.Models.Admin;
 
 namespace HotelIntegratedComputerSystems.Models.Employees
 {
@@ -17,6 +18,15 @@ namespace HotelIntegratedComputerSystems.Models.Employees
 
         [DisplayName("Customer Id:")]
         public int CustomerId { get; set; }
+        [DisplayName("Building")]
+
+        [Required(ErrorMessage = "Field Requiered")]
+        public string BuildingName { get; set; } //room
+
+        [DisplayName("Floor")]
+        [Required(ErrorMessage = "Field Requiered")]
+        public int FloorNumber { get; set; } //room
+
 
         [DisplayName("Room #:")]
         public string RoomNumber { get; set;}
@@ -48,6 +58,7 @@ namespace HotelIntegratedComputerSystems.Models.Employees
         
         public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public List<RoomViewModel> RoomsList { get; set; }
         public virtual ICollection<Expenses> Expense { get; set; }
         public virtual List<CustomersViewModel> customers { get; set; }
     }
