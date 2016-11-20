@@ -38,51 +38,51 @@
                     </div>
                 </div>
 
-                <div id="RoomsList" class="panel panel-primary" style="display: none;">
                     <div class="modal fade" id="Modal1" role="dialog">
                         <div class="modal-dialog">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Rooms</h3>
+                            <div id="RoomsList" class="panel panel-primary" style="display: none;">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Rooms</h3>
+                                </div>
+                                <div class="modal-content">
+                                    <table class="table table-hover table-bordered" id="RoomTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                                                </th>
+                                                <th>
+                                                    <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room" />
+                                                </th>
+                                                <th>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.RoomsList)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.BuildingName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.FloorNumber)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" value="Select" class="btn btn-default" data-dismiss="modal" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')" />
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="modal-content">
-                                <table class="table table-hover table-bordered" id="RoomTable">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building" />
-                                            </th>
-                                            <th>
-                                                <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor" />
-                                            </th>
-                                            <th>
-                                                <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room" />
-                                            </th>
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.RoomsList)
-                                        {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.BuildingName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FloorNumber)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.RoomNumber)
-                                            </td>
-                                            <td>
-                                                <input type="button" value="Select" class="btn btn-default" data-dismiss="modal" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')" />
-                                            </td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
