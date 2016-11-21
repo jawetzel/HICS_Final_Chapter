@@ -11,6 +11,7 @@ namespace HotelIntegratedComputerSystems.Services.Employee
     public class BookingServices : BaseServices
     {
         public CustomerServices _customerServices = new CustomerServices();
+
         public PackageBookings GetBookingList()
         {
             
@@ -58,6 +59,18 @@ namespace HotelIntegratedComputerSystems.Services.Employee
         {
             var customerList = _customerServices.GetCustomersList();
             return customerList;
+        }
+
+        public List<BookingStatus> loadBookingStatus()
+        {
+            var bookStatList = from BookingStatus in Db.BookingStatus
+                               select new BookingStatus
+                               {
+                                   Id = BookingStatus.Id,
+                                   BookingStatusDescription = BookingStatus.BookingStatusDescription
+
+                               };
+            return bookStatList.ToList();
         }
 
 

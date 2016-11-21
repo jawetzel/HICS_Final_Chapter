@@ -43,6 +43,7 @@ namespace HotelIntegratedComputerSystems.Models.Employees
         [DisplayName("Check Out:")]
         public Nullable<System.DateTime> CheckedOutDate { get; set; }
 
+        [DisplayName("Booking Status:")]
         public int BookingStatusId { get; set; }
 
         
