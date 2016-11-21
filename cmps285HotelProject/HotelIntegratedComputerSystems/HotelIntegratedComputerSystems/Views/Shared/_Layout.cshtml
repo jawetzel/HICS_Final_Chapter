@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using HotelIntegratedComputerSystems.Controllers.Login
+@{
+    string UserName = GoogleAccount.Name;
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,6 +12,8 @@
     <title>@ViewBag.Title - H.I.C.S.</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/GoogleAuth.js")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -77,6 +85,12 @@
                             </ul>
                         </div>
                     </li><!--Maintainance TAB-->
+                    <li>
+                    <!--Hello Text-->
+                        <div class="navbar-brand">
+                            @Html.DisplayName("Welcome " + UserName + "! :)")
+                        </div>
+                    </li><!--Hello Text-->
                 </ul>
             </div>
         </div>
@@ -85,8 +99,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - H.I.C.S.<!--</p><marquee scrollamount="10" behavior="alternate">oooOOOooohhh</marquee>-->
-
+            <p>&copy; @DateTime.Now.Year - H.I.C.S.<!--</p> <marquee scrollamount="10" behavior="alternate">oooOOOooohhh</marquee>-->
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
