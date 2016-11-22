@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using HotelIntegratedComputerSystems.Models;
 using HotelIntegratedComputerSystems.Models.Employees;
+using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Services.Employee
 {
     public class BookingServices : BaseServices
     {
         public CustomerServices _customerServices = new CustomerServices();
+        private readonly RoomServices _roomServices = new RoomServices();
 
         public PackageBookings GetBookingList()
         {
@@ -50,7 +52,7 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                 VolumeChildren = bookings.VolumeChildren,
                 BookingStatusId = 1,
                 CheckedInDate = bookings.CheckedInDate,
-                CheckedOutDate = bookings.CheckedOutDate
+                CheckedOutDate = bookings.CheckedOutDate,
             });
             Db.SaveChanges();
         }
@@ -92,11 +94,16 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                 BookingStatusId = bookingInquired.BookingStatusId,
                 CheckedInDate = bookingInquired.CheckedInDate,
                 CheckedOutDate = bookingInquired.CheckedOutDate,
-                BookingStatusDescription = bookingInquired.BookingStatus.BookingStatusDescription, } ;
+                BookingStatusDescription = bookingInquired.BookingStatus.BookingStatusDescription,
+                RoomsList = _roomServices.GetRoomList()
+            } ;
             }
 
         public void PostChangesForEdit(BookingViewModel editBooking)
         {
+            editBooking.RoomId = Db.Rooms.First(x => x.Building.BuildingName == editBooking.BuildingName && x.FloorNumber == editBooking.FloorNumber &&
+                x.RoomNumber == editBooking.RoomNumber).Id;
+
 
             Db.Entry(new Models.Booking()
             {

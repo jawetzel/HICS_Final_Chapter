@@ -2,15 +2,10 @@
 @Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Bookings";
 }
 
 <h2></h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Bookings</h3>
@@ -36,7 +31,9 @@
                 <th>
                     Booking Status
                 </th>
-                <th></th>
+                <th>
+                    @Html.ActionLink("Create New", "Create")
+                </th>
             </tr>
 
             <tr>
