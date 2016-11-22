@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Services;
 using HotelIntegratedComputerSystems.Controllers.Default;
 using HotelIntegratedComputerSystems.Controllers.Login;
 using HotelIntegratedComputerSystems.Models;
@@ -19,24 +17,17 @@ namespace HotelIntegratedComputerSystems.Controllers.Login
 {
     public class GoogleLoginViewModelsController : BaseController
     {
-        public string LoggedEmail = GoogleAccount.Email;
-        public string LoggedUser = GoogleAccount.Name;
+
+        //  need to add all of the other variables but these should go on different controllers... ?probably just base controller?
+        private string loggedUser = GoogleAccount.Email;    //  this will grab the email of the user(if there is one signed in)
+        private int userRankId = GoogleAccount.Authority;   //  this will grab the rank of the user(if there is one signed in)
+
+
 
         [HttpPost]
         public Action LogIn(string googleEmail)
         {
             LogIn_System(googleEmail);  // send googleEmail to LogIn_System method
-            return null;
-        }
-
-        [HttpPost]
-        public Action LogOut()
-        {
-            //  remove/set all info of user back to default
-            GoogleAccount ga = new GoogleAccount();
-            ga.DisposeAccount();
-            //  diagnostics
-            System.Diagnostics.Debug.WriteLine("User Logged Off (Backend)");
             return null;
         }
 
@@ -46,6 +37,9 @@ namespace HotelIntegratedComputerSystems.Controllers.Login
             {
                 System.Diagnostics.Debug.WriteLine("The user is in our database.");
                 GoogleAccount ga = new GoogleAccount(emailAddress);
+                
+                //  need to make an object of Logged User later also ask josh about admin users...?
+
             }
             else
             {
@@ -60,7 +54,6 @@ namespace HotelIntegratedComputerSystems.Controllers.Login
         {
                 return Db.Employees.Any(o => o.Email.Equals(emailAddress));
         }
-
 
         // GET: GoogleLoginViewModels
         public ActionResult Index()

@@ -20,15 +20,7 @@ function onSignIn(googleUser) {
 }
 
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance()
-    confirm("You are signing out?");
-
-    //  log the user out(backend)
-    $.ajax({
-        type: "POST",
-        url: '/GoogleLoginViewModels/LogOut',
-        contentType: "application/json; charset=utf-8"
-    });
+    var auth2 = gapi.auth2.getAuthInstance();
 
     //	log out of google
     var scriptTag = document.createElement("script");
