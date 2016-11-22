@@ -18,10 +18,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44394</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -260,6 +260,7 @@
     <Compile Include="Models\ExpenseType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GridViewBuilding.cs" />
     <Compile Include="Models\HouseKeepingStatus.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -321,6 +322,7 @@
     <Compile Include="Services\BaseServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\Employee\BookingServices.cs" />
+    <Compile Include="Services\GridViewService\GridViewServices.cs" />
     <Compile Include="Services\MaidService\MaidServiceServices.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -495,6 +497,7 @@
     <Folder Include="Controllers\Unaccessible\" />
     <Folder Include="Models\Housekeeping\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\GridView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
