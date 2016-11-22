@@ -9,7 +9,6 @@ namespace HotelIntegratedComputerSystems.Models.Admin
 {
     public class MaintenanceTypeViewModel
     {
-        [System.Web.Mvc.HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         [DisplayName("Maintenance Type")]

@@ -1,5 +1,4 @@
-﻿@model HotelIntegratedComputerSystems.Models.MaintenanceLogs
-
+﻿@model HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog.PackageMaintenanceLogViewModel
 @{
     ViewBag.Title = "Delete";
 }
@@ -8,39 +7,56 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>MaintenanceLogs</h4>
+    <h4>MaintenanceLogViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.MaintenanceLog.BuildingName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.MaintenanceLog.BuildingName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.MaintenanceLog.Floor)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Html.DisplayFor(model => model.MaintenanceLog.Floor)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Room.RoomStatus)
+            @Html.DisplayNameFor(model => model.MaintenanceLog.RoomNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Room.RoomStatus)
+            @Html.DisplayFor(model => model.MaintenanceLog.RoomNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaintenanceType.Type)
+            @Html.DisplayNameFor(model => model.MaintenanceLog.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MaintenanceType.Type)
+            @Html.DisplayFor(model => model.MaintenanceLog.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaintenanceLog.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaintenanceLog.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaintenanceLog.MaintenanceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaintenanceLog.MaintenanceType)
         </dd>
 
     </dl>

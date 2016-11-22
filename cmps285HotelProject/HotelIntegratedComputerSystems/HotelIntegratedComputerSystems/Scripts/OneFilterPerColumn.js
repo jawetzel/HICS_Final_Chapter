@@ -1,7 +1,8 @@
-﻿function filterFunctionColumn1() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
+﻿
+function filterFunctionColumn1(tableName, input1) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -10,11 +11,11 @@
     }
 }
 
-function filterFunctionColumn2() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
+function filterFunctionColumn2(tableName, input1, input2) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -24,12 +25,13 @@ function filterFunctionColumn2() {
     }
 }
 
-function filterFunctionColumn3() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
+function filterFunctionColumn3(tableName, input1, input2, input3) {
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -40,13 +42,13 @@ function filterFunctionColumn3() {
     }
 }
 
-function filterFunctionColumn4() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
+function filterFunctionColumn4(tableName, input1, input2, input3, input4) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -58,14 +60,14 @@ function filterFunctionColumn4() {
     }
 }
 
-function filterFunctionColumn5() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
+function filterFunctionColumn5(tableName, input1, input2, input3, input4, input5) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -78,15 +80,15 @@ function filterFunctionColumn5() {
     }
 }
 
-function filterFunctionColumn6() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
-    var filter6 = document.getElementById("myInput6").value.toUpperCase();
+function filterFunctionColumn6(tableName, input1, input2, input3, input4, input5, input6) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
+    var filter6 = document.getElementById(input6).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -100,16 +102,16 @@ function filterFunctionColumn6() {
     }
 }
 
-function filterFunctionColumn7() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
-    var filter6 = document.getElementById("myInput6").value.toUpperCase();
-    var filter7 = document.getElementById("myInput7").value.toUpperCase();
+function filterFunctionColumn7(tableName, input1, input2, input3, input4, input5, input6, input7) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
+    var filter6 = document.getElementById(input6).value.toUpperCase();
+    var filter7 = document.getElementById(input7).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -124,17 +126,17 @@ function filterFunctionColumn7() {
     }
 }
 
-function filterFunctionColumn8() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
-    var filter6 = document.getElementById("myInput6").value.toUpperCase();
-    var filter7 = document.getElementById("myInput7").value.toUpperCase();
-    var filter8 = document.getElementById("myInput8").value.toUpperCase();
+function filterFunctionColumn8(tableName, input1, input2, input3, input4, input5, input6, input7, input8) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
+    var filter6 = document.getElementById(input6).value.toUpperCase();
+    var filter7 = document.getElementById(input7).value.toUpperCase();
+    var filter8 = document.getElementById(input8).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -150,18 +152,18 @@ function filterFunctionColumn8() {
     }
 }
 
-function filterFunctionColumn9() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
-    var filter6 = document.getElementById("myInput6").value.toUpperCase();
-    var filter7 = document.getElementById("myInput7").value.toUpperCase();
-    var filter8 = document.getElementById("myInput8").value.toUpperCase();
-    var filter9 = document.getElementById("myInput9").value.toUpperCase();
+function filterFunctionColumn9(tableName, input1, input2, input3, input4, input5, input6, input7, input8, input9) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
+    var filter6 = document.getElementById(input6).value.toUpperCase();
+    var filter7 = document.getElementById(input7).value.toUpperCase();
+    var filter8 = document.getElementById(input8).value.toUpperCase();
+    var filter9 = document.getElementById(input9).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";
@@ -178,19 +180,19 @@ function filterFunctionColumn9() {
     }
 }
 
-function filterFunctionColumn10() {
-    var filter1 = document.getElementById("myInput1").value.toUpperCase();
-    var filter2 = document.getElementById("myInput2").value.toUpperCase();
-    var filter3 = document.getElementById("myInput3").value.toUpperCase();
-    var filter4 = document.getElementById("myInput4").value.toUpperCase();
-    var filter5 = document.getElementById("myInput5").value.toUpperCase();
-    var filter6 = document.getElementById("myInput6").value.toUpperCase();
-    var filter7 = document.getElementById("myInput7").value.toUpperCase();
-    var filter8 = document.getElementById("myInput8").value.toUpperCase();
-    var filter9 = document.getElementById("myInput9").value.toUpperCase();
-    var filter10 = document.getElementById("myInput10").value.toUpperCase();
+function filterFunctionColumn10(tableName, input1, input2, input3, input4, input5, input6, input7, input8, input9, input10) {
+    var filter1 = document.getElementById(input1).value.toUpperCase();
+    var filter2 = document.getElementById(input2).value.toUpperCase();
+    var filter3 = document.getElementById(input3).value.toUpperCase();
+    var filter4 = document.getElementById(input4).value.toUpperCase();
+    var filter5 = document.getElementById(input5).value.toUpperCase();
+    var filter6 = document.getElementById(input6).value.toUpperCase();
+    var filter7 = document.getElementById(input7).value.toUpperCase();
+    var filter8 = document.getElementById(input8).value.toUpperCase();
+    var filter9 = document.getElementById(input9).value.toUpperCase();
+    var filter10 = document.getElementById(input10).value.toUpperCase();
 
-    var tableRow = document.getElementById("dev-table").getElementsByTagName("tr");
+    var tableRow = document.getElementById(tableName).getElementsByTagName("tr");
 
     for (var i = 0; i < tableRow.length; i++) {
         tableRow[i].style.display = "";

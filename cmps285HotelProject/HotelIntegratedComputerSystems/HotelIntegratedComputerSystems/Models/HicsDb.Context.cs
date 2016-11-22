@@ -43,5 +43,9 @@ namespace HotelIntegratedComputerSystems.Models
         public virtual DbSet<BookingStatus> BookingStatus { get; set; }
         public virtual DbSet<Emails> Emails { get; set; }
         public virtual DbSet<EmailRecipients> EmailRecipients { get; set; }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog.MaintenanceLogViewModel> MaintenanceLogViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.ExpensesViewModel> ExpensesViewModels { get; set; }
     }
 }

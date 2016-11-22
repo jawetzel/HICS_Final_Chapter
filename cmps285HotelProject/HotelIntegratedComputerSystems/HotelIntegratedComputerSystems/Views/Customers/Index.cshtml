@@ -11,60 +11,63 @@
     <div class="panel-heading">
         <h3 class="panel-title">Customers</h3>
     </div>
-    <table class="table table-hover" id="dev-table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.ActionLink("Create New", "Create")
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>
-                <input type="text" id="myInput1" onkeyup="filterFunctionColumn4()" class="form-control" data-action="filter" placeholder="Filter Building" />
-            </th>
-            <th>
-                <input type="text" id="myInput2" onkeyup="filterFunctionColumn4()" class="form-control" data-action="filter" placeholder="Filter Room Type" />
-            </th>
-            <th>
-                <input type="text" id="myInput3" onkeyup="filterFunctionColumn4()" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
-            </th>
-            <th>
-                <input type="text" id="myInput4" onkeyup="filterFunctionColumn4()" class="form-control" data-action="filter" placeholder="Filter Building" />
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-            {
+    <table class="table table-hover table-bordered" id="dev-table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.ActionLink("Create New", "Create")
+                </th>
             </tr>
-        }
+            <tr>
+                <th>
+                    <input type="text" id="myInput1" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                </th>
+                <th>
+                    <input type="text" id="myInput2" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4')" class="form-control" data-action="filter" placeholder="Filter Room Type" />
+                </th>
+                <th>
+                    <input type="text" id="myInput3" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4')" class="form-control" data-action="filter" placeholder="Filter HouseKeeping" />
+                </th>
+                <th>
+                    <input type="text" id="myInput4" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>

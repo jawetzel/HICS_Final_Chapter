@@ -1,6 +1,6 @@
 ﻿@model HotelIntegratedComputerSystems.Models.Employees.BookingViewModel 
-@Scripts.Render("~/Scripts/FilterByColumns.js")
 @Scripts.Render("~/Scripts/SuggestionTable.js")
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 
 @{
     ViewBag.Title = "Edit Booking";
@@ -22,56 +22,127 @@
             @Html.LabelFor(model => model.CustomerName, "Customer Name:", htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10">
-                <input class="form-control text-box single-line valid" id="myInput" name="CustomerName" type="text" value="" aria-invalid="false" onkeyup="filterFunction1Column()" data-action="filter">
+                 @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                  @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group" hidden>
-            @Html.LabelFor(model => model.CustomerId, "Customer ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerId, "Customer ID:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
-                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", Id = "CustomerId" } })
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", Id = "CustomerId", @readonly = "true" } })
                 @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @* Suggestion Table and check box to show/hide table *@
-        <label for="showSuggestions"> Show Suggestions: </label>
-        <input class="showSuggestions" type="checkbox" name="showSuggestions" value="1" onclick="showTable(nameSearch)" />
-        <div id="nameSearch" class="panel panel-primary" style="display:none;">
-            <table class="table table-hover table-bordered" id="dev-table">
+
+        <div class="container">
+            <input class="showSuggestions" type="button" name="ShowCustomers" value="Select Customer" onclick="showTable(CustomerList)" />
+        </div>
+        <div id="CustomerList" class="panel panel-primary" style="display: none;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Customers</h3>
+            </div>
+            <table class="table table-hover table-bordered" id="CustomerTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="text" id="CustomerListInput1" onkeyup="filterFunctionColumn2('CustomerTable', 'CustomerListInput1', 'CustomerListInput2')"
+                                   class="form-control" data-action="filter" placeholder="Filter Name" />
+                        </th>
+                        <th>
+                            <input type="text" id="CustomerListInput2" onkeyup="filterFunctionColumn2('CustomerTable', 'CustomerListInput1', 'CustomerListInput2')"
+                                   class="form-control" data-action="filter" placeholder="Filter Id" />
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach (var item in Model.customers)
                     {
-                        <tr onclick="copyTo(this)">
+                        <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
-
-                            <td onclick="copyTo(this)">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo2(this.parentElement.parentElement, CustomerList, 'CustomerName', 'CustomerId')" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+        </div>       
+         <div class="form-group">
+            @Html.LabelFor(model => model.RoomNumber, "RoomNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
+                @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BookingStatusId, "Booking Status:", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("BookingStatusId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BookingStatusDescription, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.BuildingName, "BuildingName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
+                @Html.EditorFor(model => model.BuildingName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.BuildingName, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
-            @Html.LabelFor(model => model.RoomId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RoomId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.FloorNumber, "FloorNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
+                @Html.EditorFor(model => model.FloorNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.FloorNumber, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="container">
+            <input class="showSuggestions" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
+        </div>
+        <div id="RoomsList" class="panel panel-primary" style="display: none;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Rooms</h3>
+            </div>
+            <table class="table table-hover table-bordered" id="RoomTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                        </th>
+                        <th>
+                            <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                        </th>
+                        <th>
+                            <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room" />
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.RoomsList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BuildingName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FloorNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoomNumber)
+                            </td>
+                            <td>
+                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'BuildingName', 'FloorNumber', 'RoomNumber')" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>       
 
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -114,7 +185,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Bookings", "Index")
 </div>
 
 @section Scripts {
