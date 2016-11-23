@@ -40,6 +40,7 @@ namespace HotelIntegratedComputerSystems.Services.Employee
 
         public void CreateNewBooking(BookingViewModel bookings)
         {
+            bookings.RoomId = Db.Rooms.First(x => x.Building.BuildingName == bookings.BuildingName && x.FloorNumber == bookings.FloorNumber && x.RoomNumber == bookings.RoomNumber).Id;
 
             Db.Bookings.Add(new Booking
             {

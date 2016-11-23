@@ -76,30 +76,6 @@
                 </tbody>
             </table>
         </div>       
-
-        @* Suggestion Table and check box to show/hide table *@
-        @*<label for="showSuggestions"> Show Suggestions: </label>
-        <input class="showSuggestions" type="checkbox" name="showSuggestions" value="1" onclick="showTable(nameSearch)" />
-            <div id="nameSearch" class="panel panel-primary" style="display:none;">
-                <table class="table table-hover table-bordered" id="dev-table">
-                    <tbody>
-                        @foreach (var item in Model.customers)
-                        {
-                            <tr onclick="copyTo(this)">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>  
-                                 
-                                <td onclick="copyTo(this)"> 
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>*@
-
-
             <div class="form-group">
                 @Html.LabelFor(model => model.RoomNumber, "RoomNumber", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">

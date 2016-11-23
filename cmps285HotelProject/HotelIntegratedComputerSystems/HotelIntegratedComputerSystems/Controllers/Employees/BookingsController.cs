@@ -39,7 +39,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
+        public ActionResult Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,customers")] BookingViewModel bookingViewModel)
         {
             if (!ModelState.IsValid) return View(bookingViewModel);
             _bookingservice.CreateNewBooking(bookingViewModel);
