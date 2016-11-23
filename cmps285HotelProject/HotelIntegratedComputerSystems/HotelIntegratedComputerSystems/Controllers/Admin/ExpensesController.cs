@@ -12,7 +12,7 @@ using HotelIntegratedComputerSystems.Services.Admin;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
-    public class ExpensesViewModelsController : BaseController
+    public class ExpensesController : BaseController
     {
         private readonly ExpensesServices _services = new ExpensesServices();
 

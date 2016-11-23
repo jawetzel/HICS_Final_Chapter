@@ -1,38 +1,67 @@
-﻿@model HotelIntegratedComputerSystems.Models.Expense
+﻿@model HotelIntegratedComputerSystems.Models.Admin.ExpensesViewModel
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h2>Delete Expense</h2>
 <div>
-    <h4>Expense</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ExpenseType.Type)
+            @Html.DisplayNameFor(model => model.BuildingName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ExpenseType.Type)
+            @Html.DisplayFor(model => model.BuildingName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Room.RoomStatus)
+            @Html.DisplayNameFor(model => model.FloorNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Room.RoomStatus)
+            @Html.DisplayFor(model => model.FloorNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Booking.Id)
+            @Html.DisplayNameFor(model => model.RoomNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Booking.Id)
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseTypeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseTypeType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseTypeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseTypeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseTypeAmmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseTypeAmmount)
         </dd>
 
     </dl>
