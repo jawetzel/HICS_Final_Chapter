@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models;
 using HotelIntegratedComputerSystems.Models.Admin;
 using HotelIntegratedComputerSystems.Services.Admin;
+using HotelIntegratedComputerSystems.Controllers.Default;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
@@ -19,12 +20,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetBuildingsList());
         }
 
 
         public ActionResult Create()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -32,6 +35,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Phone,Address,BuildingName")] BuildingViewModel buildingViewModel)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(buildingViewModel);
             _services.CreateNewBuilding(buildingViewModel);
             return RedirectToAction("Index");
@@ -39,6 +43,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Edit(int? id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,6 +61,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Phone,Address,BuildingName")] BuildingViewModel buildingViewModel)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(buildingViewModel);
             _services.PostChangesForEdit(buildingViewModel);
             return RedirectToAction("Index");
@@ -63,8 +69,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Delete(int? id)
         {
-
-            
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,6 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }

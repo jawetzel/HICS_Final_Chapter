@@ -1,6 +1,6 @@
 ﻿namespace HotelIntegratedComputerSystems.Models
 {
-    public class GoogleLoginViewModel
+    public class NotAuthorizedViewModel
     {
 
     }

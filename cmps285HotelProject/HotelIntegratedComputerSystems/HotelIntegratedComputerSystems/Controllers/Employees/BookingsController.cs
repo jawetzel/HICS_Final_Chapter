@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models.Employees;
 using HotelIntegratedComputerSystems.Services.Employee;
 using HotelIntegratedComputerSystems.Services.Admin;
+using HotelIntegratedComputerSystems.Controllers.Default;
 
 namespace HotelIntegratedComputerSystems.Controllers.Employees
 {
@@ -21,6 +22,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Bookings
         public ActionResult Index()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View(_bookingservice.GetBookingList());
         }
 
@@ -28,6 +30,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Bookings/Create
         public ActionResult Create()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             BookingViewModel newBooking = new BookingViewModel();
             newBooking.customers = _bookingservice.loadCustomerNames();
             newBooking.RoomsList = _roomServices.GetRoomList();
@@ -41,6 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,customers")] BookingViewModel bookingViewModel)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(bookingViewModel);
             _bookingservice.CreateNewBooking(bookingViewModel);
 
@@ -50,6 +54,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         //GET: Bookings/Edit/5
         public ActionResult Edit(int id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             var editBooking = _bookingservice.FindBookingById(id);
             editBooking.customers = _bookingservice.loadCustomerNames();
             editBooking.RoomsList = _roomServices.GetRoomList();
@@ -69,6 +74,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (ModelState.IsValid)
             {   
                 ViewBag.BookingStatusId = new SelectList(Db.BookingStatus, "Id", "BookingStatusDescription");

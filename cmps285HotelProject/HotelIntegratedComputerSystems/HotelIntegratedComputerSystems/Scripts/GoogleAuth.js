@@ -1,5 +1,4 @@
-﻿
-function onSignIn(googleUser) {
+﻿function onSignIn(googleUser) {
 
     var auth2 = gapi.auth2.getAuthInstance();
     var profile = googleUser.getBasicProfile();
@@ -8,19 +7,30 @@ function onSignIn(googleUser) {
     if (auth2.isSignedIn.get()) {
         $.ajax({
             type: "POST",
-            url: '/GoogleLoginViewModels/LogIn',
+            url: '/Home/LogIn',
             data: JSON.stringify({ googleEmail }),
-            dataType: 'text',
-            contentType: "application/json; charset=utf-8"
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (response){
+                if(response.isUser){
+                    sendToHomePage(response.typeId);
+                }
+           }
         });
-    }
-    else {
-        confirm("you are not a user in HICS");
+
     }
 }
 
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
+    var auth2 = gapi.auth2.getAuthInstance()
+    confirm("You are signing out?");
+
+    //  log the user out(backend)
+    $.ajax({
+        type: "POST",
+        url: '/Home/LogOut',
+        contentType: "application/json; charset=utf-8"
+    });
 
     //	log out of google
     var scriptTag = document.createElement("script");
@@ -32,4 +42,21 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log("User logged out.");
     });
+
+    window.location.reload();
+}
+
+function sendToHomePage(typeId) {
+    if (typeId == 1) {
+        window.open("http://localhost:52703/HouseKeeping", "_self");
+    }
+    else if(typeId == 2){
+        window.open("http://localhost:52703/HouseKeeping", "_self");
+    }
+    else if (typeId == 3) {
+        window.open("http://localhost:52703/HouseKeeping", "_self");
+    }
+    else if (typeId >= 4) {
+        window.open("http://localhost:52703/Employees", "_self");
+    }
 }

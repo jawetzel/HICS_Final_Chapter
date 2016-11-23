@@ -10,6 +10,7 @@ using HotelIntegratedComputerSystems.Models;
 using HotelIntegratedComputerSystems.Models.Admin;
 using HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog;
 using HotelIntegratedComputerSystems.Services.Admin;
+using HotelIntegratedComputerSystems.Controllers.Default;
 
 namespace HotelIntegratedComputerSystems.Controllers.Admin
 {
@@ -19,11 +20,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetMaintenanceLogList());
         }
 
         public ActionResult Create()
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             var model = new PackageMaintenanceLogViewModel()
             {
                 MaintenanceTypeList = _services.InfoForMaintenaneLogCreateEdit().MaintenanceTypeList,
@@ -41,6 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel model)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             model.RoomId = _services.GetRoomId(model.BuildingName, model.Floor, model.RoomNumber);
             model.MaintenanceTypeId = _services.GetMaintenanceTypeByName(model.MaintenanceType);
             var returnModel = new PackageMaintenanceLogViewModel()
@@ -60,6 +64,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Edit(int? id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,6 +87,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Prefix = "MaintenanceLog", Include = "Id,RoomId,BuildingId,BuildingName,Floor,RoomNumber,Description,Date,MaintenanceTypeId,MaintenanceType")] MaintenanceLogViewModel collection)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             collection.RoomId = _services.GetRoomId(collection.BuildingName, collection.Floor, collection.RoomNumber);
             collection.MaintenanceTypeId = _services.GetMaintenanceTypeByName(collection.MaintenanceType);
             if (ModelState.IsValid)
@@ -105,6 +111,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Delete(int? id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -121,6 +128,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }

@@ -7,20 +7,21 @@ using System.Web;
 using HotelIntegratedComputerSystems.Models;
 using HotelIntegratedComputerSystems.Services.Admin;
 
-namespace HotelIntegratedComputerSystems.Controllers.Login
+namespace HotelIntegratedComputerSystems.Controllers.Default
 {
     public class GoogleAccount : BaseController
     {
         private readonly EmployeeServies _services = new EmployeeServies();
 
         public static int Id;
-        public static int EmployeeTypeId;
-        public static string EmployeeTypeTitle;
+        public static int TypeId;
+        public static string TypeTitle;
         public static string Email;
         public static string Address;
         public static double Phone;
         public static string Name;
         public static int Authority;
+        public static bool IsLogged;
 
         
         public GoogleAccount()
@@ -28,26 +29,21 @@ namespace HotelIntegratedComputerSystems.Controllers.Login
             
         }
 
-        public GoogleAccount(string emailAddress)
+        public GoogleAccount(string emailAddress, bool isLoggedOn)
         {
             Email = emailAddress;
+            IsLogged = isLoggedOn;
 
-            //  error here. Fix..
-            //var employee = Db.Employees.Find(emailAddress);
-            //  emailAddress wont work in the find function because it is not a primary key? 
-                //  need a new table for our database
-            var employee = Db.Employees.Find(emailAddress);
+            var employee = Db.Employees.FirstOrDefault(x => x.Email == Email);  //  get employee object from Db
+            var employeeSecurity = Db.Employees.First(x => x.Email == Email).EmployeeType.SecurityRank; //  get security rank object from employee
 
             //  now grab all of the employee information and set it in our public variables
-            EmployeeTypeId = employee.EmployeeTypeId;
-            EmployeeTypeTitle = employee.EmployeeType.Title;
-            Email = employee.Email;
+            TypeTitle = employeeSecurity.AccessLevelDescription;
+            TypeId = employeeSecurity.SiteAccessLevel;
             Address = employee.Address;
             Phone = employee.Phone;
             Name = employee.Name;
-            Authority = 0000000000000000000000; //  NOTE: Change all these once database is up-to-date
-            System.Diagnostics.Debug.WriteLine("** The user email = " + Email);
-
+            Authority = 0; //  NOTE: Change all these once database is up-to-date
         }
 
 
@@ -55,13 +51,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Login
         public void DisposeAccount()
         {
             Id = 0;
-            EmployeeTypeId = 0;
-            EmployeeTypeTitle = null;
+            TypeId = 0;
+            TypeTitle = null;
             Email = null;
             Address = null;
             Phone = 0;
             Name = null;
             Authority = 0;
+            IsLogged = false;
         }
     }
 }
