@@ -19,6 +19,11 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!-- sign in code -->
+    <meta name="google-signin-client_id" content="774525732284-lpuok1q2o879p2ehg56k5e35q0ctnp22.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -105,13 +110,42 @@
                     </li><!--Maintenance TAB-->
 
                     <li>
-                        @if (userLoggedIn)
-                        {
-                            <!--Hello Text-->
-                            <div class="navbar-brand">
-                                @Html.DisplayName("Welcome " + userName + "! :)")
+    @if (userLoggedIn)
+    {
+        <div class="text-success text-right">
+            @Html.DisplayName("Welcome " + userName + "! :)")
+        </div>
+
+        <div class="g-signin2"
+             data-height="50"
+             data-width="240"
+             data-longtitle="true"
+             style="display: none">
+        </div>
+
+        <button class="navbar-btn navbar-right" onclick="signOut()">LogOut</button>
+    }
+    else
+    {
+        <div class="dropdown">
+            <button class="dropdown-toggle media" data-toggle="dropdown">Login <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li class="text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            Login With Google
+                            <div class="g-signin2"
+                                 data-height="50"
+                                 data-width="240"
+                                 data-longtitle="true"
+                                 data-onsuccess="onSignIn">
                             </div>
-                        }
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
                     </li><!--Hello Text-->
                 </ul>
             </div>
@@ -126,7 +160,7 @@
                 <p class="text-muted">
                     @if (!userLoggedIn)
                     {
-                    <p>You are not a user of HICS!</p>
+                        <p>You are not a user of HICS!</p>
                     }
 
                     &copy; @DateTime.Now.Year - H.I.C.S.

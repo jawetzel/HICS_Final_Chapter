@@ -17,13 +17,11 @@
                 }
            }
         });
-
     }
 }
 
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance()
-    confirm("You are signing out?");
+
 
     //  log the user out(backend)
     $.ajax({
@@ -37,13 +35,18 @@ function signOut() {
     scriptTag.src = "https://mail.google.com/mail/u/0/?logout&hl=en";
     document.head.appendChild(scriptTag);
 
+    try{
+        //	let us actually log out of the application now
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.disconnect();
+        auth2.asignOut();
+    }
     //	let us actually log out of the application now
-    auth2.disconnect();
-    auth2.signOut().then(function () {
-        console.log("User logged out.");
-    });
+    catch (e) {
+        console.log(e.message, e.name); // pass exception object to err handler
+    }
 
-    window.location.reload();
+    window.open("http://localhost:52703/Home", "_self");
 }
 
 function sendToHomePage(typeId) {
