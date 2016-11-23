@@ -44,6 +44,8 @@ namespace HotelIntegratedComputerSystems.Services.Admin
                                Id = book.Id,
                                CustomerId = book.CustomerId,
                                CustomerName = book.Customer.Name,
+                               BuildingName = book.Room.Building.BuildingName,
+                               FloorNumber = book.Room.FloorNumber,
                                RoomId = book.RoomId,
                                RoomNumber = book.Room.RoomNumber,
                                StartDate = book.StartDate,
@@ -80,9 +82,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
 
                 BookingsList = GetActiveBookings(),
                 ExpenseList = _expenseTypeServices.GetExpenseTypesList(),
-                RoomsList = _roomServices.GetRoomList()
             };
-
             return returnModel;
         }
 
@@ -110,9 +110,7 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             {
                 BookingsList = GetActiveBookings(),
                 ExpenseList = _expenseTypeServices.GetExpenseTypesList(),
-                RoomsList = _roomServices.GetRoomList()
             };
-
             return returnModel;
         }
 

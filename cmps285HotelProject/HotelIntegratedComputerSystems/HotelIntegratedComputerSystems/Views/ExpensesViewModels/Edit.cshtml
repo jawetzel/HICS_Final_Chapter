@@ -1,5 +1,6 @@
 ﻿@model HotelIntegratedComputerSystems.Models.Admin.ExpensesViewModel
-
+@Scripts.Render("~/Scripts/SuggestionTable.js")
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 @{
     ViewBag.Title = "Edit";
 }
@@ -15,6 +16,14 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,58 +49,8 @@
             </div>
         </div>
 
-        <div class="container">
-            <input class="showSuggestions" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
-        </div>
-        <div id="RoomsList" class="panel panel-primary" style="display: none;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Rooms</h3>
-            </div>
-            <table class="table table-hover table-bordered" id="RoomTable">
-                <thead>
-                    <tr>
-                        <th>
-                            <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building" />
-                        </th>
-                        <th>
-                            <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor" />
-                        </th>
-                        <th>
-                            <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room" />
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.RoomsList)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BuildingName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FloorNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RoomNumber)
-                            </td>
-                            <td>
-                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'BuildingName', 'FloorNumber', 'RoomNumber')" />
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
+
 
         <div class="container">
             <input class="showSuggestions" type="button" name="ShowBookings" value="Select Booking" onclick="showTable(BookingList)" />
@@ -104,10 +63,16 @@
                 <thead>
                     <tr>
                         <th>
-                            <input type="text" id="BookingListInput1" onkeyup="filterFunctionColumn2('BookingTable', 'BookingListInput1', 'BookingListInput2')" class="form-control" data-action="filter" placeholder="Filter Customer" />
+                            <input type="text" id="BookingListInput1" onkeyup="filterFunctionColumn4('BookingTable', 'BookingListInput1', 'BookingListInput2', 'BookingListInput3', 'BookingListInput4')" class="form-control" data-action="filter" placeholder="Filter Customer" />
                         </th>
                         <th>
-                            <input type="text" id="BookingListInput2" onkeyup="filterFunctionColumn2('BookingTable', 'BookingListInput1', 'BookingListInput2')" class="form-control" data-action="filter" placeholder="Filter Room" />
+                            <input type="text" id="BookingListInput2" onkeyup="filterFunctionColumn4('BookingTable', 'BookingListInput1', 'BookingListInput2', 'BookingListInput3', 'BookingListInput4')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                        </th>
+                        <th>
+                            <input type="text" id="BookingListInput3" onkeyup="filterFunctionColumn4('BookingTable', 'BookingListInput1', 'BookingListInput2', 'BookingListInput3', 'BookingListInput4')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                        </th>
+                        <th>
+                            <input type="text" id="BookingListInput4" onkeyup="filterFunctionColumn4('BookingTable', 'BookingListInput1', 'BookingListInput2', 'BookingListInput3', 'BookingListInput4')" class="form-control" data-action="filter" placeholder="Filter Room" />
                         </th>
                         <th>
                         </th>
@@ -121,16 +86,22 @@
                                 @Html.DisplayFor(modelItem => item.CustomerName)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.BuildingName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FloorNumber)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.RoomNumber)
                             </td>
                             <td>
-                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, BookingList, 'CustomerName')" />
+                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo4(this.parentElement.parentElement, BookingList, 'CustomerName', 'BuildingName', 'FloorNumber', 'RoomNumber')" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>
+        </div> 
         
         <div class="form-group">
             @Html.LabelFor(model => model.ExpenseTypeType, htmlAttributes: new { @class = "control-label col-md-2" })
