@@ -58,9 +58,6 @@
                                     <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
                                     <li>@Html.ActionLink("Employee Types", "Index", "EmployeeTypes")</li>
                                     <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
-                                    <li>Maintainance</li>
-                                    <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
-                                    <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
                                     <li>Expences</li>
                                     <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
 
@@ -74,7 +71,7 @@
                         {
                             <!--Employee TAB-->
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Employee <span class="caret"></span></button>
+                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Front Desk <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <li>Customers</li>
                                     <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
@@ -107,8 +104,9 @@
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maintenance <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Null", "Index", "Null")</li>
-                                    <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                                     <li>Maintainance</li>
+                                    <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
+                                    <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
                                 </ul>
                             </div>
                         }
@@ -138,21 +136,21 @@
                      }
                     </>
                 </div>
-
+        
         </div>
-    
 
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <div class="footer navbar-fixed-bottom">
-            <footer>
-                <p class="text-muted">
+        <div class="navbar-inverse navbar-fixed-bottom">
+                <footer>
                     &copy; @DateTime.Now.Year - H.I.C.S.
-                    </p>
+                    <div>
+                    @Html.MvcSiteMap().SiteMapPath()
+                        </div>
                 </footer>
-            </div>
-    </div>
+        </div>
+        </div>
 </body>
 
 </html>
