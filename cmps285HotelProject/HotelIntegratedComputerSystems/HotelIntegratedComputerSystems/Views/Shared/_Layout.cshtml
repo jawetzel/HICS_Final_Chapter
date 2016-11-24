@@ -3,6 +3,7 @@
     var userName = GoogleAccount.Name;
     var userRank = GoogleAccount.TypeId;
     var userLoggedIn = GoogleAccount.IsLogged;
+     
 }
 
 
@@ -36,7 +37,7 @@
                 </button>
                 @Html.ActionLink("H.I.C.S", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <uldiv class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         @if (userRank >= 4)
@@ -108,49 +109,34 @@
                             </div>
                         }
                     </li><!--Maintenance TAB-->
-
-                    <li>
-    @if (userLoggedIn)
-    {
-        <div class="text-success text-right">
-            @Html.DisplayName("Welcome " + userName + "! :)")
-        </div>
-
-        <div class="g-signin2"
-             data-height="50"
-             data-width="240"
-             data-longtitle="true"
-             style="display: none">
-        </div>
-
-        <button class="navbar-btn navbar-right" onclick="signOut()">LogOut</button>
-    }
-    else
-    {
-        <div class="dropdown">
-            <button class="dropdown-toggle media" data-toggle="dropdown">Login <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li class="text-center">
-                    <div class="row">
-                        <div class="col-md-12">
-                            Login With Google
+                    </ul>   
+                     @if (userLoggedIn)
+                     {
+                        <div class="dropdown navbar-right">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">@Html.DisplayName("Welcome " + userName) <span class="caret"></span></button>
+                   <ul class="dropdown-menu">
+                       <li>
+                         <a onclick="signOut()">Sign Out</a>
+                       </li>
+                       </ul>    
+                            </div>
+                     }
+                     else
+                     {
+                        <div class="dropdown navbar-right">
                             <div class="g-signin2"
-                                 data-height="50"
+                                 data-height="40"
                                  data-width="240"
                                  data-longtitle="true"
                                  data-onsuccess="onSignIn">
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                     }
+                    </>
+                </div>
+
         </div>
-    }
-                    </li><!--Hello Text-->
-                </ul>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="container body-content">
         @RenderBody()
@@ -158,11 +144,6 @@
         <div class="footer navbar-fixed-bottom">
             <footer>
                 <p class="text-muted">
-                    @if (!userLoggedIn)
-                    {
-                        <p>You are not a user of HICS!</p>
-                    }
-
                     &copy; @DateTime.Now.Year - H.I.C.S.
                     </p>
                 </footer>

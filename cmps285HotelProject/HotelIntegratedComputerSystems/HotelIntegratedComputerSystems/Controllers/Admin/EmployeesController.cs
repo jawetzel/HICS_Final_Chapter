@@ -24,7 +24,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         }
         public ActionResult Create()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+           if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
             ViewBag.EmployeeTypeId = new SelectList(Db.EmployeeTypes, "Id", "Title");
             return View();
         }
