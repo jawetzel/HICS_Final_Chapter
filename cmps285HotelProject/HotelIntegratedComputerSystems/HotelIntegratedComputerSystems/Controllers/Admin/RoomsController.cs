@@ -41,7 +41,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Edit(int? id)
         {
-            ViewBag.BuildingId = new SelectList(Db.Buildings, "Id", "Building1");
+            ViewBag.BuildingId = new SelectList(Db.Buildings, "Id", "BuildingName");
             ViewBag.HousekeepingStatusId = new SelectList(Db.HouseKeepingStatus, "Id", "CleanStatus");
             ViewBag.RoomTypeId = new SelectList(Db.RoomTypes, "Id", "Bedding");
             ViewBag.RoomStatusId = new SelectList(Db.RoomStatus, "Id", "Description");
