@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using HotelIntegratedComputerSystems.Models.Employees;
 
 namespace HotelIntegratedComputerSystems.Models.Admin
 {
@@ -49,5 +51,13 @@ namespace HotelIntegratedComputerSystems.Models.Admin
         [DisplayName("Room")]
         [Required(ErrorMessage = "Please Provide A Room Number")]
         public string RoomNumber { get; set; }
+
+        public List<BookingViewModel> BookingsList { get; set; }
+
+        public RoomViewModel()
+        {
+            BookingsList = new List<BookingViewModel>();
+        }
+
     }
 }

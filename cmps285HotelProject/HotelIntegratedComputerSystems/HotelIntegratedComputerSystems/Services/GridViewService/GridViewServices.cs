@@ -2,44 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
+using HotelIntegratedComputerSystems.Models.Employees;
+using HotelIntegratedComputerSystems.Models.GridView;
 using HotelIntegratedComputerSystems.Services.Admin;
+using HotelIntegratedComputerSystems.Services.Employee;
 using Microsoft.Ajax.Utilities;
 
 namespace HotelIntegratedComputerSystems.Services.GridViewService
 {
     public class GridViewServices: BaseServices
     {
-        RoomServices roomServices = new RoomServices();
+        readonly RoomServices _roomsServices = new RoomServices();
+        readonly BookingServices _bookingServices = new BookingServices();
 
-        public List<GridViewBuilding> GetGridViewBuildings()
+        public GridViewRooms GetGridViewRooms(DateTime start, DateTime end)
         {
-            var roomsList = roomServices.GetRoomList();
-            var buildingsList = roomsList.Select(x => x.BuildingName).Distinct();
-            List<GridViewBuilding> returnList = new List<GridViewBuilding>();
+            var gridViewRoomsModel = new GridViewRooms();
+            var roomsViewModel = new RoomViewModel ();
 
-            foreach (var building in buildingsList)
+            var roomsList = _roomsServices.GetRoomList();
+            var bookingsList = _bookingServices.GetBookingList().BookingList;
+
+            bookingsList = bookingsList.Where(x => x.StartDate <= end || x.EndDate >= start).ToList();
+
+            Enumerable.Range(0, 1 + end.Subtract(start).Days).Select(offset => start.AddDays(offset)).ToArray();
+
+            List<string> datesList = new List<string>();
+
+            foreach (var room in roomsList)
             {
-                var floorslist = roomsList.Where(x => x.BuildingName == building).Select(x => x.FloorNumber).Distinct();
-                var build = new GridViewBuilding();
-                build.BuildingName = building;
-                foreach (var floor in floorslist)
+                for (var dt = start; dt <= end; dt = dt.AddDays(1))
                 {
-                    var roomList = roomsList.Where(x => x.BuildingName == building && x.FloorNumber == floor).OrderBy(x => x.RoomNumber);
+                    var currentDay = bookingsList.FirstOrDefault(x => (x.StartDate <= dt && x.EndDate >= dt) && x.RoomId == room.Id);
 
-                    var newfloor = new GridViewFloors();
-                    newfloor.FloorNumber = floor;
-                    foreach (var room in roomList)
+                    if (currentDay== null)
                     {
-                        newfloor.RoomsList.Add(room);
+                        room.BookingsList.Add(new BookingViewModel());
                     }
-
-                    build.FloorsList.Add(newfloor);
+                    else
+                    {
+                        room.BookingsList.Add(currentDay);
+                    }
                 }
-                returnList.Add(build);
+               
             }
+                 
 
-            return returnList;
+         for (var dt = start; dt <= end; dt = dt.AddDays(1))
+                {
+                    datesList.Add(dt.ToString("ddd M/dd/yyyy"));
+
+                }
+            
+            return new GridViewRooms() {RoomsList = roomsList, DatesList = datesList};
+
         }
     }
 }
