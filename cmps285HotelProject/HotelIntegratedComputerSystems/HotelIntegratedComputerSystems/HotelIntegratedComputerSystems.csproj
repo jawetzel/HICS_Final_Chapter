@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\BuildingsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeShiftViewModelsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpensesController.cs" />
@@ -319,6 +320,7 @@
     <Compile Include="Services\Admin\RoomServices.cs" />
     <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
+    <Compile Include="Services\Employee\ClockInServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\Employee\BookingServices.cs" />
     <Compile Include="Services\GridViewService\GridViewServices.cs" />
@@ -492,6 +494,9 @@
     <Content Include="Views\Expenses\Edit.cshtml" />
     <Content Include="Views\Expenses\Index.cshtml" />
     <Content Include="Views\NotAuthorized\Index.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Create.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Edit.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
