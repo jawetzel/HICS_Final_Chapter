@@ -47,7 +47,5 @@ namespace HotelIntegratedComputerSystems.Models
         public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.MaintenanceLog.MaintenanceLogViewModel> MaintenanceLogViewModels { get; set; }
 
         public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.ExpensesViewModel> ExpensesViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<HotelIntegratedComputerSystems.Models.Admin.EmployeeShiftViewModel> EmployeeShiftViewModels { get; set; }
     }
 }
