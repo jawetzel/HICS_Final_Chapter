@@ -22,6 +22,16 @@
 
 function signOut() {
 
+    try {
+        //	let us actually log out of the application now
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.disconnect();
+        auth2.asignOut();
+    }
+    //	let us actually log out of the application now
+    catch (e) {
+        console.log(e.message, e.name); // pass exception object to err handler
+    }
 
     //  log the user out(backend)
     $.ajax({
@@ -34,17 +44,6 @@ function signOut() {
     var scriptTag = document.createElement("script");
     scriptTag.src = "https://mail.google.com/mail/u/0/?logout&hl=en";
     document.head.appendChild(scriptTag);
-
-    try{
-        //	let us actually log out of the application now
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.disconnect();
-        auth2.asignOut();
-    }
-    //	let us actually log out of the application now
-    catch (e) {
-        console.log(e.message, e.name); // pass exception object to err handler
-    }
 
     window.open("http://localhost:52703/Home", "_self");
 }

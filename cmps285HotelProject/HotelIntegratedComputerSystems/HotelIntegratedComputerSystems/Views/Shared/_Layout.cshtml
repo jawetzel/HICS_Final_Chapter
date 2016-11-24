@@ -117,10 +117,10 @@
                      @if (userLoggedIn)
                      {
                         <div class="dropdown navbar-right">
-                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">@Html.DisplayName("Welcome " + userName) <span class="caret"></span></button>
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Html.DisplayName(" " + userName) <span class="caret"></span></button>
                    <ul class="dropdown-menu">
                        <li>
-                         <a onclick="signOut()">Sign Out</a>
+                         <a onclick="signOut()"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a>
                        </li>
                        </ul>    
                             </div>
