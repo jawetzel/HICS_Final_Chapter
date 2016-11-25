@@ -1,0 +1,87 @@
+﻿@using HotelIntegratedComputerSystems.Models.Admin
+@using HotelIntegratedComputerSystems.Models.GridView
+@model HotelIntegratedComputerSystems.Models.GridView.GridViewRooms
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <style>
+        div {
+            overflow-x: auto;   /* Scrollbar is displayed as it's needed */
+        }
+    </style>
+</head>
+
+<h2></h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+        <input type="date" name="startDate" />
+        <input type="date" name="endDate" />
+        <input type="submit" />
+    }
+</p>
+
+<div class="panel panel-primary">
+    <div id="div2" class="panel-heading">
+        <h3 class="panel-title">Grid View</h3>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+        <tbody>
+        <tr>
+            <th>
+                Building
+                <input type="text" id="myInput1" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Building" />
+            </th>
+            <th>
+                Floor #
+                <input type="text" id="myInput2" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+            </th>
+            <th>
+                Room Name
+                <input type="text" id="myInput3" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Room" />
+            </th>
+            <th>
+                Clean Status
+                <input type="text" id="myInput4" onkeyup="filterFunctionColumn4('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Clean Status" />
+            </th>
+            @foreach (var item in Model.DatesList)
+            {
+                <th>
+                    @Html.DisplayFor(modelItem => item)
+                </th>
+
+            }
+        </tr>
+
+        @foreach (var currentRoom in Model.RoomsList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => currentRoom.BuildingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => currentRoom.FloorNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => currentRoom.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => currentRoom.HouseKeepingStatus)
+                </td>
+                @foreach (var currentBooking in currentRoom.BookingsList)
+                {
+                    <td data-toggle="collapse" data-target="#table1" class="accordion-toggle">
+                        <a class="alert-success">@Html.DisplayFor(modelItem => currentBooking.CustomerName)</a>
+                    </td>
+                }
+            </tr>
+
+        }
+        </tbody>
+    </table>
+</div>
