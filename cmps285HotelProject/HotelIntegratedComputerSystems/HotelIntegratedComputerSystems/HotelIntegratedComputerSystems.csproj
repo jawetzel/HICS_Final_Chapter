@@ -338,20 +338,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Bannner\banner.js" />
-    <Content Include="Content\Bannner\banner.png" />
-    <Content Include="Content\Bannner\hics_acronym.png" />
-    <Content Include="Content\Bannner\html5_Example.html" />
-    <Content Include="Content\Bannner\logo.png" />
-    <Content Include="Content\Bannner\spin.min.js" />
-    <Content Include="Content\Bannner\TweenMax.1.11.4.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Login-Logout-Navbar.css" />
-    <Content Include="Content\main_theme.css" />
-    <Content Include="Content\W3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -389,7 +380,6 @@
     <Content Include="Models\HicsDb.edmx.diagram">
       <DependentUpon>HicsDb.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\Bannner\hics_acronym.psd" />
     <Content Include="Mvc.sitemap" />
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
@@ -519,7 +509,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Bannner\_notes\" />
     <Folder Include="Controllers\Maintainance\" />
     <Folder Include="Controllers\Unaccessible\" />
     <Folder Include="Models\Housekeeping\" />

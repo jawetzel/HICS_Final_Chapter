@@ -13,41 +13,42 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>MaintenanceLogViewModel</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaintenanceLog.Id)
         
         
         
         <div class="form-group">
-            @Html.Label("FirstName", "Room", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaintenanceLog.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
+                </div>
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaintenanceLog.Floor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="container">
-                        <div class="container">
-                            @Html.Label("Building")
-                            @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                        </div>
-                        <div class="container">
-                            @Html.Label("Floor")
-                            @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                        </div>
-                        <div class="container">
-                            @Html.Label("Room")
-                            @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })                        </div>
+                @Html.EditorFor(model => model.MaintenanceLog.Floor, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.Floor, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <input class="form-control" id="RoomId" type="text" placeholder="Roomid" disabled style="display: none;">
-                </div>
-                <div class="container">
-                    <input class="showSuggestions" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaintenanceLog.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.RoomNumber, "", new { @class = "text-danger" })
+                <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
+            </div>
+        </div>
+        <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(RoomsList)">
+            <div class="modal-dialog">
                 <div id="RoomsList" class="panel panel-primary" style="display: none;">
                     <div class="panel-heading">
                         <h3 class="panel-title">Rooms</h3>
                     </div>
+                    <div class="modal-content">
                     <table class="table table-hover table-bordered" id="RoomTable">
                         <thead>
                         <tr>
@@ -78,15 +79,16 @@
                                     @Html.DisplayFor(modelItem => item.RoomNumber)
                                 </td>
                                 <td>
-                                    <input type="button" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')"/>
+                                    <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')"/>
                                 </td>
                             </tr>
                         }
                         </tbody>
                     </table>
                 </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
 
 
@@ -109,11 +111,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="container">
-                    @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })                </div>
-                <div class="container">
-                    <input class="showSuggestions" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
-                </div>
+                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
+                <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
+            </div>
+        </div>
+        <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(MaintenanceTypes)">
+            <div class="modal-dialog">
                 <div id="MaintenanceTypes" class="panel panel-primary" style="display: none;">
                     <div class="panel-heading">
                         <h3 class="panel-title">Maintenance Types</h3>
@@ -136,22 +140,22 @@
                                         @Html.DisplayFor(modelItem => item.Type)
                                     </td>
                                     <td>
-                                        <input type="button" value="Select" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, MaintenanceTypes, 'MaintenanceLog_MaintenanceType')" />
+                                        <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, MaintenanceTypes, 'MaintenanceLog_MaintenanceType')" />
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
+                </div>
             </div>
-        </div>
+            
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
 }
 
 <div>

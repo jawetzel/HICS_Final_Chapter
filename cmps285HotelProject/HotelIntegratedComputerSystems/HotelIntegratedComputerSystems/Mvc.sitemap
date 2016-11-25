@@ -22,8 +22,8 @@
           <mvcSiteMapNode title="Delete" controller="RoomTypes" action="Delete"/>
         </mvcSiteMapNode>
       </mvcSiteMapNode>
-      <mvcSiteMapNode title="Employees" controller="Home" action="Index" clickable="false">
-          <mvcSiteMapNode title="Employees" controller="Employees" action="Index" clickable="false">
+      <mvcSiteMapNode title="Employees" controller="Employees" action="Index" clickable="false">
+          <mvcSiteMapNode title="Employees" controller="Employees" action="Index">
             <mvcSiteMapNode title="Create" controller="Employees" action="Create"/>
             <mvcSiteMapNode title="Edit" controller="Employees" action="Edit"/>
             <mvcSiteMapNode title="Delete" controller="Employees" action="Delete"/>

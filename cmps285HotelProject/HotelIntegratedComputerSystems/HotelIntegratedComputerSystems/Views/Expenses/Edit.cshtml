@@ -10,10 +10,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ExpensesViewModel</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
@@ -46,16 +42,12 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
+                <input class="showSuggestions" type="button" data-target="#Modal1" data-toggle="modal" name="ShowBookings" value="Select Booking" onclick="showTable(BookingList)" />
             </div>
         </div>
-
-
-
-
-        <div class="container">
-            <input class="showSuggestions" type="button" name="ShowBookings" value="Select Booking" onclick="showTable(BookingList)" />
-        </div>
-        <div id="BookingList" class="panel panel-primary" style="display: none;">
+        <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(BookingList)">
+            <div class="modal-dialog">
+            <div id="BookingList" class="panel panel-primary" style="display: none;">
             <div class="panel-heading">
                 <h3 class="panel-title">Bookings</h3>
             </div>
@@ -95,14 +87,17 @@
                                 @Html.DisplayFor(modelItem => item.RoomNumber)
                             </td>
                             <td>
-                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo4(this.parentElement.parentElement, BookingList, 'CustomerName', 'BuildingName', 'FloorNumber', 'RoomNumber')" />
+                                <input type="button" data-dismiss="modal" value="Select" class="btn btn-default" onclick="forwardTo4(this.parentElement.parentElement, BookingList, 'CustomerName', 'BuildingName', 'FloorNumber', 'RoomNumber')" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div> 
-        
+        </div>
+                </div>
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.ExpenseTypeType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -124,13 +119,12 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ExpenseTypeAmmount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ExpenseTypeAmmount, "", new { @class = "text-danger" })
+                <input class="showSuggestions" data-target="#Modal2" data-toggle="modal" type="button" name="ShowExpenseTypes" value="Select Expense Type" onclick="showTable(ExpenseTypeList)" />
             </div>
         </div>
-        
-        <div class="container">
-            <input class="showSuggestions" type="button" name="ShowExpenseTypes" value="Select Expense Type" onclick="showTable(ExpenseTypeList)" />
-        </div>
-        <div id="ExpenseTypeList" class="panel panel-primary" style="display: none;">
+        <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(ExpenseTypeList)">
+        <div class="modal-dialog">
+            <div id="ExpenseTypeList" class="panel panel-primary" style="display: none;">
             <div class="panel-heading">
                 <h3 class="panel-title">Expense Types</h3>
             </div>
@@ -164,22 +158,19 @@
                                 @Html.DisplayFor(modelItem => item.Ammount)
                             </td>
                             <td>
-                                <input type="button" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, ExpenseTypeList, 'ExpenseTypeType', 'ExpenseTypeDescription', 'ExpenseTypeAmmount')" />
+                                <input type="button" data-dismiss="modal" value="Select" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, ExpenseTypeList, 'ExpenseTypeType', 'ExpenseTypeDescription', 'ExpenseTypeAmmount')" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div> 
-
+            </div>
+            </div>
+}
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "Index") | <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
