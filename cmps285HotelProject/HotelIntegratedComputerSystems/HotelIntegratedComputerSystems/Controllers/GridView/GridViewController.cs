@@ -22,6 +22,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         public ActionResult Index(DateTime startDate, DateTime endDate)
         {
             return View(_service.GetGridViewRooms(startDate, endDate));
+
         }
 
         // GET: GridView/Details/5
