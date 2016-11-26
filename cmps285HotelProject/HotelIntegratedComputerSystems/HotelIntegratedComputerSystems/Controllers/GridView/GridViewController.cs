@@ -13,7 +13,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
     public class GridViewController : BaseController
     {
         private  readonly GridViewServices _service = new GridViewServices();
-        private readonly CustomerServices _customerService = new GridVCustomerServicesiewServices();
+        private readonly CustomerServices _customerService = new CustomerServices();
 
         // GET: GridView
         public ActionResult Index()
@@ -44,6 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         {
             var actionResult = View();
             return actionResult;
+
         }
 
         [HttpPost]
