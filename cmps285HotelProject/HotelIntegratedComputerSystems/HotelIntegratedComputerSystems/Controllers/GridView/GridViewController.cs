@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Web.Mvc;
+using HotelIntegratedComputerSystems.Models.Employees;
+using HotelIntegratedComputerSystems.Services.Employee;
 using HotelIntegratedComputerSystems.Services.GridViewService;
 
 namespace HotelIntegratedComputerSystems.Controllers.GridView
@@ -11,6 +13,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
     public class GridViewController : BaseController
     {
         private  readonly GridViewServices _service = new GridViewServices();
+        private readonly CustomerServices _customerService = new GridVCustomerServicesiewServices();
 
         // GET: GridView
         public ActionResult Index()
@@ -39,7 +42,17 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Create
         public ActionResult Create()
         {
-            return View();
+            var actionResult = View();
+            return actionResult;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
+        {
+            if (!ModelState.IsValid) return View(customersViewModel);
+            _customerService.CreateNewCustomer(customersViewModel);
+            return RedirectToAction("Index");
         }
 
         // POST: GridView/Create
