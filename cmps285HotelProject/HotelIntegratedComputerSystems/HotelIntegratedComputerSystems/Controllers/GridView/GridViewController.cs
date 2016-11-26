@@ -44,6 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         {
             var actionResult = View();
             return actionResult;
+
         }
 
         [HttpPost]

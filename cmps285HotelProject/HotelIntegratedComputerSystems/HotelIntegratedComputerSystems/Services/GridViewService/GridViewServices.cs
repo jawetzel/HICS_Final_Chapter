@@ -18,9 +18,6 @@ namespace HotelIntegratedComputerSystems.Services.GridViewService
 
         public GridViewRooms GetGridViewRooms(DateTime start, DateTime end)
         {
-            var gridViewRoomsModel = new GridViewRooms();
-            var roomsViewModel = new RoomViewModel ();
-
             var roomsList = _roomsServices.GetRoomList();
             var bookingsList = _bookingServices.GetBookingList().BookingList;
 
