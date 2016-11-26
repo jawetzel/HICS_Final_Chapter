@@ -15,7 +15,7 @@ namespace HotelIntegratedComputerSystems.Services.Employee
         readonly EmployeeShiftServices _employeeShiftService = new EmployeeShiftServices();
         public List<EmployeeShiftViewModel> GetShiftsForEmployee()
         {
-            return _employeeShiftService.GetEmployeeShiftList().Where(x => x.EmployeeName == GoogleAccount.Name).ToList();
+            return _employeeShiftService.GetEmployeeShiftList().Where(x => x.EmployeeName == GoogleAccount.Name).OrderByDescending(x => x.ClockInDate).ToList();
         }
 
         public Models.Employee GetCurrentEmployee()
@@ -26,7 +26,8 @@ namespace HotelIntegratedComputerSystems.Services.Employee
         public int GetOpenEmployeeShift()
         {
             var employee = GetCurrentEmployee();
-            return Db.EmployeeShifts.First(x => x.EmployeeId == employee.Id && x.ClockOut == null).Id;
+            var shift = Db.EmployeeShifts.FirstOrDefault(x => x.EmployeeId == employee.Id && x.ClockOut == null);
+            return shift?.Id ?? 0;
         }
 
         public void CreateNewEmployeeShift(EmployeeShiftViewModel shift)
@@ -43,17 +44,9 @@ namespace HotelIntegratedComputerSystems.Services.Employee
 
         public void PostChangesForEdit(EmployeeShiftViewModel shift)
         {
-            var dbShift = FindEntryById(GetOpenEmployeeShift());
-            Db.Entry(new EmployeeShift()
-            {
-                Id = dbShift.Id,
-                CashTakeIn = dbShift.CashTakenIn,
-                CashPutInSafe = shift.CashPutInSafe,
-                ClockOut = DateTime.Now,
-                EmployeeId = shift.EmployeeId
-
-            })
-            .State = EntityState.Modified;
+            Db.Entry(Db.EmployeeShifts.Local.First()).State = EntityState.Modified;
+            Db.EmployeeShifts.Local.First().ClockOut = DateTime.Now;
+            Db.EmployeeShifts.Local.First().CashPutInSafe = shift.CashPutInSafe;
             Db.SaveChanges();
         }
 
