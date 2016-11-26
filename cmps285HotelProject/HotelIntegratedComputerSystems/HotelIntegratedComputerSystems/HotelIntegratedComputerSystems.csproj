@@ -212,7 +212,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\BuildingsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
-    <Compile Include="Controllers\Admin\EmployeeShiftViewModelsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpensesController.cs" />
@@ -225,6 +224,7 @@
     <Compile Include="Controllers\Default\GoogleAccount.cs" />
     <Compile Include="Controllers\Default\NotAuthorizedController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
+    <Compile Include="Controllers\GridView\GridViewController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
     <Compile Include="Controllers\Employees\BookingsController.cs" />
@@ -271,7 +271,7 @@
     <Compile Include="Models\ExpenseType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GridViewBuilding.cs" />
+    <Compile Include="Models\GridView\GridViewRooms.cs" />
     <Compile Include="Models\HouseKeepingStatus.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -332,7 +332,6 @@
     <Compile Include="Services\Admin\RoomServices.cs" />
     <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
-    <Compile Include="Services\Employee\ClockInServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\Employee\BookingServices.cs" />
     <Compile Include="Services\GridViewService\GridViewServices.cs" />
@@ -344,6 +343,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GridViewStyleSheet.css" />
     <Content Include="Content\Login-Logout-Navbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -508,6 +508,11 @@
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+<<<<<<< HEAD
+=======
+    <Content Include="Views\GridView\Index.cshtml" />
+    <Content Include="Views\GridView\Create.cshtml" />
+>>>>>>> Mitchell_purty
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -515,7 +520,6 @@
     <Folder Include="Controllers\Unaccessible\" />
     <Folder Include="Models\Housekeeping\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\GridView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -8,22 +8,25 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaintenanceLog.Id)
-        
-        
-        
+
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                    @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
@@ -49,115 +52,116 @@
                         <h3 class="panel-title">Rooms</h3>
                     </div>
                     <div class="modal-content">
-                    <table class="table table-hover table-bordered" id="RoomTable">
-                        <thead>
-                        <tr>
-                            <th>
-                                <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building"/>
-                            </th>
-                            <th>
-                                <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor"/>
-                            </th>
-                            <th>
-                                <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room"/>
-                            </th>
-                            <th>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var item in Model.RoomsList)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.BuildingName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FloorNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RoomNumber)
-                                </td>
-                                <td>
-                                    <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')"/>
-                                </td>
-                            </tr>
-                        }
-                        </tbody>
-                    </table>
-                </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.Description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.Date, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
-                <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
-            </div>
-        </div>
-        <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(MaintenanceTypes)">
-            <div class="modal-dialog">
-                <div id="MaintenanceTypes" class="panel panel-primary" style="display: none;">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Maintenance Types</h3>
-                    </div>
-                    <table class="table table-hover table-bordered" id="MaintenanceTypesTable">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <input type="text" id="MaintTypeInput1" onkeyup="filterFunctionColumn1('MaintenanceTypesTable', 'MaintTypeInput1')" class="form-control" data-action="filter" placeholder="Filter Building" />
-                                </th>
-                                <th>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.MaintenanceTypeList)
-                            {
+                        <table class="table table-hover table-bordered" id="RoomTable">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Type)
-                                    </td>
-                                    <td>
-                                        <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, MaintenanceTypes, 'MaintenanceLog_MaintenanceType')" />
-                                    </td>
+                                    <th>
+                                        <input type="text" id="RoomsListInput1" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                                    </th>
+                                    <th>
+                                        <input type="text" id="RoomsListInput2" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+                                    </th>
+                                    <th>
+                                        <input type="text" id="RoomsListInput3" onkeyup="filterFunctionColumn3('RoomTable', 'RoomsListInput1', 'RoomsListInput2', 'RoomsListInput3')" class="form-control" data-action="filter" placeholder="Filter Room" />
+                                    </th>
+                                    <th>
+                                    </th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.RoomsList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BuildingName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FloorNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo3(this.parentElement.parentElement, RoomsList, 'MaintenanceLog_BuildingName', 'MaintenanceLog_Floor', 'MaintenanceLog_RoomNumber')" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                </div>
-            </div>
-            
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaintenanceLog.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaintenanceLog.Description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MaintenanceLog.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaintenanceLog.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaintenanceLog.Date, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MaintenanceLog.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaintenanceLog.MaintenanceType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
+                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
+                </div>
+            </div>
+            <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(MaintenanceTypes)">
+                <div class="modal-dialog">
+                    <div id="MaintenanceTypes" class="panel panel-primary" style="display: none;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Maintenance Types</h3>
+                        </div>
+                        <table class="table table-hover table-bordered" id="MaintenanceTypesTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="text" id="MaintTypeInput1" onkeyup="filterFunctionColumn1('MaintenanceTypesTable', 'MaintTypeInput1')" class="form-control" data-action="filter" placeholder="Filter Building" />
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.MaintenanceTypeList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Type)
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Select" data-dismiss="modal" class="btn btn-default" onclick="forwardTo1(this.parentElement.parentElement, MaintenanceTypes, 'MaintenanceLog_MaintenanceType')" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </div>

@@ -3,79 +3,76 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index" clickable="false">
-    <mvcSiteMapNode title="Admin" controller="Home" action="Index" clickable="false">
-      <mvcSiteMapNode title="Rooms" controller="Rooms" action="Index" clickable="false">
+  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+      <mvcSiteMapNode title="Admin" controller="Admin" action="Index" clickable="false">
         <mvcSiteMapNode title="Buildings" controller="Buildings" action="Index">
-          <mvcSiteMapNode title="Create" controller="Buildings" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="Buildings" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="Buildings" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="Buildings" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="Buildings" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="Buildings" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
         <mvcSiteMapNode title="Rooms" controller="Rooms" action="Index">
-          <mvcSiteMapNode title="Create" controller="Rooms" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="Rooms" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="Rooms" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="Rooms" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="Rooms" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="Rooms" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
         <mvcSiteMapNode title="RoomTypes" controller="RoomTypes" action="Index">
-          <mvcSiteMapNode title="Create" controller="RoomTypes" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="RoomTypes" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="RoomTypes" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="RoomTypes" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="RoomTypes" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="RoomTypes" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
-      </mvcSiteMapNode>
-      <mvcSiteMapNode title="Employees" controller="Employees" action="Index" clickable="false">
-          <mvcSiteMapNode title="Employees" controller="Employees" action="Index">
-            <mvcSiteMapNode title="Create" controller="Employees" action="Create"/>
-            <mvcSiteMapNode title="Edit" controller="Employees" action="Edit"/>
-            <mvcSiteMapNode title="Delete" controller="Employees" action="Delete"/>
-          </mvcSiteMapNode>
-          <mvcSiteMapNode title="EmployeeTypes" controller="EmployeeTypes" action="Index"  clickable="false">
-            <mvcSiteMapNode title="Create" controller="EmployeeTypes" action="Create"/>
-            <mvcSiteMapNode title="Edit" controller="EmployeeTypes" action="Edit"/>
-            <mvcSiteMapNode title="Delete" controller="EmployeeTypes" action="Delete"/>
-          </mvcSiteMapNode>
-          <mvcSiteMapNode title="EmployeeShifts" controller="EmployeeShifts" action="Index" clickable="false">
-            <mvcSiteMapNode title="Create" controller="EmployeeShifts" action="Create"/>
-            <mvcSiteMapNode title="Edit" controller="EmployeeShifts" action="Edit"/>
-            <mvcSiteMapNode title="Delete" controller="EmployeeShifts" action="Delete"/>
-          </mvcSiteMapNode>
-      </mvcSiteMapNode>
+        <mvcSiteMapNode title="Employees" controller="Employees" action="Index">
+          <mvcSiteMapNode title="Create" controller="Employees" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="Employees" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="Employees" action="Delete" preservedRouteParameters="id"/>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="EmployeeTypes" controller="EmployeeTypes" action="Index">
+          <mvcSiteMapNode title="Create" controller="EmployeeTypes" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="EmployeeTypes" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="EmployeeTypes" action="Delete" preservedRouteParameters="id"/>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="EmployeeShifts" controller="EmployeeShifts" action="Index">
+          <mvcSiteMapNode title="Create" controller="EmployeeShifts" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="EmployeeShifts" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="EmployeeShifts" action="Delete" preservedRouteParameters="id"/>
+        </mvcSiteMapNode>
       <mvcSiteMapNode title="ExpenseTypes" controller="ExpenseTypes" action="Index">
-          <mvcSiteMapNode title="Create" controller="ExpenseTypes" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="ExpenseTypes" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="ExpenseTypes" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="ExpenseTypes" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="ExpenseTypes" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="ExpenseTypes" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
     </mvcSiteMapNode>
   
     <mvcSiteMapNode title="Front Desk" controller="Bookings" action="Bookings" clickable="false">
       <mvcSiteMapNode title="Bookings" controller="Bookings" action="Index">
-          <mvcSiteMapNode title="Create" controller="Bookings" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="Bookings" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="Bookings" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="Bookings" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="Bookings" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="Bookings" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
       <mvcSiteMapNode title="Customers" controller="Customers" action="Index">
-        <mvcSiteMapNode title="Create" controller="Customers" action="Create"/>
-        <mvcSiteMapNode title="Edit" controller="Customers" action="Edit"/>
-        <mvcSiteMapNode title="Delete" controller="Customers" action="Delete"/>
+        <mvcSiteMapNode title="Create" controller="Customers" action="Create" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Edit" controller="Customers" action="Edit" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Delete" controller="Customers" action="Delete" preservedRouteParameters="id"/>
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Expenses" controller="Expenses" action="Index">
-        <mvcSiteMapNode title="Create" controller="Expenses" action="Create"/>
-        <mvcSiteMapNode title="Edit" controller="Expenses" action="Edit"/>
-        <mvcSiteMapNode title="Delete" controller="Expenses" action="Delete"/>
+        <mvcSiteMapNode title="Create" controller="Expenses" action="Create" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Edit" controller="Expenses" action="Edit" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Delete" controller="Expenses" action="Delete" preservedRouteParameters="id"/>
       </mvcSiteMapNode>
   </mvcSiteMapNode>
     <mvcSiteMapNode title="Maid Service" controller="HouseKeeping" action="Index">
-      <mvcSiteMapNode title="HouseKeeping" controller="HouseKeeping" action="Index" clickable="false"/>
-  </mvcSiteMapNode>
+        <mvcSiteMapNode title="HouseKeeping" controller="HouseKeeping" action="Index"/>
+    </mvcSiteMapNode>
+
     <mvcSiteMapNode title="Maintainance" controller="MaintenanceLogs" action="About" clickable="false">
       <mvcSiteMapNode title="MaintenanceLogs" controller="MaintenanceLogs" action="Index" >
-          <mvcSiteMapNode title="Create" controller="MaintenanceLogs" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="MaintenanceLogs" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="MaintenanceLogs" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="MaintenanceLogs" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="MaintenanceLogs" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="MaintenanceLogs" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
         <mvcSiteMapNode title="MaintenanceTypes" controller="MaintenanceTypes" action="Index">
-          <mvcSiteMapNode title="Create" controller="MaintenanceTypes" action="Create"/>
-          <mvcSiteMapNode title="Edit" controller="MaintenanceTypes" action="Edit"/>
-          <mvcSiteMapNode title="Delete" controller="MaintenanceTypes" action="Delete"/>
+          <mvcSiteMapNode title="Create" controller="MaintenanceTypes" action="Create" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Edit" controller="MaintenanceTypes" action="Edit" preservedRouteParameters="id"/>
+          <mvcSiteMapNode title="Delete" controller="MaintenanceTypes" action="Delete" preservedRouteParameters="id"/>
         </mvcSiteMapNode>
 
     </mvcSiteMapNode>

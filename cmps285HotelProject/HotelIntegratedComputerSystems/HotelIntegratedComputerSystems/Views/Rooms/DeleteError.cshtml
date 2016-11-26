@@ -3,10 +3,14 @@
     ViewBag.Title = "DeleteError";
 }
 
-<h2>Delete Room Error</h2>
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Delete Room Error</h3>
+    </div>
+    @Html.Partial("_CannotDeleteError")
 
-@Html.Partial("_CannotDeleteError")
-
-<div class="form-actions no-color">
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </div>

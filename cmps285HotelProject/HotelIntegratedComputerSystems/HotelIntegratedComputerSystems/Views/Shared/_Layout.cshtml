@@ -14,11 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - H.I.C.S.</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/W3.css")
-    @Styles.Render("~/Content/main_theme.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/GoogleAuth.js")
-    @Scripts.Render("~/Scripts/jquery.min.js")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -59,6 +56,8 @@
                                     <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
                                     <li>Expences</li>
                                     <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
+                                    <li>Maintenance</li>
+                                    <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
 
                                 </ul>
                             </div>
@@ -103,9 +102,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maintenance <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                     <li>Maintainance</li>
                                     <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
-                                    <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
                                 </ul>
                             </div>
                         }
@@ -145,9 +142,15 @@
 >>>>>>> Fixed Login buttons in top bar, made things look purdier :D
 
     <div class="container body-content">
+        <h2>
+            @Html.MvcSiteMap().SiteMapPath()
+        </h2>
         @RenderBody()
+<<<<<<< HEAD
         <hr />
 <<<<<<< 62f41743baefd5eb815a59b6757f3adb7beff08d
+=======
+>>>>>>> b8e6db5927e0390aa731ea1fe8fed33db2da35dd
         <div class="navbar-inverse navbar-fixed-bottom">
                 <footer>
 =======
@@ -156,9 +159,7 @@
                 <p class="text-muted">
 >>>>>>> Fixed Login buttons in top bar, made things look purdier :D
                     &copy; @DateTime.Now.Year - H.I.C.S.
-                    <div>
-                    @Html.MvcSiteMap().SiteMapPath()
-                        </div>
+                    
                 </footer>
         </div>
         </div>
