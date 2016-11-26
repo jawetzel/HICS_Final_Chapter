@@ -225,6 +225,7 @@
     <Compile Include="Controllers\Default\GoogleAccount.cs" />
     <Compile Include="Controllers\Default\NotAuthorizedController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
+    <Compile Include="Controllers\Employees\ClockInClockOutController.cs" />
     <Compile Include="Controllers\GridView\GridViewController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
@@ -513,9 +514,9 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\GridView\Index.cshtml" />
     <Content Include="Views\GridView\Create.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Create.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Edit.cshtml" />
-    <Content Include="Views\EmployeeShiftViewModels\Index.cshtml" />
+    <Content Include="Views\ClockInClockOut\Create.cshtml" />
+    <Content Include="Views\ClockInClockOut\Edit.cshtml" />
+    <Content Include="Views\ClockInClockOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
