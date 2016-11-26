@@ -342,6 +342,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GridViewStyleSheet.css" />
     <Content Include="Content\Login-Logout-Navbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -506,6 +507,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Views\GridView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -513,7 +515,6 @@
     <Folder Include="Controllers\Unaccessible\" />
     <Folder Include="Models\Housekeeping\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\GridView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

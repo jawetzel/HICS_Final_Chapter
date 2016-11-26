@@ -4,74 +4,80 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete Expense</h2>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BuildingName)
-        </dt>
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Delete Expense</h3>
+    </div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BuildingName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BuildingName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FloorNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.FloorNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FloorNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FloorNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CustomerName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpenseTypeType)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExpenseTypeType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpenseTypeType)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ExpenseTypeType)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpenseTypeDescription)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExpenseTypeDescription)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpenseTypeDescription)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ExpenseTypeDescription)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpenseTypeAmmount)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExpenseTypeAmmount)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExpenseTypeAmmount)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ExpenseTypeAmmount)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>
