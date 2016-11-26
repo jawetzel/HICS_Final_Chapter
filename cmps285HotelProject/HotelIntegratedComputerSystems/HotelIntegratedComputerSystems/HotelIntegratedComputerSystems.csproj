@@ -212,6 +212,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\BuildingsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeShiftsController.cs" />
+    <Compile Include="Controllers\Admin\EmployeeShiftViewModelsController.cs" />
     <Compile Include="Controllers\Admin\EmployeeTypesController.cs" />
     <Compile Include="Controllers\Admin\EmployeesController.cs" />
     <Compile Include="Controllers\Admin\ExpensesController.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="Services\Admin\RoomServices.cs" />
     <Compile Include="Services\Admin\RoomTypeServices.cs" />
     <Compile Include="Services\BaseServices.cs" />
+    <Compile Include="Services\Employee\ClockInServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\Employee\BookingServices.cs" />
     <Compile Include="Services\GridViewService\GridViewServices.cs" />
@@ -360,6 +362,7 @@
       <DependentUpon>HicsDb.edmx</DependentUpon>
       <LastGenOutput>HicsDb.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\SqlDataGeneration.sql" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -510,6 +513,9 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\GridView\Index.cshtml" />
     <Content Include="Views\GridView\Create.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Create.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Edit.cshtml" />
+    <Content Include="Views\EmployeeShiftViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
