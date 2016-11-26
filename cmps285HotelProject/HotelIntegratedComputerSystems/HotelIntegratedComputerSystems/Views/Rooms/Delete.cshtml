@@ -4,69 +4,73 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete Room</h2>
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Delete Room</h3>
+    </div>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <dl class="dl-horizontal">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BuildingName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BuildingName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BuildingName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomType)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoomType)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomType)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HouseKeepingStatus)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HouseKeepingStatus)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HouseKeepingStatus)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HouseKeepingStatus)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomStatus)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomStatus)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoomStatus)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomStatus)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FloorNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FloorNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FloorNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FloorNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomNumber)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>

@@ -4,62 +4,66 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete Employee Shift</h2>
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Delete Employee Shift</h3>
+    </div>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClockInDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClockInDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ClockInDate)
+                @Html.DisplayFor(model => model.ClockInTime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClockInDate)
-            @Html.DisplayFor(model => model.ClockInTime)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClockOutDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClockOutDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ClockOutDate)
+                @Html.DisplayFor(model => model.ClockOutTime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClockOutDate)
-            @Html.DisplayFor(model => model.ClockOutTime)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CashTakenIn)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CashTakenIn)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CashTakenIn)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CashTakenIn)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CashPutInSafe)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CashPutInSafe)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CashPutInSafe)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CashPutInSafe)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>
