@@ -13,21 +13,31 @@
 </head>
 
 <h2></h2>
+<div class="col-lg-2 panel panel-primary">
+    <div class="panel panel-heading">
+        <h3 class="panel-title">Filters</h3>
+    </div>
+    <input type="text" id="myInput1" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Building" />
+    <input type="text" id="myInput2" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Floor" />
+    <input type="text" id="myInput3" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Room" />
+    <input type="text" id="myInput4" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Clean Status" />
+    <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Clean Status" />
+    <p>
+        @using (Html.BeginForm())
+        {
 
-<p>
-    @using (Html.BeginForm())
-    {
-        
-        <input type="date" name="startDate"/>
-        <input type="date" name="endDate"/>
-        <input type="submit" value="Submit Date Range"/>
-    }
+            <input type="date" name="startDate" />
+            <input type="date" name="endDate" />
+            <input type="submit" value="Submit Date Range" />
+        }
 
-    @Html.ActionLink("Create New Customer", "Create")
-</p>
+        @Html.ActionLink("Create New Customer", "Create")
+    </p>
+</div>
+<div class="col-lg-10">
 
 <div class="panel panel-primary">
-    <div id="div2" class="panel panel-heading">
+    <div class="panel panel-heading">
         <h3 class="panel-title">Grid View</h3>
     </div>
     <table class="table table-hover table-bordered" id="dev-table">
@@ -35,23 +45,18 @@
         <tr>
             <th>
                 Building
-                <input type="text" id="myInput1" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Building"/>
             </th>
             <th>
                 Floor #
-                <input type="text" id="myInput2" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Floor"/>
             </th>
             <th>
                 Room Name
-                <input type="text" id="myInput3" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Room"/>
             </th>
             <th>
                 Clean Status
-                <input type="text" id="myInput4" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Clean Status"/>
             </th>
             <th>
                 Room Type
-                <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control" data-action="filter" placeholder="Filter Clean Status"/>
             </th>
             @foreach (var item in Model.DatesList)
             {
@@ -102,4 +107,5 @@
         }
         </tbody>
     </table>
+</div>
 </div>
