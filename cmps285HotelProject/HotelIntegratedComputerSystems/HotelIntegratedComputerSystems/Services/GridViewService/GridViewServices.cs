@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.GridView;
 using HotelIntegratedComputerSystems.Services.Admin;
 using Microsoft.Ajax.Utilities;
 
@@ -12,16 +12,16 @@ namespace HotelIntegratedComputerSystems.Services.GridViewService
     {
         RoomServices roomServices = new RoomServices();
 
-        public List<GridViewBuilding> GetGridViewBuildings()
+        public List<GridViewRooms> GetGridViewRooms()
         {
             var roomsList = roomServices.GetRoomList();
             var buildingsList = roomsList.Select(x => x.BuildingName).Distinct();
-            List<GridViewBuilding> returnList = new List<GridViewBuilding>();
+            List<GridViewRooms> returnList = new List<GridViewRooms>();
 
             foreach (var building in buildingsList)
             {
                 var floorslist = roomsList.Where(x => x.BuildingName == building).Select(x => x.FloorNumber).Distinct();
-                var build = new GridViewBuilding();
+                var build = new GridViewRooms();
                 build.BuildingName = building;
                 foreach (var floor in floorslist)
                 {

@@ -270,7 +270,7 @@
     <Compile Include="Models\ExpenseType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GridViewBuilding.cs" />
+    <Compile Include="Models\GridView\GridViewRooms.cs" />
     <Compile Include="Models\HouseKeepingStatus.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
