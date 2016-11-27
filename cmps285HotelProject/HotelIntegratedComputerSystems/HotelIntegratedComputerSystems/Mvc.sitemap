@@ -4,6 +4,8 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
   <mvcSiteMapNode title="Home" controller="GridView" action="Index">
+    <mvcSiteMapNode title="Create" controller="GridView" action="Create"/>
+
       <mvcSiteMapNode title="Admin" controller="Admin" action="Index" clickable="false">
         <mvcSiteMapNode title="Buildings" controller="Buildings" action="Index">
           <mvcSiteMapNode title="Create" controller="Buildings" action="Create" preservedRouteParameters="id"/>
