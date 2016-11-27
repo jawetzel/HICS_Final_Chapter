@@ -27,13 +27,14 @@
         @using (Html.BeginForm())
         {
             @Html.Label("From:")
-            <input type="date" name="startDate" class="form-control2 col-lg-2" />
+            <input type="date" name="startDate" class="form-control2 col-lg-2" required/>
             @Html.Label("To:")
-            <input type="date" name="endDate" class="form-control2" />
+            <input type="date" name="endDate" class="form-control2" required/>
 
             <input type="submit" value="Submit Date Range" class="form-control2"/>
         }
-            @Html.ActionLink("Add Customer", "Create")
+            @Html.ActionLink("Add Customer", "NewCust")
+            @Html.ActionLink("Add Booking", "NewBook")
         </div>
         </div>
 </div>
