@@ -51,15 +51,15 @@ function signOut() {
 
 function sendToHomePage(typeId) {
     if (typeId == 1) {
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("http://hics.azurewebsites.net/HouseKeeping", "_self");
     }
     else if(typeId == 2){
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("http://hics.azurewebsites.net/HouseKeeping", "_self");
     }
     else if (typeId == 3) {
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("http://hics.azurewebsites.net/GridView", "_self");
     }
     else if (typeId >= 4) {
-        window.open("http://localhost:52703/GridView", "_self");
+        window.open("http://hics.azurewebsites.net/GridView", "_self");
     }
 }
