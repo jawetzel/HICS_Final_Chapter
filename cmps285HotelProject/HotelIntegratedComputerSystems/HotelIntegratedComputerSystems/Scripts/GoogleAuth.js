@@ -33,6 +33,11 @@ function signOut() {
         console.log(e.message, e.name); // pass exception object to err handler
     }
 
+    //	log out of google
+    var scriptTag = document.createElement("script");
+    scriptTag.src = "https://mail.google.com/mail/u/0/?logout&hl=en";
+    document.head.appendChild(scriptTag);
+
     //  log the user out(backend)
     $.ajax({
         type: "POST",
@@ -42,11 +47,6 @@ function signOut() {
             window.open("http://localhost:52703/Home", "_self");
         }
     });
-
-    //	log out of google
-    var scriptTag = document.createElement("script");
-    scriptTag.src = "https://mail.google.com/mail/u/0/?logout&hl=en";
-    document.head.appendChild(scriptTag);
 }
 
 function sendToHomePage(typeId) {
