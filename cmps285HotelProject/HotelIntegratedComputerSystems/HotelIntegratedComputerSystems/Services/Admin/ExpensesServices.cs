@@ -86,6 +86,27 @@ namespace HotelIntegratedComputerSystems.Services.Admin
             return returnModel;
         }
 
+        public List<ExpensesViewModel> GetExpenseByBookingId(BookingViewModel booking)
+        {
+            return (from expense in Db.Expenses1
+                    where expense.BookingId == booking.Id
+                    select new ExpensesViewModel()
+                    {
+                        Id = expense.Id,
+                        BookingId = expense.BookingId,
+                        RoomId = expense.RoomId,
+                        BuildingName = expense.Room.Building.BuildingName,
+                        FloorNumber = expense.Room.FloorNumber,
+                        RoomNumber = expense.Room.RoomNumber,
+                        CustomerName = expense.Booking.Customer.Name,
+                        ExpenseTypeId = expense.ExpenseTypeId,
+                        ExpenseTypeType = expense.ExpenseType.Type,
+                        ExpenseTypeDescription = expense.ExpenseType.Description,
+                        ExpenseTypeAmmount = expense.ExpenseType.Ammount
+
+                    }).ToList();
+        }
+
         public void PostChangesForEdit(ExpensesViewModel model)
         {
             model.RoomId = Db.Rooms.First(x => x.Building.BuildingName == model.BuildingName && x.FloorNumber == model.FloorNumber && x.RoomNumber == model.RoomNumber).Id;

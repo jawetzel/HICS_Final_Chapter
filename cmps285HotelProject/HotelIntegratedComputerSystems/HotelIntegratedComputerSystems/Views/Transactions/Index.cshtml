@@ -1,0 +1,91 @@
+﻿@model HotelIntegratedComputerSystems.Models.Employees.PackageBookings
+@Scripts.Render("~/Scripts/OneFilterPerColumn.js")
+
+@{
+    ViewBag.Title = "trans";
+}
+
+<h2></h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Bookings</h3>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+        <thead>
+            <tr>
+                <th>
+                    Booking #
+                </th>
+                <th>
+                    Customer Name
+                </th>
+                <th>
+                    Room #
+                </th>
+                <th>
+                    Star Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Booking Status
+                </th>
+                <th>
+                    @Html.ActionLink("New Booking", "Create", "Bookings", null, null)
+                </th>
+            </tr>
+
+            <tr>
+                <th>
+                    <input type="text" id="myInput1" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Booking" />
+                </th>
+                <th>
+                    <input type="text" id="myInput2" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Name" />
+                </th>
+                <th>
+                    <input type="text" id="myInput3" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Room #" />
+                </th>
+                <th>
+                    <input type="text" id="myInput4" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Start Date" />
+                </th>
+                <th>
+                    <input type="text" id="myInput5" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="End Date" />
+                </th>
+                <th>
+                    <input type="text" id="myInput6" onkeyup="filterFunctionColumn6('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6')" class="form-control" data-action="filter" placeholder="Filter Status" />
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BookingList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookingStatusDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Check In", "CheckIn", new { id = item.Id }) |
+                        @Html.ActionLink("Check Out", "CheckOut", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
