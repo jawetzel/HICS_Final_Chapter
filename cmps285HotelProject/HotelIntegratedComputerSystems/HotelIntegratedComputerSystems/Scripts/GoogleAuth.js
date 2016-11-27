@@ -51,15 +51,16 @@ function signOut() {
 
 function sendToHomePage(typeId) {
     if (typeId == 1) {
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("/HouseKeeping/Index", "_self");
     }
     else if(typeId == 2){
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("/HouseKeeping/Index", "_self");
     }
     else if (typeId == 3) {
-        window.open("http://localhost:52703/HouseKeeping", "_self");
+        window.open("/GridView/Index", "_self");
     }
     else if (typeId >= 4) {
-        window.open("http://localhost:52703/GridView", "_self");
+        //window.location.href = "/GridView/Index";
+        window.open("/GridView/Index", "_self");
     }
 }
