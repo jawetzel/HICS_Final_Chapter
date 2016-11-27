@@ -94,10 +94,10 @@
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Check Out" class="btn btn-default" />
                 </div>
-                @Html.ActionLink("Edit Booking", "Edit", "Bookings", new { id = Model.Id }, null)
+                @Html.ActionLink("Edit Booking", "Edit", "Bookings", new { id = Model.booking.Id }, null)
             </div>
 
-            <div class="panel">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Expenses</h3>
                 </div>
@@ -157,7 +157,7 @@
     }
 
     <div>
-        @Html.ActionLink("Back to Bookings", "Index")
+        @Html.ActionLink("Back to Transactions", "Index")
     </div>
 </div>
 

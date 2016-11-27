@@ -24,7 +24,6 @@ function forwardTo1(row, listName, loc1) {
 
     var tablerow = row.getElementsByTagName("td");
     document.getElementById(loc1).value = tablerow[0].innerText;
-    showTable(listName);
 }
 
 function forwardTo2(row, listName, loc1, loc2) {
@@ -32,7 +31,6 @@ function forwardTo2(row, listName, loc1, loc2) {
     var tablerow = row.getElementsByTagName("td");
     document.getElementById(loc1).value = tablerow[0].innerText;
     document.getElementById(loc2).value = tablerow[1].innerText;
-    showTable(listName);
 }
 
 function forwardTo3(row, listName, loc1, loc2, loc3) {
@@ -41,7 +39,6 @@ function forwardTo3(row, listName, loc1, loc2, loc3) {
     document.getElementById(loc1).value = tablerow[0].innerText;
     document.getElementById(loc2).value = tablerow[1].innerText;
     document.getElementById(loc3).value = tablerow[2].innerText;
-    showTable(listName);
 }
 
 function forwardTo4(row, listName, loc1, loc2, loc3, loc4) {
@@ -51,7 +48,6 @@ function forwardTo4(row, listName, loc1, loc2, loc3, loc4) {
     document.getElementById(loc2).value = tablerow[1].innerText;
     document.getElementById(loc3).value = tablerow[2].innerText;
     document.getElementById(loc4).value = tablerow[3].innerText;
-    showTable(listName);
 }
 
 function forwardTo5(row, listName, loc1, loc2, loc3, loc4, loc5) {
@@ -62,7 +58,6 @@ function forwardTo5(row, listName, loc1, loc2, loc3, loc4, loc5) {
     document.getElementById(loc3).value = tablerow[2].innerText;
     document.getElementById(loc4).value = tablerow[3].innerText;
     document.getElementById(loc5).value = tablerow[4].innerText;
-    showTable(listName);
 }
 
 function forwardTo6(row, listName, loc1, loc2, loc3, loc4, loc5, loc6) {
@@ -74,7 +69,6 @@ function forwardTo6(row, listName, loc1, loc2, loc3, loc4, loc5, loc6) {
     document.getElementById(loc4).value = tablerow[3].innerText;
     document.getElementById(loc5).value = tablerow[4].innerText;
     document.getElementById(loc6).value = tablerow[5].innerText;
-    showTable(listName);
 }
 
 function forwardTo7(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7) {
@@ -87,7 +81,6 @@ function forwardTo7(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7) {
     document.getElementById(loc5).value = tablerow[4].innerText;
     document.getElementById(loc6).value = tablerow[5].innerText;
     document.getElementById(loc7).value = tablerow[6].innerText;
-    showTable(listName);
 }
 
 function forwardTo8(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8) {
@@ -101,7 +94,6 @@ function forwardTo8(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc
     document.getElementById(loc6).value = tablerow[5].innerText;
     document.getElementById(loc7).value = tablerow[6].innerText;
     document.getElementById(loc8).value = tablerow[7].innerText;
-    showTable(listName);
 }
 
 function forwardTo9(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9) {
@@ -116,7 +108,6 @@ function forwardTo9(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc
     document.getElementById(loc7).value = tablerow[6].innerText;
     document.getElementById(loc8).value = tablerow[7].innerText;
     document.getElementById(loc9).value = tablerow[8].innerText;
-    showTable(listName);
 }
 
 function forwardTo10(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10) {
@@ -132,5 +123,4 @@ function forwardTo10(row, listName, loc1, loc2, loc3, loc4, loc5, loc6, loc7, lo
     document.getElementById(loc8).value = tablerow[7].innerText;
     document.getElementById(loc9).value = tablerow[8].innerText;
     document.getElementById(loc10).value = tablerow[9].innerText;
-    showTable(listName);
 }
