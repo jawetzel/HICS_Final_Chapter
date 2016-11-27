@@ -37,15 +37,16 @@ function signOut() {
     $.ajax({
         type: "POST",
         url: '/Home/LogOut',
-        contentType: "application/json; charset=utf-8"
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            window.open("http://localhost:52703/Home", "_self");
+        }
     });
 
     //	log out of google
     var scriptTag = document.createElement("script");
     scriptTag.src = "https://mail.google.com/mail/u/0/?logout&hl=en";
     document.head.appendChild(scriptTag);
-
-    window.open("http://localhost:52703/Home", "_self");
 }
 
 function sendToHomePage(typeId) {
@@ -59,6 +60,6 @@ function sendToHomePage(typeId) {
         window.open("http://localhost:52703/HouseKeeping", "_self");
     }
     else if (typeId >= 4) {
-        window.open("http://localhost:52703/Employees", "_self");
+        window.open("http://localhost:52703/GridView", "_self");
     }
 }

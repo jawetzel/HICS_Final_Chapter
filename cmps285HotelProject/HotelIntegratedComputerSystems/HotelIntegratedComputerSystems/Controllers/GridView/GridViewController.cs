@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using HotelIntegratedComputerSystems.Models.Employees;
 using HotelIntegratedComputerSystems.Services.Employee;
 using HotelIntegratedComputerSystems.Services.GridViewService;
+using HotelIntegratedComputerSystems.Controllers.Default;
 
 namespace HotelIntegratedComputerSystems.Controllers.GridView
 {
@@ -18,12 +19,14 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView
         public ActionResult Index()
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetGridViewRooms(DateTime.Today, DateTime.Today.AddDays(6)));
         }
 
         [HttpPost]
         public ActionResult Index(DateTime startDate, DateTime endDate)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetGridViewRooms(startDate, endDate));
 
         }
@@ -31,6 +34,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Details/5
         public ActionResult Details(int id)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -42,6 +46,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Create
         public ActionResult Create()
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             var actionResult = View();
             return actionResult;
 
@@ -51,6 +56,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(customersViewModel);
             _customerService.CreateNewCustomer(customersViewModel);
             return RedirectToAction("Index");
@@ -60,10 +66,11 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -75,6 +82,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Edit/5
         public ActionResult Edit(int id)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -82,6 +90,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             try
             {
                 // TODO: Add update logic here
@@ -97,6 +106,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Delete/5
         public ActionResult Delete(int id)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -104,6 +114,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
             try
             {
                 // TODO: Add delete logic here

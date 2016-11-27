@@ -110,7 +110,10 @@
                     </ul>   
                      @if (userLoggedIn)
                      {
-                        <div class="dropdown navbar-right">
+                        <!-- this must never be deleted. It lets us get the user logged in and sign their token out. Keeps user from "log-in log-out log-in log-out ....."-->
+                         <div class="g-signin2" data-height="0" data-width="0" data-longtitle="true" style="visibility: hidden"></div>
+                         
+                         <div class="dropdown navbar-right">
                             <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Html.DisplayName(" " + userName) <span class="caret"></span></button>
                    <ul class="dropdown-menu">
                        <li>
