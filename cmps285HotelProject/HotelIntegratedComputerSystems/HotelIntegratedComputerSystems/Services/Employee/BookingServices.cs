@@ -88,6 +88,8 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                 CustomerName = bookingInquired.Customer.Name,
                 RoomId = bookingInquired.RoomId,
                 RoomNumber = bookingInquired.Room.RoomNumber,
+                FloorNumber = bookingInquired.Room.FloorNumber,
+                BuildingName = bookingInquired.Room.Building.BuildingName,
                 StartDate = bookingInquired.StartDate,
                 EndDate = bookingInquired.EndDate,
                 VolumeAdults = bookingInquired.VolumeAdults,
@@ -99,6 +101,32 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                 RoomsList = _roomServices.GetRoomList()
             } ;
             }
+
+        public PackageBookings FindActiveBookings()
+        {
+            var bookings = from book in Db.Bookings
+                           where book.BookingStatus.BookingStatusDescription == "Checked In" || book.BookingStatus.BookingStatusDescription == "Booked"
+                           select new BookingViewModel()
+                           {
+                               Id = book.Id,
+                               CustomerId = book.CustomerId,
+                               CustomerName = book.Customer.Name,
+                               BuildingName = book.Room.Building.BuildingName,
+                               FloorNumber = book.Room.FloorNumber,
+                               RoomId = book.RoomId,
+                               RoomNumber = book.Room.RoomNumber,
+                               StartDate = book.StartDate,
+                               EndDate = book.EndDate,
+                               VolumeAdults = book.VolumeAdults,
+                               VolumeChildren = book.VolumeChildren,
+                               BookingStatusId = book.BookingStatusId,
+                               CheckedInDate = book.CheckedInDate,
+                               CheckedOutDate = book.CheckedOutDate,
+                               BookingStatusDescription = book.BookingStatus.BookingStatusDescription,
+
+                           };
+            return new PackageBookings() { BookingList = bookings.ToList() };
+        }
 
         public void PostChangesForEdit(BookingViewModel editBooking)
         {

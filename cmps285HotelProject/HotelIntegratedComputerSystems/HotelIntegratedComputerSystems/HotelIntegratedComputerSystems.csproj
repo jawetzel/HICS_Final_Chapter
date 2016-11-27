@@ -224,6 +224,7 @@
     <Compile Include="Controllers\Default\GoogleAccount.cs" />
     <Compile Include="Controllers\Default\NotAuthorizedController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
+    <Compile Include="Controllers\Employees\TransactionsController.cs" />
     <Compile Include="Controllers\GridView\GridViewController.cs" />
     <Compile Include="Controllers\NullController.cs" />
     <Compile Include="Controllers\Default\HomeController.cs" />
@@ -262,6 +263,7 @@
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employees\PackageBookings.cs" />
+    <Compile Include="Models\Employees\TransactionsViewModel.cs" />
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>HicsDb.tt</DependentUpon>
     </Compile>
@@ -334,6 +336,7 @@
     <Compile Include="Services\BaseServices.cs" />
     <Compile Include="Services\Employee\CustomerServices.cs" />
     <Compile Include="Services\Employee\BookingServices.cs" />
+    <Compile Include="Services\Employee\TransactionsServices.cs" />
     <Compile Include="Services\GridViewService\GridViewServices.cs" />
     <Compile Include="Services\MaidService\MaidServiceServices.cs" />
     <Compile Include="Startup.cs" />
@@ -510,6 +513,9 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\GridView\Index.cshtml" />
     <Content Include="Views\GridView\Create.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Transactions\CheckIn.cshtml" />
+    <Content Include="Views\Transactions\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
