@@ -1,5 +1,6 @@
 ﻿@model HotelIntegratedComputerSystems.Models.Employees.PackageBookings
 @Scripts.Render("~/Scripts/OneFilterPerColumn.js")
+@Scripts.Render("~/Scripts/InputSelector.js")
 
 @{
     ViewBag.Title = "trans";
@@ -58,10 +59,10 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="itemTable" onload="selectInput2()">
             @foreach (var item in Model.BookingList)
             {
-                <tr>
+                <tr onload="selectInput2(decider, 'Booked', Checkin, Checkout)">
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -77,15 +78,18 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.EndDate)
                     </td>
-                    <td>
+                    <td id="decider">
                         @Html.DisplayFor(modelItem => item.BookingStatusDescription)
                     </td>
                     <td>
-                        @Html.ActionLink("Check In", "CheckIn", new { id = item.Id }) |
-                        @Html.ActionLink("Check Out", "CheckOut", new { id = item.Id })
+                        <div>@Html.ActionLink("Check In", "CheckIn", new { id = item.Id }) </div>
+                        <div>@Html.ActionLink("Check Out", "CheckOut", new { id = item.Id })</div> 
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+
+<script ></script>

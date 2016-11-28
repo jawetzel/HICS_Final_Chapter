@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MaintenanceLog.BuildingName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.EditorFor(model => model.MaintenanceLog.BuildingName, new { htmlAttributes = new { @class = "form-control", required = "required", style="display:block" } })
                 @Html.ValidationMessageFor(model => model.MaintenanceLog.BuildingName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,12 +42,12 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.MaintenanceLog.RoomNumber, "", new { @class = "text-danger" })
-                <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
+                <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowRooms" value="Select Room"/>
             </div>
         </div>
-        <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(RoomsList)">
+        <div class="modal fad" id="Modal1" role="dialog" >
             <div class="modal-dialog">
-                <div id="RoomsList" class="panel panel-primary" style="display: none;">
+                <div id="RoomsList" class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Rooms</h3>
                     </div>
@@ -116,12 +116,12 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.MaintenanceLog.MaintenanceType, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.MaintenanceLog.MaintenanceType, "", new { @class = "text-danger" })
-                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Maintenance Types" onclick="showTable(MaintenanceTypes)" />
+                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Maintenance Types" />
                 </div>
             </div>
-            <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(MaintenanceTypes)">
+            <div class="modal fade" id="Modal2" role="dialog">
                 <div class="modal-dialog">
-                    <div id="MaintenanceTypes" class="panel panel-primary" style="display: none;">
+                    <div id="MaintenanceTypes" class="panel panel-primary" >
                         <div class="panel-heading">
                             <h3 class="panel-title">Maintenance Types</h3>
                         </div>

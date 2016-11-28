@@ -24,7 +24,6 @@ function forwardTo1(row, listName, loc1) {
 
     var tablerow = row.getElementsByTagName("td");
     document.getElementById(loc1).value = tablerow[0].innerText;
-    showTable(listName);
 }
 
 function forwardTo2(row, listName, loc1, loc2) {
@@ -41,7 +40,6 @@ function forwardTo3(row, listName, loc1, loc2, loc3) {
     document.getElementById(loc1).value = tablerow[0].innerText;
     document.getElementById(loc2).value = tablerow[1].innerText;
     document.getElementById(loc3).value = tablerow[2].innerText;
-    showTable(listName);
 }
 
 function forwardTo4(row, listName, loc1, loc2, loc3, loc4) {

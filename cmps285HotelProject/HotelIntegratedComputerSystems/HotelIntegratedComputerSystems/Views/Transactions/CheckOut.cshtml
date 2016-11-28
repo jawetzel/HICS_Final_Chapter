@@ -1,4 +1,4 @@
-﻿@model HotelIntegratedComputerSystems.Models.Employees.TransactionsViewModel
+﻿@model HotelIntegratedComputerSystems.Models.Employees.BookingViewModel
 @Scripts.Render("~/Scripts/SuggestionTable.js")
 @Scripts.Render("~/Scripts/OneFilterPerColumn.js")
 
@@ -17,84 +17,77 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.CustomerName, "Customer Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerName, "Customer Name:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.booking.CustomerName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.CustomerName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group" hidden>
-            @Html.LabelFor(model => model.booking.CustomerId, "Customer ID:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerId, "Customer ID:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
-                @Html.EditorFor(model => model.booking.CustomerId, new { htmlAttributes = new { @class = "form-control", Id = "CustomerId", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.CustomerId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", Id = "CustomerId", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.RoomNumber, "RoomNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoomNumber, "RoomNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
-                @Html.EditorFor(model => model.booking.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.RoomNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.BuildingName, "BuildingName", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BuildingName, "BuildingName", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
-                @Html.EditorFor(model => model.booking.BuildingName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.BuildingName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.BuildingName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.BuildingName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.FloorNumber, "FloorNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FloorNumber, "FloorNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
-                @Html.EditorFor(model => model.booking.FloorNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.FloorNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FloorNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.FloorNumber, "", new { @class = "text-danger" })
 
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.booking.StartDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.StartDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.booking.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.booking.EndDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                @Html.ValidationMessageFor(model => model.booking.EndDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.booking.VolumeAdults, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.VolumeAdults, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.VolumeAdults, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                    @Html.ValidationMessageFor(model => model.booking.VolumeAdults, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.VolumeAdults, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.VolumeAdults, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.booking.VolumeChildren, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.VolumeChildren, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.booking.VolumeChildren, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                    @Html.ValidationMessageFor(model => model.booking.VolumeChildren, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.VolumeChildren, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.VolumeChildren, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Check Out" class="btn btn-default" />
-                </div>
-                @Html.ActionLink("Edit Booking", "Edit", "Bookings", new { id = Model.Id }, null)
             </div>
 
             <div class="panel">
@@ -154,11 +147,26 @@
 
 
             </div>
+                <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Check Out" class="btn btn-default" />
+        </div>
+    </div>
     }
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.totalSum, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.totalSum, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.totalSum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div>
+        @Html.ActionLink("Edit Booking", "Edit", "Bookings", new { id = Model.Id }, null)
         @Html.ActionLink("Back to Bookings", "Index")
     </div>
+
 </div>
 
 @section Scripts {

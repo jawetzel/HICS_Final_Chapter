@@ -56,11 +56,14 @@ namespace HotelIntegratedComputerSystems.Models.Employees
         [DisplayName("Booking Status:")]
         public int BookingStatusId { get; set; }
 
-        
+        [DisplayName("Total Cost:")]
+        public decimal totalSum { get; set; }
+
+
         public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public List<RoomViewModel> RoomsList { get; set; }
-        public virtual ICollection<Expenses> Expense { get; set; }
+        public virtual List<ExpensesViewModel> Expense { get; set; }
         public virtual List<CustomersViewModel> customers { get; set; }
     }
 }

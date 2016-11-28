@@ -405,6 +405,7 @@
     <Content Include="Scripts\DB Regeneration\SecurityRanks.sql" />
     <Content Include="Scripts\FilterByColumns.js" />
     <Content Include="Scripts\GoogleAuth.js" />
+    <Content Include="Scripts\InputSelector.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />

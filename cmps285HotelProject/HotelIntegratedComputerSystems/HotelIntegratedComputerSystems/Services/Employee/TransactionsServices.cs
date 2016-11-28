@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using HotelIntegratedComputerSystems.Models;
+using HotelIntegratedComputerSystems.Models.Admin;
 using HotelIntegratedComputerSystems.Models.Employees;
 using HotelIntegratedComputerSystems.Services.Admin;
 
@@ -30,28 +31,28 @@ namespace HotelIntegratedComputerSystems.Services.Employee
                 VolumeAdults = checkInBooking.VolumeAdults,
                 VolumeChildren = checkInBooking.VolumeChildren,
                 BookingStatusId = checkInBooking.BookingStatusId,
-                CheckedInDate = DateTime.Now,
+                CheckedInDate = DateTime.Now
             }).State = EntityState.Modified;
             Db.SaveChanges();
         }
 
-        public void PostCheckOut(BookingViewModel checkInBooking)
+        public void PostCheckOut(BookingViewModel checkOutBooking)
         {
-            checkInBooking.BookingStatusId = Db.BookingStatus.First(x => x.BookingStatusDescription == "Checked Out").Id;
-            checkInBooking.RoomId = Db.Rooms.First(x => x.Building.BuildingName == checkInBooking.BuildingName && x.FloorNumber == checkInBooking.FloorNumber && x.RoomNumber == checkInBooking.RoomNumber).Id;
+            checkOutBooking.BookingStatusId = Db.BookingStatus.First(x => x.BookingStatusDescription == "Checked Out").Id;
+            checkOutBooking.RoomId = Db.Rooms.First(x => x.Building.BuildingName == checkOutBooking.BuildingName && x.FloorNumber == checkOutBooking.FloorNumber && x.RoomNumber == checkOutBooking.RoomNumber).Id;
 
             Db.Entry(new Booking()
             {
-                Id = checkInBooking.Id,
-                CustomerId = checkInBooking.CustomerId,
-                RoomId = checkInBooking.RoomId,
-                StartDate = checkInBooking.StartDate,
-                EndDate = checkInBooking.EndDate,
-                VolumeAdults = checkInBooking.VolumeAdults,
-                VolumeChildren = checkInBooking.VolumeChildren,
-                BookingStatusId = checkInBooking.BookingStatusId,
-                CheckedInDate = checkInBooking.CheckedInDate,
-                CheckedOutDate = checkInBooking.CheckedOutDate
+                Id = checkOutBooking.Id,
+                CustomerId = checkOutBooking.CustomerId,
+                RoomId = checkOutBooking.RoomId,
+                StartDate = checkOutBooking.StartDate,
+                EndDate = checkOutBooking.EndDate,
+                VolumeAdults = checkOutBooking.VolumeAdults,
+                VolumeChildren = checkOutBooking.VolumeChildren,
+                BookingStatusId = checkOutBooking.BookingStatusId,
+                CheckedInDate = checkOutBooking.CheckedInDate,
+                CheckedOutDate = DateTime.Now
             }).State = EntityState.Modified;
             Db.SaveChanges();
         }
@@ -79,10 +80,15 @@ namespace HotelIntegratedComputerSystems.Services.Employee
 
 
 
-        public void tallySum(TransactionsViewModel transViewModel)
+        public decimal tallySum(BookingViewModel bookingViewModel)
         {
-            
-
+            List<ExpensesViewModel> bookingExpenses = bookingViewModel.Expense.ToList();
+            decimal sum = 0;
+            foreach (var expense in bookingExpenses)
+            {
+                sum += expense.ExpenseTypeAmmount;
+            }
+            return sum;
         }
     }
 }
