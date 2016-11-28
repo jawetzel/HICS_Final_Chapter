@@ -55,6 +55,9 @@ namespace HotelIntegratedComputerSystems.Models.Employees
             [DisplayName("Booking Status:")]
             public int BookingStatusId { get; set; }
 
+            [DisplayName("Total Cost:")]
+            public decimal totalSum { get; set; }
+
 
             public virtual BookingViewModel booking { get; set; } 
             public virtual Room Room { get; set; }
