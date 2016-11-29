@@ -2,6 +2,7 @@
 @using HotelIntegratedComputerSystems.Models.GridView
 @model HotelIntegratedComputerSystems.Models.GridView.GridViewRooms
 @Scripts.Render("~/Scripts/OneFilterPerColumn.js")
+<script src="~/Scripts/GridView.js"></script>
 
 @{
     ViewBag.Title = "Index";
@@ -15,106 +16,174 @@
 <h2></h2>
 <div class="col-lg-2 col-md-2 col-sm-2">
     <div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Filters</h3>
-    </div>
-    <div class="panel2">
-    <input type="text" id="myInput1" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2 " data-action="filter" placeholder="Filter Building" />
-    <input type="text" id="myInput2" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Floor" />
-    <input type="text" id="myInput3" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room" />
-    <input type="text" id="myInput4" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Clean Status" />
-    <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room Type" />
-        @using (Html.BeginForm())
-        {
-            @Html.Label("Date Range:")
-            <input type="date" name="startDate" class="form-control2 col-lg-2" required/>
-            <input type="date" name="endDate" class="form-control2" required/>
-            <input type="submit" value="Submit Date Range" class="form-control2"/>
-        }
-        <div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Filters</h3>
+        </div>
+        <div class="panel2">
+            <input type="text" id="myInput1" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2 " data-action="filter" placeholder="Filter Building" />
+            <input type="text" id="myInput2" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Floor" />
+            <input type="text" id="myInput3" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room" />
+            <input type="text" id="myInput4" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Clean Status" />
+            <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room Type" />
+
+            @using (Html.BeginForm())
+            {
+                @Html.Label("From:")
+                <input id="startDate" type="date" name="startDate" class="form-control2 col-lg-2" required />
+                @Html.Label("To:")
+                <input id="endDate" type="date" name="endDate" class="form-control2" required />
+
+                <input type="submit" value="Submit Date Range" class="form-control2" />
+            }
             @Html.ActionLink("Add Customer", "NewCust")
         </div>
         <div>
             @Html.ActionLink("Add Booking", "NewBook")
-    </div>
+        </div>
 
-        </div>
-        </div>
+    </div>
 </div>
+
+
 <div class="col-lg-10 col-md-10 col-sm-10">
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Grid View</h3>
-    </div>
-    <div class="panel1">
-    <table class="table table-hover table-bordered" id="dev-table">
-        <thead>
-        <tr>
-            <th>
-                Building
-            </th>
-            <th>
-                Floor #
-            </th>
-            <th>
-                Room Name
-            </th>
-            <th>
-                Clean Status
-            </th>
-            <th>
-                Room Type
-            </th>
-            @foreach (var item in Model.DatesList)
-            {
-                <th>
-                    @Html.DisplayFor(modelItem => item)
-                </th>
-
-            }
-        </tr>
-            </thead>
-        <tbody >
-        @foreach (var currentRoom in Model.RoomsList)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => currentRoom.BuildingName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => currentRoom.FloorNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => currentRoom.RoomNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => currentRoom.HouseKeepingStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => currentRoom.RoomType)
-                </td>
-                @foreach (var currentBooking in currentRoom.BookingsList)
-                {
-                    if (currentBooking.CustomerName != null)
-                    {
-                        <td class="alert-danger">
-                            @Html.DisplayFor(modelItem => currentBooking.CustomerName)
-
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => currentBooking.CustomerName)
-
-                        </td>
-                    }
-                }
-            </tr>
-
-        }
-        </tbody>
-    </table>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Grid View</h3>
         </div>
+        <div class="panel1">
+            <table class="table table-hover table-bordered" id="dev-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Building
+                        </th>
+                        <th>
+                            Floor #
+                        </th>
+                        <th>
+                            Room Name
+                        </th>
+                        <th>
+                            Clean Status
+                        </th>
+                        <th>
+                            Room Type
+                        </th>
+                        @foreach (var item in Model.DatesList)
+                        {
+                            <th>
+                                @Html.DisplayFor(modelItem => item)
+                            </th>
+
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var currentRoom in Model.RoomsList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => currentRoom.BuildingName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => currentRoom.FloorNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => currentRoom.RoomNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => currentRoom.HouseKeepingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => currentRoom.RoomType)
+                            </td>
+                            @foreach (var currentBooking in currentRoom.BookingsList)
+                            {
+                                if (currentBooking.CustomerName != null)
+                                {
+                                    <td class="alert-danger">
+                                        <div><button id="customerNameSend" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor, recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend, StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)">@Html.DisplayFor(modelItem => currentBooking.CustomerName)</button></div>
+                                        <div style="display:none">
+                                            <div id="StartDateSend">@Html.DisplayFor(modelItem => currentBooking.StartDate)</div>
+                                            <div id="EndDateSend">@Html.DisplayFor(modelItem => currentBooking.EndDate)</div>
+                                            <div id="BuildingSend">@Html.DisplayFor(modelItem => currentBooking.BuildingName)</div>
+                                            <div id="FloorSend">@Html.DisplayFor(modelItem => currentBooking.FloorNumber)</div>
+                                            <div id="RoomSend">@Html.DisplayFor(modelItem => currentBooking.RoomNumber)</div>
+                                            <div id="RoomTypeSend">@Html.DisplayFor(modelItem => currentBooking.RoomType)</div>
+                                            <div id="HousekeepingSend">@Html.DisplayFor(modelItem => currentBooking.HouseKeepingStatus)</div>
+                                        </div>
+
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td onclick="pushValuesToEditorNonExistant">
+                                        <button>UnBooked</button>
+                                       
+
+                                    </td>
+                                }
+                            }
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<div class="col-lg-12 col-md-10 col-sm-10">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Booking Information</h3>
+        </div>
+        <div class="panel3">
+            <table>
+                <tr>
+                    <td>
+                        @Html.Label("Building")
+
+
+                        <input id="recieveBuilding" type="Text" name="Building" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("Floor")
+                        <input id="recieveFloor" type="Text" name="Floor" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("Room")
+                        <input id="recieveRoom" type="Text" name="Room" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("Housekeeping")
+                        <input id="recieveHouseKeeping" type="Text" name="Housekeeping" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.ActionLink("New Booking", "Create")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.Label("Room Type")
+                        <input id="recieveRoomType" type="Text" name="RoomType" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("Customer Name")
+                        <input id="recieveCustomer" type="Text" name="CustomerName" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("Start Date")
+                        <input id="recieveCreateEditStartDate" type="Text" name="CreateEditStartDate" class="form-control2 col-lg-2" required />
+                    </td>
+                    <td>
+                        @Html.Label("End Date")
+                        <input id="recieveCreateEditEndDate" type="Text" name="CreateEditEndDate" class="form-control2" required />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit Booking", "Create")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
