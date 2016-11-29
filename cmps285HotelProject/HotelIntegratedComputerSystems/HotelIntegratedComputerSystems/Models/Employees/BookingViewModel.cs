@@ -59,7 +59,10 @@ namespace HotelIntegratedComputerSystems.Models.Employees
         [DisplayName("Total Cost:")]
         public decimal totalSum { get; set; }
 
+        public string RoomType { get; set; }
 
+        public string HouseKeepingStatus { get; set; }
+        
         public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public List<RoomViewModel> RoomsList { get; set; }
