@@ -9,5 +9,8 @@ namespace HotelIntegratedComputerSystems.Models.GridView
     {
         public List<RoomViewModel> RoomsList { get; set; }
         public List<string> DatesList { get; set; }
+        public BookingViewModel BookingInfo { get; set; }
+        public string RoomType { get; set; }
+        public string HouseKeepingStatus { get; set; }
     }
 }

@@ -23,6 +23,15 @@ namespace HotelIntegratedComputerSystems.Services.GridViewService
 
             bookingsList = bookingsList.Where(x => x.StartDate <= end || x.EndDate >= start).ToList();
 
+            if (start > end)
+            {
+                var startDate = start;
+                var endDate = end;
+
+                end = startDate;
+                start = endDate;
+            }
+
             Enumerable.Range(0, 1 + end.Subtract(start).Days).Select(offset => start.AddDays(offset)).ToArray();
 
             List<string> datesList = new List<string>();

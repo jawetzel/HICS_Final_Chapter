@@ -402,6 +402,7 @@
     <Content Include="Scripts\DB Regeneration\SecurityRanks.sql" />
     <Content Include="Scripts\FilterByColumns.js" />
     <Content Include="Scripts\GoogleAuth.js" />
+    <Content Include="Scripts\GridView.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
@@ -513,10 +514,11 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\GridView\Index.cshtml" />
-    <Content Include="Views\GridView\Create.cshtml" />
+    <Content Include="Views\GridView\NewCust.cshtml" />
     <Content Include="Views\ClockInClockOut\Create.cshtml" />
     <Content Include="Views\ClockInClockOut\Edit.cshtml" />
     <Content Include="Views\ClockInClockOut\Index.cshtml" />
+    <Content Include="Views\GridView\NewBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
