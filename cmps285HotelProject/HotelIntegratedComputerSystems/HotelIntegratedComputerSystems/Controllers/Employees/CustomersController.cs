@@ -20,14 +20,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             var actionResult = View(_service.GetCustomersList());
             return actionResult;
         }
 
         public ActionResult Create()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             var actionResult = View();
             return actionResult;
         }
@@ -36,7 +36,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(customersViewModel);
             _service.CreateNewCustomer(customersViewModel);
             return RedirectToAction("Index");
@@ -44,7 +44,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Edit(int? id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -62,7 +62,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(customersViewModel);
             _service.PostChangesForEdit(customersViewModel);
             return RedirectToAction("Index");
@@ -70,7 +70,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Delete(int? id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,7 +93,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             _service.DeleteEntry(id);
             return RedirectToAction("Index");
         }

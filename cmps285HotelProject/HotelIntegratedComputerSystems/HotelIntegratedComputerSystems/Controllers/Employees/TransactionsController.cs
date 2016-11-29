@@ -25,13 +25,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // GET: Bookings
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View(_bookingService.FindActiveBookings());
         }
 
         public ActionResult CheckIn(int id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
 
             BookingViewModel bookingCheckIn = _bookingService.FindBookingById(id);
           
@@ -42,7 +42,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult CheckIn([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,customers")] BookingViewModel bookingViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return Redirect("Index");
             _transService.PostCheckIn(bookingViewModel);
 
@@ -51,23 +51,25 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult CheckOut(int id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
-            BookingViewModel bookingCheckOut = new BookingViewModel();
-            bookingCheckOut = _bookingService.FindBookingById(id);
-            bookingCheckOut.Expense = _expenseService.GetExpenseByBookingId(bookingCheckOut);
-            bookingCheckOut.totalSum = _transService.tallySum(bookingCheckOut);
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            TransactionsViewModel bookingCheckOut = new TransactionsViewModel();
+            bookingCheckOut.booking = _bookingService.FindBookingById(id);
+            //if (bookingCheckOut.CheckedInDate == null) { return Redirect("Index"); }
+            bookingCheckOut.Expense = _expenseService.GetExpenseByBookingId(bookingCheckOut.booking);
 
             return View(bookingCheckOut);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CheckOut([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,Expense,totalSum,booking,CheckedInDate")]  BookingViewModel bookingCheckOut)
-        {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
-            BookingViewModel bookingViewModel = bookingCheckOut;
-            _transService.PostCheckOut(bookingViewModel);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult CheckOut([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
+        //{
+        //    if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+        //    if (ModelState.IsValid)
+        //    {
+                
+        //    }
+        //    return View(bookingViewModel);
+        //}
     }
 }

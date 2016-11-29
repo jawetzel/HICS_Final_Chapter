@@ -222,7 +222,6 @@
     <Compile Include="Controllers\Admin\RoomsController.cs" />
     <Compile Include="Controllers\Admin\RoomTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\Default\GoogleAccount.cs" />
     <Compile Include="Controllers\Default\NotAuthorizedController.cs" />
     <Compile Include="Controllers\Employees\CustomersController.cs" />
     <Compile Include="Controllers\Employees\ClockInClockOutController.cs" />

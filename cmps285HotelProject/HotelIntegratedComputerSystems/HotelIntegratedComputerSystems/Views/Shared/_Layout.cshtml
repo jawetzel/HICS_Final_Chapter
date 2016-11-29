@@ -1,9 +1,24 @@
 ﻿@using HotelIntegratedComputerSystems.Controllers.Default
 @{
-    var userName = GoogleAccount.Name;
-    var userRank = GoogleAccount.TypeId;
-    var userLoggedIn = GoogleAccount.IsLogged;
-     
+    var userName = "";
+    var userRank = 0;
+    var userLoggedIn = false;
+
+
+    if (Session["Name"] != null)
+    {
+        userName = Session["Name"].ToString();
+    }
+
+    if (Session["TypeId"] != null)
+    {
+        userRank = int.Parse(Session["TypeId"].ToString());
+    }
+
+    if (Session["IsLoggedOn"] != null)
+    {
+        userLoggedIn = bool.Parse(Session["IsLoggedOn"].ToString());
+    }
 }
 
 

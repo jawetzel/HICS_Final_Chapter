@@ -18,13 +18,16 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
-            return View(_services.GetShiftsForEmployee());
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            return View(_services.GetShiftsForEmployee(Session["Name"].ToString()));
         }
 
 
         // GET: EmployeeShiftViewModels/Create
         public ActionResult Create()
         {
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+
             return View();
         }
 
@@ -35,9 +38,11 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+
             if (ModelState.IsValid)
             {
-                _services.CreateNewEmployeeShift(employeeShiftViewModel);
+                _services.CreateNewEmployeeShift(employeeShiftViewModel, Session["Email"].ToString());
                 return RedirectToAction("Index");
             }
 
@@ -47,6 +52,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         // GET: EmployeeShiftViewModels/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -66,6 +73,8 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+
             if (ModelState.IsValid)
             {
                 _services.PostChangesForEdit(employeeShiftViewModel);
