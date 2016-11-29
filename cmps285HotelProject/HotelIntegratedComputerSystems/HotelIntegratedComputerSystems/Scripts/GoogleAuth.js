@@ -44,7 +44,7 @@ function signOut() {
         url: '/Home/LogOut',
         contentType: "application/json; charset=utf-8",
         success: function () {
-            window.open("~/Home", "_self");
+            window.open("Home", "_self");
         }
     });
 }
