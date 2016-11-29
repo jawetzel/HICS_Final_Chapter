@@ -60,6 +60,14 @@
         <mvcSiteMapNode title="Edit" controller="Expenses" action="Edit" preservedRouteParameters="id"/>
         <mvcSiteMapNode title="Delete" controller="Expenses" action="Delete" preservedRouteParameters="id"/>
       </mvcSiteMapNode>
+      <mvcSiteMapNode title="Clock-In/Out" controller="ClockInClockOut" action="Index">
+        <mvcSiteMapNode title="Clock-In" controller="ClockInClockOut" action="Create" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Clock-Out" controller="ClockInClockOut" action="Edit" preservedRouteParameters="id"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Check-In/Out" controller="Transactions" action="Index">
+        <mvcSiteMapNode title="Check-In" controller="Transactions" action="CheckIn" preservedRouteParameters="id"/>
+        <mvcSiteMapNode title="Check-Out" controller="Transactions" action="CheckOut" preservedRouteParameters="id"/>
+      </mvcSiteMapNode>
   </mvcSiteMapNode>
     <mvcSiteMapNode title="Maid Service" controller="HouseKeeping" action="Index">
         <mvcSiteMapNode title="HouseKeeping" controller="HouseKeeping" action="Index"/>

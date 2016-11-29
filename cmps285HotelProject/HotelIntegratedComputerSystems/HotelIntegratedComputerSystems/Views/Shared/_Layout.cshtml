@@ -55,8 +55,11 @@
                                     <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
                                     <li>Expences</li>
                                     <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
+                                    <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
+
                                     <li>Maintenance</li>
                                     <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
+                                    <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
 
                                 </ul>
                             </div>
@@ -71,12 +74,11 @@
                                 <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Front Desk <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <li>Customers</li>
-                                    <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
+                                    <li>@Html.ActionLink("GridView", "Index", "GridView")</li>
                                     <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
                                     <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
-                                    <li>@Html.ActionLink("Null", "Index", "Null")</li>
-                                    <li>@Html.ActionLink("Null", "Index", "Null")</li>
-                                    <li>@Html.ActionLink("Null", "Index", "Null")</li>
+                                    <li>@Html.ActionLink("Clock-In/Out", "Index", "ClockInClockOut")</li>
+                                    <li>@Html.ActionLink("Check-In/Out", "Index", "Transactions")</li>
 
                                 </ul>
                             </div>
@@ -138,15 +140,18 @@
 
     <div class="container body-content">
         <h2>
-            @Html.MvcSiteMap().SiteMapPath()
         </h2>
         @RenderBody()
         <div class="footer navbar-fixed-bottom">
-            <footer>
-                <p class="text-muted">
+            <footer class="text-muted navbar-inverse footer-texts">
+                <span class="navbar-right">
                     &copy; @DateTime.Now.Year - H.I.C.S.
-                    
-                </footer>
+                </span>
+                
+                    @Html.MvcSiteMap().SiteMapPath()
+               
+            </footer>
+
         </div>
         </div>
 </body>

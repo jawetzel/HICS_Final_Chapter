@@ -4,9 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Employee Shifts</h3>
@@ -29,7 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CashPutInSafe)
             </th>
-            <th></th>
+            <th>
+                @Html.ActionLink("Clock In", "Create")
+            </th>
         </tr>
         <tr>
             <th>

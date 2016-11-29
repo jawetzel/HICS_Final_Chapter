@@ -1,4 +1,20 @@
-﻿body {
+﻿.footer-texts {
+    color: white;
+    font-family: bold;
+
+
+}
+.footer-texts a{
+    color: white;
+}
+.footer-texts a:hover {
+    color: black;
+}
+.largerFont {
+    font-size: 30px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -455,7 +471,7 @@ cite {
 }
 
 .text-muted {
-  color: #999999;
+  color: white;
 }
 
 .text-primary {
@@ -5524,7 +5540,7 @@ a.list-group-item:focus {
   border-bottom-color: #dddddd;
 }
 
-.panel-primary {
+.container body-content {
   border-color: #428bca;
 }
 

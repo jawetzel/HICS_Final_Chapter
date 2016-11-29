@@ -23,18 +23,21 @@
     <input type="text" id="myInput2" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Floor" />
     <input type="text" id="myInput3" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room" />
     <input type="text" id="myInput4" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Clean Status" />
-    <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Clean Status" />
+    <input type="text" id="myInput5" onkeyup="filterFunctionColumn5('dev-table', 'myInput1', 'myInput2', 'myInput3', 'myInput4', 'myInput5', 'myInput6', 'myInput7')" class="form-control2" data-action="filter" placeholder="Filter Room Type" />
         @using (Html.BeginForm())
         {
-            @Html.Label("From:")
+            @Html.Label("Date Range:")
             <input type="date" name="startDate" class="form-control2 col-lg-2" required/>
-            @Html.Label("To:")
             <input type="date" name="endDate" class="form-control2" required/>
-
             <input type="submit" value="Submit Date Range" class="form-control2"/>
         }
+        <div>
             @Html.ActionLink("Add Customer", "NewCust")
+        </div>
+        <div>
             @Html.ActionLink("Add Booking", "NewBook")
+    </div>
+
         </div>
         </div>
 </div>
