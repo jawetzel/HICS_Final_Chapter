@@ -23,7 +23,7 @@
                     @* Line below is what the above helpermethod generates, not sure how get filter to work on the EditorFor helpermethod *@
                     @*<input class="form-control text-box single-line valid" id="myInput" name="CustomerName" type="text" value="" aria-invalid="false" onkeyup="filterFunction1Column()" data-action="filter">*@
                     @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
-                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowCustomers" value="Select Customer" onclick="showTable(CustomerList)" />
+                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowCustomers" value="Select Customer"/>
                 </div>
             </div>
 
@@ -36,9 +36,9 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(CustomerList)">
+            <div class="modal fade" id="Modal1" role="dialog">
                 <div class="modal-dialog">
-                    <div id="CustomerList" class="panel panel-primary" style="display: none;">
+                    <div id="CustomerList" class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Customers</h3>
                         </div>
@@ -98,12 +98,12 @@
                 <div class="col-md-10" onkeyup="filterFunctionColumn()" data-action="filter" placeholder="">
                     @Html.EditorFor(model => model.FloorNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                     @Html.ValidationMessageFor(model => model.FloorNumber, "", new { @class = "text-danger" })
-                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
+                    <input class="showSuggestions" data-toggle="modal" data-target="#Modal2" type="button" name="ShowRooms" value="Select Room"/>
                 </div>
             </div>
-            <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(RoomsList)">
+            <div class="modal fade" id="Modal2" role="dialog">
                 <div class="modal-dialog">
-                    <div id="RoomsList" class="panel panel-primary" style="display: none;">
+                    <div id="RoomsList" class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Rooms</h3>
                         </div>

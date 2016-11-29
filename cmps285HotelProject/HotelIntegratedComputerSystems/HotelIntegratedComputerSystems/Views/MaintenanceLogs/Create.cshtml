@@ -38,13 +38,13 @@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.MaintenanceLog.RoomNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MaintenanceLog.RoomNumber, "", new { @class = "text-danger" })
-                        <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowRooms" value="Select Room" onclick="showTable(RoomsList)" />
+                        <input class="showSuggestions" data-toggle="modal" data-target="#Modal1" type="button" name="ShowRooms" value="Select Room" />
                     </div>
                 </div>
 
-                <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(RoomsList)">
+                <div class="modal fade" id="Modal1" role="dialog">
                     <div class="modal-dialog">
-                        <div id="RoomsList" class="panel panel-primary" style="display: none;">
+                        <div id="RoomsList" class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Rooms</h3>
                             </div>

@@ -20,12 +20,12 @@
             var options1 = column7.getElementsByTagName("div")[0];
             var options2 = column7.getElementsByTagName("div")[1];
                 
-            if (column6.textContent == "Booked") {
-                options2.style.display = "none"
-                        
+            if (column6.textContent === "Booked") {
+                options2.style.display = "none";
+
             }
             else {
-                options1.style.display = "none"
+                options1.style.display = "none";
             }
             
 

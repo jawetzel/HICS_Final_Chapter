@@ -22,6 +22,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         private readonly ExpensesServices _expenseService = new ExpensesServices();
         private readonly RoomServices _roomServices = new RoomServices();
 
+
         // GET: Bookings
         public ActionResult Index()
         {
@@ -52,24 +53,23 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         public ActionResult CheckOut(int id)
         {
             if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
-            TransactionsViewModel bookingCheckOut = new TransactionsViewModel();
-            bookingCheckOut.booking = _bookingService.FindBookingById(id);
-            //if (bookingCheckOut.CheckedInDate == null) { return Redirect("Index"); }
-            bookingCheckOut.Expense = _expenseService.GetExpenseByBookingId(bookingCheckOut.booking);
+            BookingViewModel bookingCheckOut = new BookingViewModel();
+            bookingCheckOut = _bookingService.FindBookingById(id);
+            bookingCheckOut.Expense = _expenseService.GetExpenseByBookingId(bookingCheckOut);
+            bookingCheckOut.totalSum = _transService.tallySum(bookingCheckOut);
 
             return View(bookingCheckOut);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult CheckOut([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
-        //{
-        //    if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
-        //    if (ModelState.IsValid)
-        //    {
-                
-        //    }
-        //    return View(bookingViewModel);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,Expense,totalSum,booking,CheckedInDate")]  BookingViewModel bookingCheckOut)
+        {
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            BookingViewModel bookingViewModel = bookingCheckOut;
+            _transService.PostCheckOut(bookingViewModel);
+            return RedirectToAction("Index");
+        }
     }
 }
+    

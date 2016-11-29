@@ -45,12 +45,12 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RoomNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
-                <input class="showSuggestions" type="button" data-target="#Modal1" data-toggle="modal" name="ShowBookings" value="Select Booking" onclick="showTable(BookingList)" />
+                <input class="showSuggestions" type="button" data-target="#Modal1" data-toggle="modal" name="ShowBookings" value="Select Booking"/>
             </div>
         </div>
-        <div class="modal fade" id="Modal1" role="dialog" onclick="showTable(BookingList)">
+        <div class="modal fade" id="Modal1" role="dialog">
             <div class="modal-dialog">
-                <div id="BookingList" class="panel panel-primary" style="display: none;">
+                <div id="BookingList" class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Bookings</h3>
                     </div>
@@ -122,12 +122,12 @@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ExpenseTypeAmmount, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ExpenseTypeAmmount, "", new { @class = "text-danger" })
-                        <input class="showSuggestions" data-target="#Modal2" data-toggle="modal" type="button" name="ShowExpenseTypes" value="Select Expense Type" onclick="showTable(ExpenseTypeList)" />
+                        <input class="showSuggestions" data-target="#Modal2" data-toggle="modal" type="button" name="ShowExpenseTypes" value="Select Expense Type"/>
                     </div>
                 </div>
-                <div class="modal fade" id="Modal2" role="dialog" onclick="showTable(ExpenseTypeList)">
+        <div class="modal fade" id="Modal2" role="dialog" >
                     <div class="modal-dialog">
-                        <div id="ExpenseTypeList" class="panel panel-primary" style="display: none;">
+                        <div id="ExpenseTypeList" class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Expense Types</h3>
                             </div>
