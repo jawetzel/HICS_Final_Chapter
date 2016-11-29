@@ -103,9 +103,8 @@
                                                 recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend,
                                                 StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)"
                                                 >@Html.DisplayFor(modelItem => currentBooking.CustomerName)</button></div>*@
-                                        <a id="customerNameSend" style="display:table-cell"  width="100%" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor, recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend, StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)">
+
                                             @Html.DisplayFor(modelItem => currentBooking.CustomerName)
-                                        </a>
                                                
                                                 
 
@@ -124,9 +123,9 @@
                                 else
                                 {
                                     <td onclick="pushValuesToEditorNonExistant" class="grid-cell-vacant">
-                                        <a style="display:block" width="100%" height="100%">
+
                                             Vacant
-                                        </a>
+
                                     </td>
                                 }
                             }
@@ -138,7 +137,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-12 col-md-10 col-sm-10">
+<div class="col-lg-12 col-md-10 col-sm-10" hidden>
     <div class="info-panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Booking Information</h3>
