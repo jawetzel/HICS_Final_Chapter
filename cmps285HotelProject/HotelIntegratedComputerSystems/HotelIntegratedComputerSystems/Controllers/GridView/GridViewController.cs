@@ -22,14 +22,14 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetGridViewRooms(DateTime.Today, DateTime.Today.AddDays(6)));
         }
 
         [HttpPost]
         public ActionResult Index(DateTime startDate, DateTime endDate)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetGridViewRooms(startDate, endDate));
 
         }
@@ -37,7 +37,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Details/5
         public ActionResult Details(int id)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Create
         public ActionResult NewCust()
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             var actionResult = View();
             return actionResult;
 
@@ -59,7 +59,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [ValidateAntiForgeryToken]
         public ActionResult NewCust([Bind(Include = "Id,Name,Address,Phone,Email")] CustomersViewModel customersViewModel)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(customersViewModel);
             _customerService.CreateNewCustomer(customersViewModel);
             return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: Bookings/Create
         public ActionResult NewBook()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             BookingViewModel newBooking = new BookingViewModel();
             newBooking.customers = _bookingservice.loadCustomerNames();
             newBooking.RoomsList = _roomServices.GetRoomList();
@@ -82,7 +82,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [ValidateAntiForgeryToken]
         public ActionResult NewBook([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,customers")] BookingViewModel bookingViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(bookingViewModel);
             _bookingservice.CreateNewBooking(bookingViewModel);
 
@@ -93,7 +93,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
 
             try
             {
@@ -109,7 +109,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Edit/5
         public ActionResult Edit(int id)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -117,7 +117,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             try
             {
                 // TODO: Add update logic here
@@ -133,7 +133,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         // GET: GridView/Delete/5
         public ActionResult Delete(int id)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             return View();
         }
 
@@ -141,7 +141,7 @@ namespace HotelIntegratedComputerSystems.Controllers.GridView
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            if (GoogleAccount.TypeId < 3) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 3) { return Redirect("~/NotAuthorized/Index"); }
             try
             {
                 // TODO: Add delete logic here

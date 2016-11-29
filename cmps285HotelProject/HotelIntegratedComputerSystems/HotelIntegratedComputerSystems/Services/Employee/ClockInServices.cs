@@ -13,29 +13,30 @@ namespace HotelIntegratedComputerSystems.Services.Employee
     public class ClockInServices : BaseServices
     {
         readonly EmployeeShiftServices _employeeShiftService = new EmployeeShiftServices();
-        public List<EmployeeShiftViewModel> GetShiftsForEmployee()
+
+        public List<EmployeeShiftViewModel> GetShiftsForEmployee(string name)
         {
-            return _employeeShiftService.GetEmployeeShiftList().Where(x => x.EmployeeName == GoogleAccount.Name).OrderByDescending(x => x.ClockInDate).ToList();
+            return _employeeShiftService.GetEmployeeShiftList().Where(x => x.EmployeeName == name).OrderByDescending(x => x.ClockInDate).ToList();
         }
 
-        public Models.Employee GetCurrentEmployee()
+        public Models.Employee GetCurrentEmployee(string email)
         {
-            return Db.Employees.First(x => x.Email == GoogleAccount.Email);
+            return Db.Employees.First(x => x.Email == email);
         }
 
-        public int GetOpenEmployeeShift()
+        public int GetOpenEmployeeShift(string email)
         {
-            var employee = GetCurrentEmployee();
+            var employee = GetCurrentEmployee(email);
             var shift = Db.EmployeeShifts.FirstOrDefault(x => x.EmployeeId == employee.Id && x.ClockOut == null);
             return shift?.Id ?? 0;
         }
 
-        public void CreateNewEmployeeShift(EmployeeShiftViewModel shift)
+        public void CreateNewEmployeeShift(EmployeeShiftViewModel shift, string email)
         {
             
             Db.EmployeeShifts.Add(new EmployeeShift()
             {
-                EmployeeId = GetCurrentEmployee().Id,
+                EmployeeId = GetCurrentEmployee(email).Id,
                 CashTakeIn = shift.CashTakenIn,
                 ClockIn = DateTime.Now,
             });

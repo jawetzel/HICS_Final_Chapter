@@ -19,7 +19,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetRoomTypesList());
         }
 
@@ -32,7 +32,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Bedding,Kitchen,Rooms,BathRooms,SleepsVolume,NightlyRate")] RoomTypeViewModel roomTypeViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(roomTypeViewModel);
             _services.CreateNewRoomType(roomTypeViewModel);
             return RedirectToAction("Index");
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Edit(int? id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,7 +57,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Bedding,Kitchen,Rooms,BathRooms,SleepsVolume,NightlyRate")] RoomTypeViewModel roomTypeViewModel)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (!ModelState.IsValid) return View(roomTypeViewModel);
             _services.PostChangesForEdit(roomTypeViewModel);
             return RedirectToAction("Index");
@@ -65,7 +65,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Delete(int? id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,7 +88,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (GoogleAccount.TypeId < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
             _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }

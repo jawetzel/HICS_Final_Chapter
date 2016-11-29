@@ -20,14 +20,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
-            return View(_services.GetShiftsForEmployee());
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            return View(_services.GetShiftsForEmployee(Session["Name"].ToString()));
         }
 
         public ActionResult Create()
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
-            var openShift = _services.GetOpenEmployeeShift();
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            var openShift = _services.GetOpenEmployeeShift(Session["Email"].ToString());
             if (openShift != 0)
             {
                 return RedirectToAction("Index");
@@ -39,14 +39,14 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             employeeShiftViewModel.ClockIn = DateTime.Now;
             employeeShiftViewModel.ClockInDate = DateTime.Now;
             employeeShiftViewModel.ClockOutDate = DateTime.Now;
-            employeeShiftViewModel.EmployeeId = GoogleAccount.Id;
+            employeeShiftViewModel.EmployeeId = int.Parse(Session["Id"].ToString());
             if (ModelState.IsValid)
             {
-                _services.CreateNewEmployeeShift(employeeShiftViewModel);
+                _services.CreateNewEmployeeShift(employeeShiftViewModel, Session["Email"].ToString());
                 return RedirectToAction("Index");
             }
 
@@ -55,7 +55,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Edit(int? id)
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,7 +79,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             employeeShiftViewModel.ClockIn = old.ClockIn;
             employeeShiftViewModel.ClockOut = DateTime.Now;
             employeeShiftViewModel.CashTakenIn = old.CashTakenIn;
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             _services.PostChangesForEdit(employeeShiftViewModel);
             return RedirectToAction("Index");
 

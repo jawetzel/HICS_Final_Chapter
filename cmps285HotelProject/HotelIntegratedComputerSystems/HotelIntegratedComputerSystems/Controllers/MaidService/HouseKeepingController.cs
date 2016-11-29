@@ -12,13 +12,13 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Index()
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetRoomsForHouseKeeping());
         }
         
         public ActionResult Clean(int? id)
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Dirty(int? id)
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Dnd(int? id)
         {
-            if (GoogleAccount.TypeId < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
