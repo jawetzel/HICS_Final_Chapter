@@ -1,8 +1,12 @@
-﻿.footer-texts {
+﻿.actionlink-btn {
+
+}
+
+
+
+.footer-texts {
     color: white;
     font-family: bold;
-
-
 }
 .footer-texts a{
     color: white;
@@ -802,6 +806,7 @@ pre code {
   overflow-y: scroll;
 }
 
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -1125,9 +1130,12 @@ pre code {
 }
 
 @media (min-width: 992px) {
-  .container {
-    max-width: 970px;
+  .grid-container {
+      width:1500px;
   }
+    .container {
+        width:auto;
+    }
   .col-md-1,
   .col-md-2,
   .col-md-3,
@@ -2098,7 +2106,7 @@ fieldset[disabled] .btn {
 
 .btn-default {
   color: #333333;
-  background-color: #ffffff;
+  background-color: white;
   border-color: #cccccc;
 }
 
@@ -5417,6 +5425,8 @@ a.list-group-item:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
+
+
 .panel-body {
   padding: 15px;
 }
@@ -5543,6 +5553,7 @@ a.list-group-item:focus {
 .container body-content {
   border-color: #428bca;
 }
+
 
 .panel-primary > .panel-heading {
   color: #ffffff;

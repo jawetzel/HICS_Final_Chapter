@@ -1,9 +1,6 @@
 ﻿function selectInput2()
 {
-        //var input = document.getElementById("myInput");
         var input = "Booked";
-
-
         var tbody = document.getElementById("itemTable");
         var tr = tbody.getElementsByTagName("tr");
 
@@ -17,17 +14,14 @@
             var column6 = tr[i].getElementsByTagName("td")[5];
             var column7 = tr[i].getElementsByTagName("td")[6];
 
-            var options1 = column7.getElementsByTagName("div")[0];
-            var options2 = column7.getElementsByTagName("div")[1];
-                
-            if (column6.textContent === "Booked") {
-                options2.style.display = "none";
+            var options = column7.children;
 
+                
+            if (column6.innerText === "Booked") {
+                options[0].style.display = ""    
             }
             else {
-                options1.style.display = "none";
+                options[1].style.display = ""
             }
-            
-
         }
-    }
+}

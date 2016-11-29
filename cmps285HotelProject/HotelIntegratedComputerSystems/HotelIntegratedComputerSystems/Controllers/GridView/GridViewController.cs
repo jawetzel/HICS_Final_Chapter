@@ -13,6 +13,7 @@ using HotelIntegratedComputerSystems.Services.Admin;
 namespace HotelIntegratedComputerSystems.Controllers.GridView
 {
     public class GridViewController : BaseController
+       
     {
         private  readonly GridViewServices _service = new GridViewServices();
         private readonly CustomerServices _customerService = new CustomerServices();

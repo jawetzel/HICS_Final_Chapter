@@ -6,8 +6,8 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "_LayoutGridView.cshtml";
 }
-
 <head>
     <title>Grid View</title>
     <link href="~/Content/GridViewStyleSheet.css" rel="stylesheet" />
@@ -35,23 +35,20 @@
 
                 <input type="submit" value="Submit Date Range" class="form-control2" />
             }
-            @Html.ActionLink("Add Customer", "NewCust")
+            @Html.ActionLink("Add Customer", "NewCust", null, htmlAttributes: new { @class = "btn btn-default" })
+            @Html.ActionLink("Add Booking", "NewBook", null, htmlAttributes: new { @class = "btn btn-default" })
         </div>
-        <div>
-            @Html.ActionLink("Add Booking", "NewBook")
-        </div>
-
     </div>
 </div>
 
 
 <div class="col-lg-10 col-md-10 col-sm-10">
-    <div class="panel panel-primary">
+    <div class="grid-panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Grid View</h3>
         </div>
         <div class="panel1">
-            <table class="table table-hover table-bordered" id="dev-table">
+            <table class="table table-bordered" id="dev-table">
                 <thead>
                     <tr>
                         <th>
@@ -101,8 +98,17 @@
                             {
                                 if (currentBooking.CustomerName != null)
                                 {
-                                    <td class="alert-danger">
-                                        <div><button id="customerNameSend" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor, recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend, StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)">@Html.DisplayFor(modelItem => currentBooking.CustomerName)</button></div>
+                                    <td class="grid-cell-occupied">
+                                        @*<div><button id="customerNameSend" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor,
+                                                recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend,
+                                                StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)"
+                                                >@Html.DisplayFor(modelItem => currentBooking.CustomerName)</button></div>*@
+                                        <a id="customerNameSend" style="display:table-cell"  width="100%" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor, recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend, StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)">
+                                            @Html.DisplayFor(modelItem => currentBooking.CustomerName)
+                                        </a>
+                                               
+                                                
+
                                         <div style="display:none">
                                             <div id="StartDateSend">@Html.DisplayFor(modelItem => currentBooking.StartDate)</div>
                                             <div id="EndDateSend">@Html.DisplayFor(modelItem => currentBooking.EndDate)</div>
@@ -117,10 +123,10 @@
                                 }
                                 else
                                 {
-                                    <td onclick="pushValuesToEditorNonExistant">
-                                        <button>UnBooked</button>
-                                       
-
+                                    <td onclick="pushValuesToEditorNonExistant" class="grid-cell-vacant">
+                                        <a style="display:block" width="100%" height="100%">
+                                            Vacant
+                                        </a>
                                     </td>
                                 }
                             }
@@ -133,17 +139,20 @@
     </div>
 </div>
 <div class="col-lg-12 col-md-10 col-sm-10">
-    <div class="panel panel-primary">
+    <div class="info-panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Booking Information</h3>
         </div>
-        <div class="panel3">
+        <div class="info-btn-container">
+                @Html.ActionLink("Edit Booking", "Create", null, htmlAttributes: new { @class = "btn btn-default" })
+
+                @Html.ActionLink("New Booking", "Create", null, htmlAttributes: new { @class = "btn btn-default" })          
+        </div>
+        <div class="info-info-container">
             <table>
                 <tr>
                     <td>
                         @Html.Label("Building")
-
-
                         <input id="recieveBuilding" type="Text" name="Building" class="form-control2 col-lg-2" required />
                     </td>
                     <td>
@@ -157,9 +166,6 @@
                     <td>
                         @Html.Label("Housekeeping")
                         <input id="recieveHouseKeeping" type="Text" name="Housekeeping" class="form-control2 col-lg-2" required />
-                    </td>
-                    <td>
-                        @Html.ActionLink("New Booking", "Create")
                     </td>
                 </tr>
                 <tr>
@@ -179,9 +185,7 @@
                         @Html.Label("End Date")
                         <input id="recieveCreateEditEndDate" type="Text" name="CreateEditEndDate" class="form-control2" required />
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit Booking", "Create")
-                    </td>
+
                 </tr>
             </table>
         </div>

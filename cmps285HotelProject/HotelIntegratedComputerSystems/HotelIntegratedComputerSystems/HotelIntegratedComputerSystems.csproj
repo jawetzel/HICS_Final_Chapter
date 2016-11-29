@@ -525,6 +525,7 @@
     <Content Include="Views\Transactions\CheckIn.cshtml" />
     <Content Include="Views\Transactions\CheckOut.cshtml" />
     <Content Include="Views\GridView\NewBook.cshtml" />
+    <Content Include="Views\GridView\_LayoutGridView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

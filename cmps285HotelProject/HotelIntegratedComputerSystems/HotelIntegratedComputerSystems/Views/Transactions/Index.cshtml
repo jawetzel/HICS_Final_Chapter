@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "trans";
 }
-
-<h2></h2>
+<body onload="selectInput2()"></body>
+<h2 ></h2>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Transactions</h3>
@@ -59,10 +59,10 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody id="itemTable" onload="selectInput2()">
+        <tbody id="itemTable">
             @foreach (var item in Model.BookingList)
             {
-                <tr onload="selectInput2(decider, 'Booked', Checkin, Checkout)">
+                <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -81,15 +81,13 @@
                     <td id="decider">
                         @Html.DisplayFor(modelItem => item.BookingStatusDescription)
                     </td>
-                    <td>
-                        <div>@Html.ActionLink("Check In", "CheckIn", new { id = item.Id }) </div>
-                        <div>@Html.ActionLink("Check Out", "CheckOut", new { id = item.Id })</div> 
+                    <td>    
+                        @Html.ActionLink("Check In", "CheckIn", new { id = item.Id }, htmlAttributes: new { @style = "display:none"})
+                        @Html.ActionLink("Check Out", "CheckOut", new { id = item.Id }, htmlAttributes: new { @style = "display:none" })
                     </td>
+                                            
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
-
-<script ></script>

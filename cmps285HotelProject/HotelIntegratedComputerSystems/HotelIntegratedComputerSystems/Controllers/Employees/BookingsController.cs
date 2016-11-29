@@ -72,7 +72,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren")] BookingViewModel bookingViewModel)
+        public ActionResult Edit([Bind(Include = "Id,CustomerId,RoomId,StartDate,EndDate,VolumeAdults,VolumeChildren,RoomNumber,FloorNumber,BuildingName,customers")] BookingViewModel bookingViewModel)
         {
             if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2) { return Redirect("~/NotAuthorized/Index"); }
             if (ModelState.IsValid)

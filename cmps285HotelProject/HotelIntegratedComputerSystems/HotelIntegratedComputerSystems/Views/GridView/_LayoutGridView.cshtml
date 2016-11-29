@@ -1,0 +1,171 @@
+﻿@using HotelIntegratedComputerSystems.Controllers.Default
+@{
+    var userName = "";
+    var userRank = 0;
+    var userLoggedIn = false;
+
+
+    if (Session["Name"] != null)
+    {
+        userName = Session["Name"].ToString();
+    }
+
+    if (Session["AccessLevel"] != null)
+    {
+        userRank = int.Parse(Session["AccessLevel"].ToString());
+    }
+
+    if (Session["IsLoggedOn"] != null)
+    {
+        userLoggedIn = bool.Parse(Session["IsLoggedOn"].ToString());
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - H.I.C.S.</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/GoogleAuth.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <!-- sign in code -->
+    <meta name="google-signin-client_id" content="774525732284-lpuok1q2o879p2ehg56k5e35q0ctnp22.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("H.I.C.S.", "Index", "GridView", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <uldiv class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @if (userRank == 4 || userRank == 5)
+                        {
+                             <!--ADMIN TAB-->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Admin <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li>Rooms</li>
+                                    <li>@Html.ActionLink("Buildings", "Index", "Buildings")</li>
+                                    <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
+                                    <li>@Html.ActionLink("Room Types", "Index", "RoomTypes")</li>
+                                    <li>Employees</li>
+                                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                                    <li>@Html.ActionLink("Employee Types", "Index", "EmployeeTypes")</li>
+                                    <li>@Html.ActionLink("Employee Shifts", "Index", "EmployeeShifts")</li>
+                                    <li>Expences</li>
+                                    <li>@Html.ActionLink("Expense Types", "Index", "ExpenseTypes")</li>
+                                    <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
+
+                                    <li>Maintenance</li>
+                                    <li>@Html.ActionLink("Maintenance Types", "Index", "MaintenanceTypes")</li>
+                                    <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
+
+                                </ul>
+                            </div>
+
+                        }
+                    </li> <!--ADMIN TAB-->
+                    <li>
+                        @if (userRank == 3 || userRank == 4 || userRank == 5)
+                        {
+                            <!--Employee TAB-->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Front Desk <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li>Customers</li>
+                                    <li>@Html.ActionLink("GridView", "Index", "GridView")</li>
+                                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                                    <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
+                                    <li>@Html.ActionLink("Check-In/Out", "Index", "Transactions")</li>
+
+                                </ul>
+                            </div>
+                        }
+                    </li><!--Employee TAB-->
+                    <li>
+                        @if (userRank == 1 || userRank == 4 || userRank == 5)
+                        {
+                            <!--HouseKeeping-->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maid Service <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Housekeeping", "Index", "HouseKeeping")</li>
+                                </ul>
+                            </div>
+                        }
+                    </li><!--HouseKeeping TAB-->
+                    <li>
+                        @if (userRank == 2 || userRank == 4 || userRank == 5)
+                        {
+                            <!--Maintenance TAB-->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown">Maintenance <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Maintenance Logs", "Index", "MaintenanceLogs")</li>
+                                </ul>
+                            </div>
+                        }
+                    </li><!--Maintenance TAB-->
+                </ul>
+                @if (userLoggedIn)
+                {
+                        <!-- this must never be deleted. It lets us get the user logged in and sign their token out. Keeps user from "log-in log-out log-in log-out ....."-->
+                    <div class="g-signin2" data-height="0" data-width="0" data-longtitle="true" style="visibility: hidden"></div>
+
+                        <div class="dropdown navbar-right">
+                            <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Html.DisplayName(" " + userName) <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "ClockInClockOut")"><span class="glyphicon glyphicon-credit-card"></span> Clock-In/Out</a></li>
+                                <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                            </ul>
+                        </div>
+                }
+                else
+                {
+                    <div class="dropdown navbar-right">
+                        <div class="g-signin2"
+                             data-height="40"
+                             data-width="240"
+                             data-longtitle="true"
+                             data-onsuccess="onSignIn">
+                        </div>
+                    </div>
+                }
+                </>
+        </div>
+    </div>
+
+    <div class="grid-container body-content">
+        <h2></h2>
+        @RenderBody()
+        <div class="footer navbar-fixed-bottom">
+            <footer class="text-muted navbar-inverse footer-texts">
+                <span class="navbar-right">
+                    &copy; @DateTime.Now.Year - H.I.C.S.
+                </span>
+
+                @Html.MvcSiteMap().SiteMapPath()
+
+            </footer>
+
+        </div>
+    </div>
+</body>
+
+</html>
