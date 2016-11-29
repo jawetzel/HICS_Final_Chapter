@@ -39,11 +39,12 @@
         </div>
         <div>
             @Html.ActionLink("Add Booking", "NewBook")
-    </div>
-
         </div>
+
     </div>
 </div>
+
+
 <div class="col-lg-10 col-md-10 col-sm-10">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -102,7 +103,7 @@
                                 {
                                     <td class="alert-danger">
                                         <div><button id="customerNameSend" onclick="pushValuesToEditorExists(this.parentElement.parentElement, recieveBuilding, recieveFloor, recieveRoom, recieveHouseKeeping, recieveRoomType, recieveCustomer, recieveCreateEditStartDate, recieveCreateEditEndDate, customerNameSend, StartDateSend, EndDateSend, BuildingSend, FloorSend, RoomSend, RoomTypeSend, HousekeepingSend)">@Html.DisplayFor(modelItem => currentBooking.CustomerName)</button></div>
-                                        <div >
+                                        <div style="display:none">
                                             <div id="StartDateSend">@Html.DisplayFor(modelItem => currentBooking.StartDate)</div>
                                             <div id="EndDateSend">@Html.DisplayFor(modelItem => currentBooking.EndDate)</div>
                                             <div id="BuildingSend">@Html.DisplayFor(modelItem => currentBooking.BuildingName)</div>
@@ -117,7 +118,8 @@
                                 else
                                 {
                                     <td onclick="pushValuesToEditorNonExistant">
-                                        @Html.DisplayFor(modelItem => currentBooking.CustomerName)
+                                        <button>UnBooked</button>
+                                       
 
                                     </td>
                                 }
@@ -157,7 +159,7 @@
                         <input id="recieveHouseKeeping" type="Text" name="Housekeeping" class="form-control2 col-lg-2" required />
                     </td>
                     <td>
-                        @Html.ActionLink("Create New", "Create")
+                        @Html.ActionLink("New Booking", "Create")
                     </td>
                 </tr>
                 <tr>
@@ -178,7 +180,7 @@
                         <input id="recieveCreateEditEndDate" type="Text" name="CreateEditEndDate" class="form-control2" required />
                     </td>
                     <td>
-                        @Html.ActionLink("Create New", "Create")
+                        @Html.ActionLink("Edit Booking", "Create")
                     </td>
                 </tr>
             </table>
