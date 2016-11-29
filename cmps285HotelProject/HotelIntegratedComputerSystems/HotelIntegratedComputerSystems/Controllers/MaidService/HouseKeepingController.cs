@@ -12,13 +12,13 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Index()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 2  || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_service.GetRoomsForHouseKeeping());
         }
         
         public ActionResult Clean(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 2  || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -29,7 +29,7 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Dirty(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 2  || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,7 +40,7 @@ namespace HotelIntegratedComputerSystems.Controllers.MaidService
 
         public ActionResult Dnd(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 2  || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -20,13 +20,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Index()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 0) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetShiftsForEmployee(Session["Name"].ToString()));
         }
 
         public ActionResult Create()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 0) { return Redirect("~/NotAuthorized/Index"); }
             var openShift = _services.GetOpenEmployeeShift(Session["Email"].ToString());
             if (openShift != 0)
             {
@@ -39,7 +39,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 0) { return Redirect("~/NotAuthorized/Index"); }
             employeeShiftViewModel.ClockIn = DateTime.Now;
             employeeShiftViewModel.ClockInDate = DateTime.Now;
             employeeShiftViewModel.ClockOutDate = DateTime.Now;
@@ -55,7 +55,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
 
         public ActionResult Edit(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 0) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,7 +79,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Employees
             employeeShiftViewModel.ClockIn = old.ClockIn;
             employeeShiftViewModel.ClockOut = DateTime.Now;
             employeeShiftViewModel.CashTakenIn = old.CashTakenIn;
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 1) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 0) { return Redirect("~/NotAuthorized/Index"); }
             _services.PostChangesForEdit(employeeShiftViewModel);
             return RedirectToAction("Index");
 

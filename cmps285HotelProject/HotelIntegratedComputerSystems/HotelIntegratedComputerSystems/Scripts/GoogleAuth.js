@@ -13,7 +13,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (response){
                 if(response.isUser){
-                    sendToHomePage(response.typeId);
+                    sendToHomePage(response.accessLevel);
                 }
            }
         });
@@ -44,23 +44,19 @@ function signOut() {
         url: '/Home/LogOut',
         contentType: "application/json; charset=utf-8",
         success: function () {
-            window.open("~/Home", "_self");
+            window.open("/Home/Index", "_self");
         }
     });
 }
 
-function sendToHomePage(typeId) {
-    if (typeId == 1) {
+function sendToHomePage(accessLevel) {
+    if (accessLevel == 1) {
         window.open("/HouseKeeping/Index", "_self");
     }
-    else if(typeId == 2){
-        window.open("/HouseKeeping/Index", "_self");
+    else if (accessLevel == 2) {
+        window.open("/MaintenanceLogs/Index", "_self");
     }
-    else if (typeId == 3) {
-        window.open("/GridView/Index", "_self");
-    }
-    else if (typeId >= 4) {
-        //window.location.href = "/GridView/Index";
+    else if (accessLevel >= 3) {
         window.open("/GridView/Index", "_self");
     }
 }

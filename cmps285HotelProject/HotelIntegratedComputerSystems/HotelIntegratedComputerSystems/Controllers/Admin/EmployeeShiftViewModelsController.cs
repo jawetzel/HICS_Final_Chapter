@@ -18,7 +18,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetShiftsForEmployee(Session["Name"].ToString()));
         }
 
@@ -26,7 +26,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         // GET: EmployeeShiftViewModels/Create
         public ActionResult Create()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
 
             return View();
         }
@@ -38,7 +38,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
 
             if (ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         // GET: EmployeeShiftViewModels/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
 
             if (id == null)
             {
@@ -73,7 +73,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockInDate,ClockInTime,ClockOut,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
 
             if (ModelState.IsValid)
             {

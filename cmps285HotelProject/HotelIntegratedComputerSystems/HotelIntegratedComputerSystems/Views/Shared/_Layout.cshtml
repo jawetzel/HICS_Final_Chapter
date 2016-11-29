@@ -10,9 +10,9 @@
         userName = Session["Name"].ToString();
     }
 
-    if (Session["TypeId"] != null)
+    if (Session["AccessLevel"] != null)
     {
-        userRank = int.Parse(Session["TypeId"].ToString());
+        userRank = int.Parse(Session["AccessLevel"].ToString());
     }
 
     if (Session["IsLoggedOn"] != null)
@@ -54,7 +54,7 @@
             <uldiv class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        @if (userRank >= 4)
+                        @if (userRank == 4 || userRank == 5)
                         {
                              <!--ADMIN TAB-->
                             <div class="dropdown">
@@ -82,7 +82,7 @@
                         }
                     </li> <!--ADMIN TAB-->
                     <li>
-                        @if (userRank >= 4)
+                        @if (userRank == 3 || userRank == 4 || userRank == 5)
                         {
                             <!--Employee TAB-->
                             <div class="dropdown">
@@ -92,7 +92,6 @@
                                     <li>@Html.ActionLink("GridView", "Index", "GridView")</li>
                                     <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
                                     <li>@Html.ActionLink("Expenses", "Index", "Expenses")</li>
-                                    <li>@Html.ActionLink("Clock-In/Out", "Index", "ClockInClockOut")</li>
                                     <li>@Html.ActionLink("Check-In/Out", "Index", "Transactions")</li>
 
                                 </ul>
@@ -100,7 +99,7 @@
                         }
                     </li><!--Employee TAB-->
                     <li>
-                        @if (userRank >= 1)
+                        @if (userRank == 1 || userRank == 4 || userRank == 5)
                         {
                             <!--HouseKeeping-->
                             <div class="dropdown">
@@ -112,7 +111,7 @@
                         }
                     </li><!--HouseKeeping TAB-->
                     <li>
-                        @if (userRank >= 1)
+                        @if (userRank == 2 || userRank == 4 || userRank == 5)
                         {
                             <!--Maintenance TAB-->
                             <div class="dropdown">
@@ -132,10 +131,9 @@
                          <div class="dropdown navbar-right">
                             <button class="btn btn-primary dropdown-toggle media" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Html.DisplayName(" " + userName) <span class="caret"></span></button>
                    <ul class="dropdown-menu">
-                       <li>
-                         <a onclick="signOut()"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a>
-                       </li>
-                       </ul>    
+                       <li><a href="@Url.Action("Index", "ClockInClockOut")"><span class="glyphicon glyphicon-credit-card"></span> Clock-In/Out</a></li>
+                       <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                   </ul>    
                             </div>
                      }
                      else

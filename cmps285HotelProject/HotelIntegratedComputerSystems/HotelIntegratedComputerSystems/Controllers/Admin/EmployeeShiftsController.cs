@@ -13,13 +13,13 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Index()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             return View(_services.GetEmployeeShiftList());
         }
 
         public ActionResult Create()
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             ViewBag.EmployeeId = new SelectList(Db.Employees, "Id", "Name");
             return View();
         }
@@ -28,7 +28,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,EmployeeId,EmployeeName,ClockInDate,ClockInTime,ClockOutDate,ClockOutTime,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             employeeShiftViewModel.ClockIn = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
             employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
             employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
@@ -39,7 +39,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Edit(int? id)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -59,7 +59,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,EmployeeId,EmployeeName,ClockIn,ClockOut,CashTakenIn,CashPutInSafe")] EmployeeShiftViewModel employeeShiftViewModel)
         {
-            if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+            if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             employeeShiftViewModel.ClockInDate = employeeShiftViewModel.ClockInDate.Date + employeeShiftViewModel.ClockInTime.TimeOfDay;
             employeeShiftViewModel.ClockOutDate = employeeShiftViewModel.ClockOutDate.Value.Date + employeeShiftViewModel.ClockOutTime.Value.TimeOfDay;
             if (!ModelState.IsValid) return View(employeeShiftViewModel);
@@ -69,7 +69,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
 
         public ActionResult Delete(int? id)
         {
-                        if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+                        if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,7 +88,7 @@ namespace HotelIntegratedComputerSystems.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-             if (Session["TypeId"] == null || int.Parse(Session["TypeId"].ToString()) < 4) { return Redirect("~/NotAuthorized/Index"); }
+             if (Session["AccessLevel"] == null || int.Parse(Session["AccessLevel"].ToString()) == 1 || int.Parse(Session["AccessLevel"].ToString()) == 2 || int.Parse(Session["AccessLevel"].ToString()) == 3) { return Redirect("~/NotAuthorized/Index"); }
             _services.DeleteEntry(id);
             return RedirectToAction("Index");
         }
